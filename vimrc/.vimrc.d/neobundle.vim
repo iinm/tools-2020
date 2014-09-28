@@ -28,6 +28,9 @@ NeoBundle 'elzr/vim-json'
 NeoBundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'plasticboy/vim-markdown'
+if v:version < 704
+  NeoBundle 'guns/vim-clojure-static'
+endif
 
 call neobundle#end()
 
