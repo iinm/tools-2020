@@ -1,0 +1,51 @@
+[global_config]
+  title_receive_bg_color = "#4b8fc0"
+  title_transmit_bg_color = "#58c48f"
+[keybindings]
+[profiles]
+  [[default]]
+    palette = "#000000:#c37372:#72c373:#c2c372:#7372c3:#c372c2:#72c2c3:#d9d9d9:#323232:#dbaaaa:#aadbaa:#dadbaa:#aaaadb:#dbaada:#aadadb:#ffffff"
+    background_image = None
+    background_darkness = 0.9
+    background_type = transparent
+    use_system_font = False
+    cursor_color = "#d9e6f2"
+    foreground_color = "#d9e6f2"
+    cursor_shape = ibeam
+    font = Ubuntu Mono 14
+    background_color = "#29262f"
+    cursor_blink = False
+  [[Chalkboard]]
+    palette = "#000000:#c37372:#72c373:#c2c372:#7372c3:#c372c2:#72c2c3:#d9d9d9:#323232:#dbaaaa:#aadbaa:#dadbaa:#aaaadb:#dbaada:#aadadb:#ffffff"
+    background_image = None
+    background_darkness = 0.9
+    background_type = transparent
+    use_system_font = False
+    cursor_color = "#d9e6f2"
+    foreground_color = "#d9e6f2"
+    cursor_shape = ibeam
+    font = Ubuntu Mono 14
+    background_color = "#29262f"
+    cursor_blink = False
+[[Teerb]]
+    palette = "#1c1c1c:#d68686:#aed686:#d7af87:#86aed6:#d6aed6:#8adbb4:#d0d0d0:#1c1c1c:#d68686:#aed686:#e4c9af:#86aed6:#d6aed6:#b1e7dd:#efefef"
+    background_color = "#262626"
+    cursor_color = "#e4c9af"
+    foreground_color = "#d0d0d0"
+    background_image = None
+    background_darkness = 0.9
+    background_type = transparent
+    use_system_font = False
+    cursor_shape = ibeam
+    font = Ubuntu Mono 14
+    cursor_blink = False
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
