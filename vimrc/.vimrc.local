@@ -1,3 +1,6 @@
+scriptencoding utf-8
+set encoding=utf-8
+
 set clipboard+=autoselect      " visual selection -> clipboard
 set clipboard+=unnamed         " yank -> clipboard
 
