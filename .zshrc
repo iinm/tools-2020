@@ -82,5 +82,21 @@ source $ZSH/oh-my-zsh.sh
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
-alias ls="ls --color=auto -F"
+if (uname | grep -qE "Darwin|BSD"); then
+  alias ls="ls -FG"
+else
+  alias ls="ls --color=auto -F"
+fi
 alias view="vim -R"
+
+# Python
+export PYTHONSTARTUP=$HOME/.pystartup.py
+
+# Ruby
+export PATH=$HOME/.gem/ruby/2.0.0/bin:$PATH
+
+# Clojure
+LOADER_JAR=$HOME/hello-clojure/script-loader/target/uberjar/script-loader-0.1.0-SNAPSHOT-standalone.jar
+function clj {
+  java -Dfile.encoding=UTF-8 -jar $LOADER_JAR $@
+}
