@@ -29,6 +29,7 @@ NeoBundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'mattn/emmet-vim'
+NeoBundle 'pangloss/vim-javascript'
 if v:version < 704
   NeoBundle 'guns/vim-clojure-static'
 endif
