@@ -1,0 +1,20 @@
+{
+	"caret_style": "phase",
+	"color_scheme": "Packages/Tomorrow Color Schemes/Tomorrow-Night-Eighties.tmTheme",
+	"file_exclude_patterns":
+	[
+		".*.swp",
+		"*~",
+		".DS_Store"
+	],
+	"font_face": "Ubuntu Mono",
+	"font_size": 15,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"rulers":
+	[
+		80
+	]
+}
