@@ -45,15 +45,15 @@
 ;;; Package Management
 (setq package-list
       '(evil
+        helm
         auto-complete
-        yasnippet
         ;;company
+        yasnippet
+        flycheck
         jedi
         ;;anaconda-mode
         ;;ac-anaconda
         jdee
-        flycheck
-        helm
         color-theme-sanityinc-tomorrow))
 
 (require 'package)
