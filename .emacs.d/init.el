@@ -98,9 +98,12 @@
 ;;(add-hook 'python-mode-hook 'ac-anaconda-setup)
 
 ;; auto-complete
+(require 'auto-complete-config)
 (ac-config-default)
+(add-hook 'auto-complete-mode-hook
+          (lambda () (add-to-list 'ac-sources 'ac-source-filename)))
 
-; company
+;; company
 ;;(add-hook 'after-init-hook 'global-company-mode)
 
 ;; flycheck
