@@ -18,8 +18,8 @@
                     (font-spec :family "TakaoGothic")))
 
 ;; ido
-(require 'ido)
-(ido-mode t)
+;;(require 'ido)
+;;(ido-mode t)
 
 ;; smooth scroll
 ;;(setq scroll-step 1)
@@ -51,7 +51,9 @@
         jedi
         ;;anaconda-mode
         ;;ac-anaconda
+        jdee
         flycheck
+        helm
         color-theme-sanityinc-tomorrow))
 
 (require 'package)
@@ -81,6 +83,10 @@
    (quote
     ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default))))
 
+;; helm
+(require 'helm-config)
+(helm-mode 1)
+
 ;; yasnippet
 ;; should be loaded before auto-complete
 (require 'yasnippet)
@@ -94,16 +100,18 @@
 ;; auto-complete
 (ac-config-default)
 
-;; jedi
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
-
 ; company
 ;;(add-hook 'after-init-hook 'global-company-mode)
 
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+;; jedi
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
+
+;; jdee
+(setq jdee-server-dir "~/.emacs.d/jdee/jdee-server/target")
 
 ;;; System-specific configuration
 
