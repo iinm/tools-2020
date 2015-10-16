@@ -1,7 +1,3 @@
 [submodule "vimrc/.vim/bundle/neobundle.vim"]
-	path = vimrc/.vim/bundle/neobundle.vim
-	url = https://github.com/Shougo/neobundle.vim
-
-[submodule ".emacs.d/jdee/jedd-server"]
-        path = .emacs.d/jdee/jedd-server
-        url = https://github.com/jdee-emacs/jdee-server
+    path = vimrc/.vim/bundle/neobundle.vim
+    url = https://github.com/Shougo/neobundle.vim
