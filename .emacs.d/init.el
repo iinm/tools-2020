@@ -13,7 +13,9 @@
   (set-scroll-bar-mode nil)
   (blink-cursor-mode 0)
   ;; font
-  (set-frame-font "Ubuntu Mono 13")
+  (set-frame-font "Ubuntu Mono 12")
+  (when (string= system-type "darwin")  ; retina
+    (set-frame-font "Ubuntu Mono 16"))
   (set-fontset-font t 'japanese-jisx0208
                     (font-spec :family "TakaoGothic")))
 
