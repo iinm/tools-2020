@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: sha-bang
+# key: #!
+# --
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
