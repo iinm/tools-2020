@@ -56,6 +56,8 @@
         ;;anaconda-mode
         ;;ac-anaconda
         jdee
+        emmet-mode
+        web-mode
         color-theme-sanityinc-tomorrow))
 
 (require 'package)
@@ -103,7 +105,10 @@
 (require 'auto-complete-config)
 (ac-config-default)
 (add-hook 'auto-complete-mode-hook
-          (lambda () (add-to-list 'ac-sources 'ac-source-filename)))
+          (lambda ()
+            (progn
+              (add-to-list 'ac-sources 'ac-source-filename)
+              (add-to-list 'ac-sources 'ac-source-yasnippet))))
 
 ;; company
 ;;(add-hook 'after-init-hook 'global-company-mode)
@@ -117,6 +122,41 @@
 
 ;; jdee
 (setq jdee-server-dir "~/.emacs.d/jdee/jdee-server/target")
+
+;; web-mode
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+;; indent
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-css-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
+;; ac
+(defvar ac-source-css-property-names
+  '((candidates . (loop for property in ac-css-property-alist
+                        collect (car property)))))
+(defun my-css-mode-hook ()
+  (add-to-list 'ac-sources 'ac-source-css-property)
+  (add-to-list 'ac-sources 'ac-source-css-property-names))
+
+(setq web-mode-ac-sources-alist
+  '(("html" . (ac-source-yasnippet ac-source-words-in-buffer ac-source-abbrev))
+    ("javascript" .
+     (ac-source-yasnippet ac-source-words-in-buffer ac-source-abbrev))
+    ("css" . (ac-source-css-property ac-source-css-property-names))))
+
+(add-to-list 'ac-modes 'web-mode)
+
+;; emmet
+;;(add-hook 'sgml-mode-hook 'emmet-mode)
+;;(add-hook 'css-mode-hook  'emmet-mode)
+(add-hook 'web-mode-hook  'emmet-mode)
+
 
 ;;; System-specific configuration
 
