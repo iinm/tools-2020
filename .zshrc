@@ -28,6 +28,7 @@ else
   alias ls="ls --color=auto -F"
 fi
 alias view="vim -R"
+alias tmux="env TERM=xterm-256color tmux"
 alias emacs="env TERM=xterm-256color emacs -nw"
 #alias emacsd="env TERM=xterm-256color emacs --daemon"
 #alias emacs="emacsclient -t"
