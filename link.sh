@@ -13,9 +13,7 @@ ln -sv $SCRIPT_DIR/.tmux.conf $HOME
 ln -sv $SCRIPT_DIR/.emacs.d $HOME
 
 # vim
-cp -iv /usr/share/vim/vim7?/vimrc_example.vim $HOME/.vimrc || cp -iv /usr/local/share/vim/vim7?/vimrc_example.vim $HOME/.vimrc
-cat $SCRIPT_DIR/.vimrc.tail >> $HOME/.vimrc
-ln -sv $SCRIPT_DIR/{.vimrc.local,.vimrc.d,.vim} $HOME
+ln -sv $SCRIPT_DIR/{.vimrc,.vimrc.d,.vim} $HOME
 
 # python
 ln -sv $SCRIPT_DIR/.pystartup.py $HOME
