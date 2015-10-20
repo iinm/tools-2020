@@ -3,17 +3,20 @@
 #SCRIPT_DIR=$(dirname $(readlink -f "$0"))
 SCRIPT_DIR=$(cd $(dirname "$0") && pwd)
 
-# zsh
-ln -sv $SCRIPT_DIR/{.oh-my-zsh,.zshrc} $HOME
+files=(
+    .zshrc .oh-my-zsh
+    .tmux.conf
+    .emacs.d
+    .vimrc .vimrc.d .vim
+    .pystartup.py
+)
 
-# tmux
-ln -sv $SCRIPT_DIR/.tmux.conf $HOME
+for fname in "${files[@]}"; do
+    ln -sv $SCRIPT_DIR/$fname $HOME/
+done
 
-# emacs
-ln -sv $SCRIPT_DIR/.emacs.d $HOME
-
-# vim
-ln -sv $SCRIPT_DIR/{.vimrc,.vimrc.d,.vim} $HOME
-
-# python
-ln -sv $SCRIPT_DIR/.pystartup.py $HOME
+#
+if [[ "$(uname)" == 'Linux' ]]; then
+    mkdir -pv $HOME/.config/fontconfig
+    ln -sv $SCRIPT_DIR/fonts.conf $HOME/.config/fontconfig/
+fi
