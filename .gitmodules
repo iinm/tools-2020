@@ -1,3 +1,6 @@
 [submodule ".emacs.d/jdee/jdee-server"]
 	path = .emacs.d/jdee/jdee-server
 	url = https://github.com/jdee-emacs/jdee-server
+[submodule ".vim/bundle/neobundle.vim"]
+	path = .vim/bundle/neobundle.vim
+	url = https://github.com/Shougo/neobundle.vim.git
