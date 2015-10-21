@@ -46,7 +46,7 @@ function emacsd {
 }
 #alias emacsd="env TERM=xterm-256color emacs --daemon"
 #alias emacs="env TERM=xterm-256color emacs -nw"
-alias emacs="emacsclient -t"
+alias emacs="env TERM=xterm-256color emacsclient -t"
 
 #export TERM=xterm-256color
 export EDITOR="emacs"
