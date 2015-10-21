@@ -40,6 +40,7 @@
   (setq mouse-drag-copy-region t))
 
 ;; indent
+(electric-indent-mode t)  ; default in 24.4
 (setq-default indent-tabs-mode nil tab-width 8)
 (setq c-default-style "k&r" c-basic-offset 4)
 
