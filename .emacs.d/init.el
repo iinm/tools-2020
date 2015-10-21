@@ -60,6 +60,7 @@
         emmet-mode
         web-mode
         auctex
+        zenburn-theme
         color-theme-sanityinc-tomorrow))
 
 (require 'package)
@@ -82,12 +83,7 @@
 (evil-mode 1)
 
 ;; theme - env TERM=xterm-256color
-;;(color-theme-sanityinc-tomorrow-eighties)
-(custom-set-variables
- '(custom-enabled-themes (quote (sanityinc-tomorrow-eighties)))
- '(custom-safe-themes
-   (quote
-    ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default))))
+(load-theme 'zenburn t)
 
 ;; helm
 (require 'helm-config)
