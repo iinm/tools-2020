@@ -59,6 +59,7 @@
         jdee
         emmet-mode
         web-mode
+        auctex
         color-theme-sanityinc-tomorrow))
 
 (require 'package)
@@ -146,9 +147,9 @@
   (add-to-list 'ac-sources 'ac-source-css-property-names))
 
 (setq web-mode-ac-sources-alist
-  '(("html" . (ac-source-yasnippet ac-source-words-in-buffer ac-source-abbrev))
+  '(("html" . (ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer))
     ("javascript" .
-     (ac-source-yasnippet ac-source-words-in-buffer ac-source-abbrev))
+     (ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer))
     ("css" . (ac-source-css-property ac-source-css-property-names))))
 
 (add-to-list 'ac-modes 'web-mode)
