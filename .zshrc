@@ -16,9 +16,6 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export EDITOR="emacs"
-#export TERM=xterm-256color
-
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
@@ -29,9 +26,30 @@ else
 fi
 alias view="vim -R"
 alias tmux="env TERM=xterm-256color tmux"
-alias emacs="env TERM=xterm-256color emacs -nw"
+
+# emacs
+function emacsd {
+    case "$1" in
+        start)
+            env TERM=xterm-256color emacs --daemon
+            ;;
+        stop)
+            emacsclient -e "(kill-emacs)"
+            ;;
+        restart)
+            emacsd stop && emacsd start
+            ;;
+        *)
+            echo "usage: emacsd [ start | stop | reload ]"
+            ;;
+    esac
+}
 #alias emacsd="env TERM=xterm-256color emacs --daemon"
-#alias emacs="emacsclient -t"
+#alias emacs="env TERM=xterm-256color emacs -nw"
+alias emacs="emacsclient -t"
+
+#export TERM=xterm-256color
+export EDITOR="emacs"
 
 # Python
 export PYTHONSTARTUP=$HOME/.pystartup.py
