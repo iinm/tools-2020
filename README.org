@@ -3,7 +3,7 @@
 
 * etc
 
-Configuration files (a.k.a dotfiles)
+Configuration files (a.k.a. dotfiles)
 
 ** Installation
 
