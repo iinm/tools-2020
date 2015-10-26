@@ -17,6 +17,10 @@ bash link.sh
 
 *** Emacs
 
+**** xclip
+
+Install xclip to use X clipboard.
+
 **** Jedi.el (Python)
 
 =pip install virtualenv= and =M-x jedi:install-server=.

@@ -60,6 +60,7 @@
         emmet-mode
         web-mode
         auctex
+        xclip
         zenburn-theme
         color-theme-sanityinc-tomorrow))
 
@@ -159,7 +160,9 @@
 
 ;;; System-specific configuration
 
-;; mozc
 (when (string= system-type "gnu/linux")
+  ;; clipboard
+  (xclip-mode 1)
+  ;; mozc
   (require 'mozc)  ; or (load-file "/path/to/mozc.el")
   (setq default-input-method "japanese-mozc"))
