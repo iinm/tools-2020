@@ -1,0 +1,29 @@
+# -*- mode: org -*-
+#+STARTUP: showall
+
+* etc
+
+Configuration files (a.k.a dotfiles)
+
+** Installation
+
+#+BEGIN_SRC sh
+git clone --recursive https://github.com/iinm/etc.git ~/.etc
+cd ~/.etc
+bash link.sh
+#+END_SRC
+
+** Settings
+
+*** Emacs
+
+**** Jedi.el (Python)
+
+=pip install virtualenv= and =M-x jedi:install-server=.
+
+**** JDEE (Java)
+
+#+BEGIN_SRC sh
+cd ~/.emacs.d/jdee/jdee-server
+mvn assembly:assembly
+#+END_SRC
