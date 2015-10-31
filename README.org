@@ -11,6 +11,8 @@ Configuration files (a.k.a. dotfiles)
 git clone --recursive https://github.com/iinm/etc.git ~/.etc
 cd ~/.etc
 bash link.sh
+# or
+bash link.sh -f  # remove existing files
 #+END_SRC
 
 ** Settings
