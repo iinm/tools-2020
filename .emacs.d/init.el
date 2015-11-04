@@ -14,7 +14,7 @@
   (blink-cursor-mode 0)
   ;; font
   (set-frame-font "Ubuntu Mono 12")
-  (when (string= system-type "darwin")  ; retina
+  (when (eq system-type 'darwin)  ; retina
     (set-frame-font "Ubuntu Mono 16"))
   (set-fontset-font t 'japanese-jisx0208
                     (font-spec :family "TakaoGothic")))
@@ -35,9 +35,9 @@
 
 ;;; Editor
 ;;
-(when window-system
-  (setq x-select-enable-clipboard t)
-  (setq mouse-drag-copy-region t))
+;;(when window-system
+;;  (setq x-select-enable-clipboard t)
+;;  (setq mouse-drag-copy-region t))
 
 ;; indent
 (electric-indent-mode t)  ; default in 24.4
@@ -160,9 +160,23 @@
 
 ;;; System-specific configuration
 
-(when (string= system-type "gnu/linux")
+(when (eq system-type 'gnu/linux)
   ;; clipboard
   (xclip-mode 1)
   ;; mozc
   (require 'mozc)  ; or (load-file "/path/to/mozc.el")
   (setq default-input-method "japanese-mozc"))
+
+(when (eq system-type 'darwin)
+  ;; clipboard
+  (defun copy-from-osx ()
+    (shell-command-to-string "pbpaste"))
+
+  (defun paste-to-osx (text &optional push)
+    (let ((process-connection-type nil))
+      (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+        (process-send-string proc text)
+        (process-send-eof proc))))
+
+  (setq interprogram-cut-function 'paste-to-osx)
+  (setq interprogram-paste-function 'copy-from-osx))
