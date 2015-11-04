@@ -40,7 +40,7 @@ function emacsd {
             emacsd stop && emacsd start
             ;;
         *)
-            echo "usage: emacsd [ start | stop | reload ]"
+            echo "usage: emacsd [ start | stop | restart ]"
             ;;
     esac
 }
