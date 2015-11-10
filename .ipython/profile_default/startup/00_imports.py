@@ -4,6 +4,7 @@
 import sys
 import os
 import os.path as path
+import glob
 import re
 import pprint
 import gzip
@@ -15,10 +16,14 @@ import numpy as np
 import scipy as sp
 import networkx as nx
 
-def upp(obj):
-    printer = pprint.PrettyPrinter()
+
+def upp(obj, indent=2, **pp_args):
+    '''
+    stringify object that contains unicode
+    '''
+    printer = pprint.PrettyPrinter(indent=indent, **pp_args)
     str_ = printer.pformat(obj)
     str_ = re.sub(
-        r"\\u([0-9a-f]{4})", lambda x: unichr(int("0x"+x.group(1), 16)), str_
+        r'\\u([0-9a-f]{4})', lambda x: unichr(int('0x'+x.group(1), 16)), str_
     )
     return str_
