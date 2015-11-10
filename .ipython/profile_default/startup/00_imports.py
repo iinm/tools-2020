@@ -3,8 +3,14 @@
 
 import sys
 import os
+import os.path as path
 import re
 import pprint
+import gzip
+try:
+    import cPickle as pickle
+except ImportError:
+    import  pickle
 import numpy as np
 import scipy as sp
 import networkx as nx
