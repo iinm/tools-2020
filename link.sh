@@ -11,6 +11,7 @@ files=(
     .emacs.d
     .vimrc .vimrc.d .vim
     .pystartup.py
+    .ipython
 )
 
 for fname in "${files[@]}"; do
