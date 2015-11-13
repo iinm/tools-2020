@@ -64,6 +64,7 @@
         jdee
         emmet-mode
         web-mode
+        markdown-mode
         auctex
         xclip
         zenburn-theme

@@ -1,0 +1,7 @@
+/*
+!.gitignore
+!/profile_default
+/profile_default/*
+!/profile_default/startup
+/profile_default/startup/*
+!/profile_default/startup/*.py

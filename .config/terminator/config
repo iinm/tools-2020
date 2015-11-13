@@ -1,53 +1,51 @@
 [global_config]
   title_receive_bg_color = "#4b8fc0"
   title_transmit_bg_color = "#58c48f"
+  always_split_with_profile = True
 [keybindings]
 [profiles]
-  [[default]]
-    palette = "#000000:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#ffffff:#000000:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#ffffff"
-    background_image = None
+  [[Default]]
     background_darkness = 0.97
     background_type = transparent
     use_system_font = False
-    cursor_color = "#cccccc"
-    foreground_color = "#cccccc"
+    show_titlebar = False
     font = Ubuntu Mono 12
-    background_color = "#2d2d2d"
     cursor_blink = False
   [[Tomorrow Night Eighties]]
     palette = "#000000:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#ffffff:#000000:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#ffffff"
+    background_color = "#2d2d2d"
+    cursor_color = "#cccccc"
+    foreground_color = "#cccccc"
     background_image = None
     background_darkness = 0.97
     background_type = transparent
     use_system_font = False
-    cursor_color = "#cccccc"
-    foreground_color = "#cccccc"
+    show_titlebar = False
     font = Ubuntu Mono 12
-    background_color = "#2d2d2d"
     cursor_blink = False
   [[Chalkboard]]
     palette = "#000000:#c37372:#72c373:#c2c372:#7372c3:#c372c2:#72c2c3:#d9d9d9:#323232:#dbaaaa:#aadbaa:#dadbaa:#aaaadb:#dbaada:#aadadb:#ffffff"
-    background_image = None
-    background_darkness = 0.9
-    background_type = transparent
-    use_system_font = False
+    background_color = "#29262f"
     cursor_color = "#d9e6f2"
     foreground_color = "#d9e6f2"
-    cursor_shape = ibeam
-    font = Ubuntu Mono 14
-    background_color = "#29262f"
-    cursor_blink = False
-  [[Teerb]]
-    palette = "#1c1c1c:#d68686:#aed686:#d7af87:#86aed6:#d6aed6:#8adbb4:#d0d0d0:#1c1c1c:#d68686:#aed686:#e4c9af:#86aed6:#d6aed6:#b1e7dd:#efefef"
     background_image = None
-    background_darkness = 0.9
+    background_darkness = 0.97
     background_type = transparent
     use_system_font = False
-    cursor_color = "#e4c9af"
-    foreground_color = "#d0d0d0"
-    cursor_shape = ibeam
-    font = Ubuntu Mono 14
-    background_color = "#262626"
+    show_titlebar = False
+    font = Ubuntu Mono 12
+    cursor_blink = False
+[[Zenburn]]
+    palette = "#4d4d4d:#705050:#60b48a:#f0dfaf:#506070:#dc8cc3:#8cd0d3:#dcdccc:#709080:#dca3a3:#c3bf9f:#e0cf9f:#94bff3:#ec93d3:#93e0e3:#ffffff"
+    background_color = "#3f3f3f"
+    cursor_color = "#73635a"
+    foreground_color = "#dcdccc"
+    background_image = None
+    background_darkness = 0.97
+    background_type = transparent
+    use_system_font = False
+    show_titlebar = False
+    font = Ubuntu Mono 12
     cursor_blink = False
 [layouts]
   [[default]]
