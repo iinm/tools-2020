@@ -7,6 +7,10 @@
 (setq completion-ignore-case t)
 (menu-bar-mode 0)
 ;;(load-theme 'misterioso t)  ; env TERM=xterm-256color
+;; dired
+(put 'dired-find-alternate-file 'disabled nil)
+(add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
+(setq dired-omit-mode t)
 
 (when window-system
   (tool-bar-mode 0)
@@ -43,6 +47,7 @@
 (electric-indent-mode t)  ; default in 24.4
 (setq-default indent-tabs-mode nil tab-width 8)
 (setq c-default-style "k&r" c-basic-offset 4)
+(setq js-indent-level 2)
 
 
 ;;; Package Management
