@@ -55,6 +55,8 @@
       '(evil
         helm
         neotree
+        projectile
+        helm-projectile
         auto-complete
         ;;company
         yasnippet
@@ -65,6 +67,7 @@
         jdee
         emmet-mode
         web-mode
+        rainbow-mode
         markdown-mode
         auctex
         xclip
@@ -105,6 +108,11 @@
             (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
             (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
             (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
+
+;; projectile
+(projectile-global-mode)
+(require 'helm-projectile)
+(helm-projectile-on)
 
 ;; yasnippet
 ;; should be loaded before auto-complete
