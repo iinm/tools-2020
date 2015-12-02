@@ -13,6 +13,7 @@
 (setq dired-omit-mode t)
 
 (when window-system
+  (menu-bar-mode 1)
   (tool-bar-mode 0)
   (set-scroll-bar-mode nil)
   (blink-cursor-mode 0)
