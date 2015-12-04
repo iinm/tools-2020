@@ -50,6 +50,8 @@
 (setq c-default-style "k&r" c-basic-offset 4)
 (setq js-indent-level 2)
 
+;; org-mode
+(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
 
 ;;; Package Management
 (setq package-list
