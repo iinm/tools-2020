@@ -206,6 +206,7 @@
   (defun copy-from-osx ()
     (shell-command-to-string "pbpaste"))
 
+  (setenv "LANG" "en_US.UTF-8")
   (defun paste-to-osx (text &optional push)
     (let ((process-connection-type nil))
       (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
