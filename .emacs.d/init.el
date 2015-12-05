@@ -53,7 +53,6 @@
 ;; org-mode
 (add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
 
-
 ;;; Package Management
 (setq package-list
       '(evil
@@ -75,7 +74,6 @@
         markdown-mode
         auctex
         xclip
-        mozc
         zenburn-theme
         color-theme-sanityinc-tomorrow))
 
