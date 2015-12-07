@@ -49,9 +49,12 @@
 (setq-default indent-tabs-mode nil tab-width 8)
 (setq c-default-style "k&r" c-basic-offset 4)
 (setq js-indent-level 2)
+;; css-mode
+(add-hook 'css-mode-hook (lambda() (setq css-indent-offset 2)))
 
 ;; org-mode
 (add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
+
 
 ;;; Package Management
 (setq package-list
