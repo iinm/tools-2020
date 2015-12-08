@@ -75,6 +75,7 @@
         web-mode
         rainbow-mode
         markdown-mode
+        yaml-mode
         auctex
         xclip
         zenburn-theme
