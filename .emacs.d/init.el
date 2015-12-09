@@ -73,6 +73,7 @@
         jdee
         emmet-mode
         web-mode
+        scss-mode
         rainbow-mode
         markdown-mode
         yaml-mode
