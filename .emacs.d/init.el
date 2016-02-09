@@ -106,7 +106,10 @@
 
 ;; helm
 (require 'helm-config)
-(helm-mode 1)
+;;(helm-mode 1)
+(global-set-key (kbd "M-x")'helm-M-x)
+(global-set-key (kbd "C-x r b") 'helm-filtered-bookmarks)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 ;; neotree
 (global-set-key [f8] 'neotree-toggle)
