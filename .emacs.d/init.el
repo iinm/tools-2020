@@ -18,11 +18,11 @@
   (set-scroll-bar-mode nil)
   (blink-cursor-mode 0)
   ;; font
-  (set-frame-font "Ubuntu Mono 12")
-  (when (eq system-type 'darwin)  ; retina
-    (set-frame-font "Ubuntu Mono 16"))
-  (set-fontset-font t 'japanese-jisx0208
-                    (font-spec :family "TakaoGothic")))
+  (cond
+   ((eq system-type 'darwin)
+    (add-to-list 'default-frame-alist '(font . "Ubuntu Mono-16")))
+   (t (add-to-list 'default-frame-alist '(font . "Ubuntu Mono-12"))))
+  (set-fontset-font t 'japanese-jisx0208 (font-spec :family "TakaoGothic")))
 
 ;; ido
 ;;(require 'ido)
