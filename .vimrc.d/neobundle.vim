@@ -21,6 +21,7 @@ NeoBundle 'Shougo/vimproc', {
 "NeoBundle 'Shougo/neocomplete' "requires lua
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'honza/vim-snippets'
@@ -33,6 +34,7 @@ NeoBundle 'pangloss/vim-javascript'
 if v:version < 704
   NeoBundle 'guns/vim-clojure-static'
 endif
+NeoBundle 'groenewege/vim-less'
 
 call neobundle#end()
 
