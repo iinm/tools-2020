@@ -10,19 +10,22 @@ files=(
     .tmux.conf
     .emacs.d
     .vimrc .vimrc.d .vim
-    .pystartup.py
-    .ipython
+    #.pystartup.py
+    #.ipython
 )
 
 for fname in "${files[@]}"; do
     ln $ln_opt -sv $this_dir/$fname $HOME/
 done
 
-#
-config_files=(fontconfig terminator)
-if [[ "$(uname)" == 'Linux' ]]; then
-    mkdir -pv $HOME/.config
-    for fname in "${config_files[@]}"; do
-        ln $ln_opt -sv $this_dir/.config/$fname $HOME/.config/
-    done
-fi
+# $XDG_CONFIG_HOME
+case "$(uname)" in
+    "Linux" ) config_fils=(fontconfig nvim terminator) ;;
+    "Darwin" ) config_files=(nvim) ;;
+    * ) config_files=() ;;
+esac
+
+mkdir -pv $HOME/.config
+for fname in "${config_files[@]}"; do
+    ln $ln_opt -sv $this_dir/.config/$fname $HOME/.config/
+done
