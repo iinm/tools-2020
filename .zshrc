@@ -48,10 +48,10 @@ alias ec="env TERM=xterm-256color emacsclient -t"
 alias emacs="env TERM=xterm-256color emacs"
 
 #export TERM=xterm-256color
-export EDITOR="emacs"
+export EDITOR="nvim"
 
 # Python
-export PYTHONSTARTUP=$HOME/.pystartup.py
+#export PYTHONSTARTUP=$HOME/.pystartup.py
 
 # Ruby
 #export PATH=$HOME/.gem/ruby/2.0.0/bin:$PATH
