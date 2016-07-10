@@ -7,3 +7,6 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
+[submodule ".config/nvim/dein/repos/github.com/Shougo/dein.vim"]
+	path = .config/nvim/dein/repos/github.com/Shougo/dein.vim
+	url = https://github.com/Shougo/dein.vim
