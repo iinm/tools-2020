@@ -35,6 +35,7 @@ if v:version < 704
   NeoBundle 'guns/vim-clojure-static'
 endif
 NeoBundle 'groenewege/vim-less'
+NeoBundle 'scrooloose/nerdtree'
 
 call neobundle#end()
 
