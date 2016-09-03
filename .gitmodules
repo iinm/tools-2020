@@ -13,3 +13,6 @@
 [submodule "tools/opt/todo.txt-cli"]
 	path = tools/opt/todo.txt-cli
 	url = https://github.com/ginatrapani/todo.txt-cli
+[submodule "tools/opt/pyenv"]
+	path = tools/opt/pyenv
+	url = https://github.com/yyuu/pyenv
