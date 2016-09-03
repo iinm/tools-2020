@@ -16,3 +16,6 @@
 [submodule "tools/opt/pyenv"]
 	path = tools/opt/pyenv
 	url = https://github.com/yyuu/pyenv
+[submodule "tools/opt/gvm"]
+	path = tools/opt/gvm
+	url = https://github.com/moovweb/gvm

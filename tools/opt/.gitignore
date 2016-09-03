@@ -1,3 +1,5 @@
 *
 !.gitignore
 !todo.txt-cli
+!pyenv
+!gvm
