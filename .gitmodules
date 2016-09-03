@@ -10,3 +10,6 @@
 [submodule ".config/nvim/dein/repos/github.com/Shougo/dein.vim"]
 	path = .config/nvim/dein/repos/github.com/Shougo/dein.vim
 	url = https://github.com/Shougo/dein.vim
+[submodule "tools/opt/todo.txt-cli"]
+	path = tools/opt/todo.txt-cli
+	url = https://github.com/ginatrapani/todo.txt-cli
