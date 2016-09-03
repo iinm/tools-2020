@@ -6,10 +6,11 @@ this_dir=$(cd $(dirname "$0") && pwd)
 ln_opt="$1"
 
 files=(
-    .zshrc .oh-my-zsh
+    .zshrc .zshenv .oh-my-zsh
     .tmux.conf
     .emacs.d
     .vimrc .vimrc.d .vim
+    tools
     #.pystartup.py
     #.ipython
 )
@@ -20,8 +21,8 @@ done
 
 # $XDG_CONFIG_HOME
 case "$(uname)" in
-    "Linux" ) config_files=(fontconfig nvim terminator) ;;
-    "Darwin" ) config_files=(nvim) ;;
+    "Linux" ) config_files=(fontconfig nvim terminator todo.cfg) ;;
+    "Darwin" ) config_files=(nvim todo.cfg) ;;
     * ) config_files=() ;;
 esac
 

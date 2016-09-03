@@ -50,6 +50,10 @@ alias emacs="env TERM=xterm-256color emacs"
 #export TERM=xterm-256color
 export EDITOR="nvim"
 
+# todo.txt
+source "$HOME/tools/opt/todo.txt-cli/todo_completion"
+alias t="$HOME/tools/opt/todo.txt-cli/todo.sh -d $HOME/.config/todo.cfg"
+
 # Python
 #export PYTHONSTARTUP=$HOME/.pystartup.py
 
