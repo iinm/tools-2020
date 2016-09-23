@@ -24,7 +24,7 @@ if (uname | grep -qE "Darwin|BSD"); then
 else
   alias ls="ls --color=auto -F"
 fi
-alias view="vim -R"
+alias view="nvim -R"
 alias tmux="env TERM=xterm-256color tmux"
 
 # emacs
