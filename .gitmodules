@@ -19,3 +19,6 @@
 [submodule "tools/opt/gvm"]
 	path = tools/opt/gvm
 	url = https://github.com/moovweb/gvm
+[submodule "tools/opt/nvm"]
+	path = tools/opt/nvm
+	url = https://github.com/creationix/nvm.git

@@ -15,6 +15,10 @@ eval "$(pyenv init -)"
 export GVM_ROOT=$tools_dir/opt/gvm
 source $GVM_ROOT/scripts/gvm-default
 
+## nvm
+export NVM_DIR=$tools_dir/opt/nvm
+test -s $NVM_DIR/nvm.sh && source $NVM_DIR/nvm.sh
+
 
 # load machine specific config
 test -f $HOME/.zshenv.local && source $HOME/.zshenv.local
