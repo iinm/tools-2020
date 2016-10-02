@@ -8,7 +8,7 @@ ln_opt="$1"
 files=(
     .zshrc .zshenv .oh-my-zsh
     .tmux.conf
-    .emacs.d
+    #.emacs.d
     .vimrc .vimrc.d .vim
     tools
     #.pystartup.py
@@ -18,6 +18,9 @@ files=(
 for fname in "${files[@]}"; do
     ln $ln_opt -sv $this_dir/$fname $HOME/
 done
+
+# prelude
+ln $ln_opt -sv $this_dir/prelude $HOME/.emacs.d
 
 # $XDG_CONFIG_HOME
 case "$(uname)" in

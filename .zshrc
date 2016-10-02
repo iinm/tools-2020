@@ -44,7 +44,8 @@ function emacsd {
             ;;
     esac
 }
-alias ec="env TERM=xterm-256color emacsclient -t"
+alias e="env TERM=xterm-256color emacsclient -t"
+alias ec="env TERM=xterm-256color emacsclient -c"
 alias emacs="env TERM=xterm-256color emacs"
 
 #export TERM=xterm-256color
