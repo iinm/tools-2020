@@ -22,6 +22,3 @@
 [submodule "tools/opt/nvm"]
 	path = tools/opt/nvm
 	url = https://github.com/creationix/nvm.git
-[submodule "prelude"]
-	path = prelude
-	url = https://github.com/bbatsov/prelude
