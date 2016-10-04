@@ -20,14 +20,22 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
 if (uname | grep -qE "Darwin|BSD"); then
-  alias ls="ls -FG"
+    alias ls="ls -FG"
 else
-  alias ls="ls --color=auto -F"
+    alias ls="ls --color=auto -F"
 fi
 alias view="nvim -R"
 alias tmux="env TERM=xterm-256color tmux"
 
 # emacs
+if [[ `uname` == 'Darwin' ]]; then
+    EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs"
+    EMACSCLIENT="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+else
+    EMACS=`which emacs`
+    EMACSCLIENT=`which emacsclient`
+fi
+
 function emacsd {
     case "$1" in
         start)
@@ -44,9 +52,9 @@ function emacsd {
             ;;
     esac
 }
-alias e="env TERM=xterm-256color emacsclient -t"
-alias ec="env TERM=xterm-256color emacsclient -c"
-alias emacs="env TERM=xterm-256color emacs"
+alias e="env TERM=xterm-256color $EMACSCLIENT -t"
+alias ec="env TERM=xterm-256color $EMACSCLIENT -c"
+alias emacs="env TERM=xterm-256color $EMACS"
 
 #export TERM=xterm-256color
 export EDITOR="nvim"

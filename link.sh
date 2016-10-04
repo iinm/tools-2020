@@ -13,6 +13,7 @@ files=(
     tools
     #.pystartup.py
     #.ipython
+    .spacemacs
 )
 
 for fname in "${files[@]}"; do
@@ -20,7 +21,7 @@ for fname in "${files[@]}"; do
 done
 
 # prelude
-ln $ln_opt -sv $this_dir/prelude $HOME/.emacs.d
+ln $ln_opt -sv $this_dir/spacemacs $HOME/.emacs.d
 
 # $XDG_CONFIG_HOME
 case "$(uname)" in

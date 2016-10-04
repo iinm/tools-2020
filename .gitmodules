@@ -22,3 +22,6 @@
 [submodule "tools/opt/nvm"]
 	path = tools/opt/nvm
 	url = https://github.com/creationix/nvm.git
+[submodule "spacemacs"]
+	path = spacemacs
+	url = https://github.com/syl20bnr/spacemacs
