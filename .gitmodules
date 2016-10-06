@@ -25,3 +25,6 @@
 [submodule "spacemacs"]
 	path = spacemacs
 	url = https://github.com/syl20bnr/spacemacs
+[submodule "tools/opt/zsh-autoenv"]
+	path = tools/opt/zsh-autoenv
+	url = https://github.com/Tarrasch/zsh-autoenv
