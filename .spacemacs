@@ -54,6 +54,7 @@ values."
      sql
      yaml
      shell-scripts
+     react
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -294,38 +295,20 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  ;; clipboard
-  (when (eq system-type 'gnu/linux) (xclip-mode 1))
+  (setq-default
+   ;; js2-mode
+   js2-basic-offset 2
+   ;; web-mode
+   css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2)
 
-  (when (eq system-type 'darwin)
-    (defun pbcopy ()
-      (interactive)
-      (call-process-region (point) (mark) "pbcopy")
-      (setq deactivate-mark t))
-
-    (defun pbpaste ()
-      (interactive)
-      (call-process-region (point) (if mark-active (mark) (point)) "pbpaste" t t))
-
-    (defun pbcut ()
-      (interactive)
-      (pbcopy)
-      (delete-region (region-beginning) (region-end)))
-
-    ;; laggy
-    ;;(defun copy-from-osx ()
-    ;;  (shell-command-to-string "pbpaste"))
-
-    ;;(setenv "LANG" "en_US.UTF-8")
-    ;;(defun paste-to-osx (text &optional push)
-    ;;  (let* ((process-connection-type nil)
-    ;;         (proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-    ;;    (process-send-string proc text)
-    ;;    (process-send-eof proc)))
-
-    ;;(setq interprogram-cut-function 'paste-to-osx)
-    ;;(setq interprogram-paste-function 'copy-from-osx))
-    )
+  (with-eval-after-load 'web-mode
+    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
   )
 
 (defun dotspacemacs/user-config ()
@@ -335,6 +318,45 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; paste board
+  (defun pbcopy ()
+    (interactive)
+    (let ((pbcopy-command
+           (cond ((eq system-type 'gnu/linux) "xsel -i -b")
+                 ((eq system-type 'darwin) "pbcopy"))))
+      (if (region-active-p)
+          (progn
+            (shell-command-on-region (region-beginning) (region-end) pbcopy-command)
+            (message "Yanked region to pasteboard!")
+            (deactivate-mark))
+        (message "No region active; can't yank to pasteboard!"))))
+
+  (defun pbpaste ()
+    (interactive)
+    (let ((pbpaste-command
+           (cond ((eq system-type 'gnu/linux) "xsel -o -b")
+                 ((eq system-type 'darwin) "pbpaste"))))
+      (insert (shell-command-to-string pbpaste-command))))
+
+  (defun pbcut ()
+    (interactive)
+    (pbcopy)
+    (delete-region (region-beginning) (region-end)))
+
+  ;; laggy
+  ;;(defun copy-from-osx ()
+  ;;  (shell-command-to-string "pbpaste"))
+
+  ;;(setenv "LANG" "en_US.UTF-8")
+  ;;(defun paste-to-osx (text &optional push)
+  ;;  (let* ((process-connection-type nil)
+  ;;         (proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+  ;;    (process-send-string proc text)
+  ;;    (process-send-eof proc)))
+
+  ;;(setq interprogram-cut-function 'paste-to-osx)
+  ;;(setq interprogram-paste-function 'copy-from-osx))
+  ;;)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
