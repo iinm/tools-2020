@@ -25,16 +25,30 @@ else
     alias ls="ls --color=auto -F"
 fi
 alias view="nvim -R"
+#export TERM=xterm-256color
+export EDITOR="nvim"
 alias tmux="env TERM=xterm-256color tmux"
 
 # emacs
+EMACS_ENV="TERM=xterm-256color"
+if (uname | grep -qE "Darwin"); then
+    EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs"
+    EMACSCLIENT="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+else
+    EMACS=$(which emacs)
+    EMACSCLIENT=$(which emacsclient)
+fi
+alias emacs="env $EMACS_ENV $EMACS"
+alias e="env $EMACS_ENV $EMACSCLIENT -t"
+alias ec="env $EMACS_ENV $EMACSCLIENT -c"
+
 function emacsd {
     case "$1" in
         start)
-            env TERM=xterm-256color emacs --daemon
+            env $EMACS_ENV $EMACS --daemon
             ;;
         stop)
-            emacsclient -e "(kill-emacs)"
+            $EMACSCLIENT -e "(kill-emacs)"
             ;;
         restart)
             emacsd stop && emacsd start
@@ -44,12 +58,6 @@ function emacsd {
             ;;
     esac
 }
-alias e="env TERM=xterm-256color emacsclient -t"
-alias ec="env TERM=xterm-256color emacsclient -c"
-alias emacs="env TERM=xterm-256color emacs"
-
-#export TERM=xterm-256color
-export EDITOR="nvim"
 
 # todo.txt
 source "$HOME/tools/opt/todo.txt-cli/todo_completion"
