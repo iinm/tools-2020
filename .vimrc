@@ -102,6 +102,7 @@ NeoBundle 'bronson/vim-trailing-whitespace'
 "NeoBundle 'tacahiroy/ctrlp-funky'
 "NeoBundle 'suy/vim-ctrlp-commandline'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'altercation/vim-colors-solarized'
 
 call neobundle#end()
 
