@@ -239,6 +239,7 @@ nnoremap <silent> [unite]r :<C-u>Unite register<CR>
 "nmap <Space>f [file]
 "nnoremap <silent> [file]f :<C-u>Unite -start-insert file<CR>
 "nnoremap <silent> [file]r :<C-u>Unite -start-insert file_rec/async:!<CR>
+"nnoremap <silent> [file]g :<C-u>Unite -start-insert file_rec/git<CR>
 
 " buffer
 nnoremap [buffer] <Nop>
@@ -252,6 +253,7 @@ nmap <Space>t [tab]
 "nnoremap <silent> [tab]l :<C-u>Unite -start-insert tab<CR>
 nnoremap [tab]e :<C-u>tabedit 
 nnoremap <silent> [tab]c :<C-u>tabnew<CR>
+nnoremap <silent> [tab]t :<C-u>tabnext<CR>
 nnoremap <silent> [tab]n :<C-u>tabnext<CR>
 nnoremap <silent> [tab]p :<C-u>tabprevious<CR>
 
