@@ -102,6 +102,7 @@ NeoBundle 'bronson/vim-trailing-whitespace'
 "NeoBundle 'tacahiroy/ctrlp-funky'
 "NeoBundle 'suy/vim-ctrlp-commandline'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'freitass/todo.txt-vim'
 NeoBundle 'altercation/vim-colors-solarized'
 
 call neobundle#end()
@@ -217,6 +218,8 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 let g:unite_source_history_yank_enable = 1
 
 " --- keymap -----------------------
+let maplocalleader = ","
+
 " Unite
 nnoremap [unite] <Nop>
 nmap <Space>u [unite]
