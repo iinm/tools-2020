@@ -1,5 +1,10 @@
 export LANG=en_US.UTF-8
 
+# homebrew
+if [ -x /usr/local/bin/brew ]; then
+  export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+fi
+
 # $HOME/tools
 #tools_dir=$(cd $(dirname $0) && pwd)
 tools_dir=$HOME/tools
@@ -20,7 +25,6 @@ export NVM_DIR=$tools_dir/opt/nvm
 test -s $NVM_DIR/nvm.sh && source $NVM_DIR/nvm.sh
 
 ## autoenv
-# TODO oh-my-zsh 含まれているものを使う
 source $tools_dir/opt/zsh-autoenv/autoenv.zsh
 
 
@@ -29,4 +33,3 @@ test -f $HOME/.zshenv.local && source $HOME/.zshenv.local
 
 # clean out duplicate entries
 typeset -U path PATH
-
