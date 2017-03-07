@@ -55,6 +55,7 @@ syntax enable
 set backspace=indent,eol,start
 set showmatch
 source $VIMRUNTIME/macros/matchit.vim
+set number
 
 " --- packages -----------------------
 " Note: Skip initialization for vim-tiny or vim-small.
@@ -105,6 +106,7 @@ NeoBundle 'bronson/vim-trailing-whitespace'
 "NeoBundle 'tacahiroy/ctrlp-funky'
 "NeoBundle 'suy/vim-ctrlp-commandline'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'freitass/todo.txt-vim'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'itchyny/lightline.vim'
@@ -138,6 +140,8 @@ let g:syntastic_mode_map = {
       \ 'active_filetypes': ['javascript'],
       \ 'passive_filetypes': []
       \ }
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 " --- neocomplete -----------------------
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
@@ -242,47 +246,77 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 " --- Unite -----------------------
 let g:unite_source_history_yank_enable = 1
 
+" --- Jedi ------------------------
+let g:jedi#use_tabs_not_buffers = 1
+
+" --- vim-go -----------------------
+let g:go_fmt_command = "goimports"
+let g:go_list_type = "quickfix"
+
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>tf <Plug>(go-test-func)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+
+au FileType go nmap <leader>ds <Plug>(go-def-split)
+au FileType go nmap <leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <leader>dt <Plug>(go-def-tab)
+
+au FileType go nmap <leader>gd <Plug>(go-doc)
+au FileType go nmap <leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <leader>gb <Plug>(go-doc-browser)
+
+au FileType go nmap <leader>s <Plug>(go-implements)
+au FileType go nmap <leader>i <Plug>(go-info)
+au FileType go nmap <leader>e <Plug>(go-rename)
+
 " --- keymap -----------------------
 let maplocalleader = ","
+let mapleader = ","
 
 " Unite
 nnoremap [unite] <Nop>
 nmap <Space>u [unite]
 nnoremap <silent> [unite]u :<C-u>Unite -start-insert<CR>
 nnoremap <silent> [unite]c :<C-u>Unite -start-insert command<CR>
-nnoremap <silent> [unite]ff :<C-u>Unite -start-insert file<CR>
-nnoremap <silent> [unite]fr :<C-u>Unite -start-insert file_rec/async:!<CR>
-nnoremap <silent> [unite]fg :<C-u>Unite -start-insert file_rec/git<CR>
-nnoremap <silent> [unite]fs :<C-u>Unite -tab -no-quit find<CR>
-nnoremap <silent> [unite]fm :<C-u>Unite -start-insert file_mru<CR>
+"nnoremap <silent> [unite]ff :<C-u>Unite -start-insert file file/new file_mru<CR>
+"nnoremap <silent> [unite]fr :<C-u>Unite -start-insert file_rec/async:!<CR>
+"nnoremap <silent> [unite]fg :<C-u>Unite -start-insert file_rec/git<CR>
+"nnoremap <silent> [unite]fs :<C-u>Unite -tab -no-quit find<CR>
+"nnoremap <silent> [unite]fm :<C-u>Unite -start-insert file_mru<CR>
 nnoremap <silent> [unite]g :<C-u>Unite -tab -no-quit grep<CR>
-nnoremap <silent> [unite]b :<C-u>Unite -start-insert buffer<CR>
-nnoremap <silent> [unite]t :<C-u>Unite -start-insert tab<CR>
+"nnoremap <silent> [unite]b :<C-u>Unite -start-insert buffer<CR>
+"nnoremap <silent> [unite]t :<C-u>Unite -start-insert tab<CR>
 nnoremap <silent> [unite]w :<C-u>Unite -start-insert window<CR>
 nnoremap <silent> [unite]h :<C-u>Unite -start-insert history/unite<CR>
 nnoremap <silent> [unite]r :<C-u>Unite register<CR>
+nnoremap <silent> [unite]m :<C-u>Unite mapping<CR>
 
 " file
 nnoremap [file] <Nop>
 nmap <Space>f [file]
 nnoremap <silent> [file]t :<C-u>NERDTreeTabsToggle<CR>
-"nnoremap <silent> [file]f :<C-u>Unite -start-insert file<CR>
-"nnoremap <silent> [file]r :<C-u>Unite -start-insert file_rec/async:!<CR>
-"nnoremap <silent> [file]g :<C-u>Unite -start-insert file_rec/git<CR>
+nnoremap <silent> [file]f :<C-u>Unite -start-insert file file/new bookmark file_mru<CR>
+nnoremap <silent> [file]r :<C-u>Unite -start-insert file_rec/async:!<CR>
+nnoremap <silent> [file]g :<C-u>Unite -start-insert file_rec/git<CR>
+nnoremap <silent> [file]m :<C-u>Unite -start-insert file_mru<CR>
+nnoremap <silent> [file]m :<C-u>Unite -start-insert bookmark<CR>
+nnoremap <silent> [file]s :<C-u>Unite -tab -no-quit find<CR>
 
 " buffer
 nnoremap [buffer] <Nop>
 nmap <Space>b [buffer]
-"nnoremap <silent> [buffer]l :<C-u>Unite -start-insert buffer<CR>
+nnoremap <silent> [buffer]l :<C-u>Unite -start-insert buffer<CR>
 nnoremap [buffer]d :<C-u>bdelete<CR>
 
 "tab
 nnoremap [tab] <Nop>
 nmap <Space>t [tab]
-"nnoremap <silent> [tab]l :<C-u>Unite -start-insert tab<CR>
+nnoremap <silent> [tab]l :<C-u>Unite -start-insert tab<CR>
 nnoremap [tab]e :<C-u>tabedit 
 nnoremap <silent> [tab]c :<C-u>tabnew<CR>
-nnoremap <silent> [tab]t :<C-u>tabnext<CR>
+nnoremap <silent> [tab]t gt
 nnoremap <silent> [tab]n :<C-u>tabnext<CR>
 nnoremap <silent> [tab]p :<C-u>tabprevious<CR>
 
@@ -303,3 +337,4 @@ nnoremap <silent> [window]> <C-w>>
 nnoremap <silent> [window]< <C-w><
 nnoremap <silent> [window]+ <C-w>+
 nnoremap <silent> [window]- <C-w>-
+
