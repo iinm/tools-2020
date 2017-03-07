@@ -94,9 +94,12 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
 "NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'scrooloose/nerdtree'
-"NeoBundle 'mattn/emmet-vim'
+NeoBundle 'jistr/vim-nerdtree-tabs'
+NeoBundle 'scrooloose/syntastic.git'
+NeoBundle 'mattn/emmet-vim'
 "NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'moll/vim-node'
+NeoBundle 'myhere/vim-nodejs-complete'
 NeoBundle 'bronson/vim-trailing-whitespace'
 "NeoBundle 'ctrlpvim/ctrlp.vim'
 "NeoBundle 'tacahiroy/ctrlp-funky'
@@ -104,6 +107,7 @@ NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'freitass/todo.txt-vim'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'itchyny/lightline.vim'
 
 call neobundle#end()
 
@@ -113,6 +117,27 @@ filetype plugin indent on
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
 NeoBundleCheck
+
+
+" --- package config -------------------
+let g:NERDTreeWinSize = 26
+
+
+" --- syntactic -------------------------
+let g:syntastic_check_on_open=0 "ファイルを開いたときはチェックしない
+let g:syntastic_check_on_save=1 "保存時にはチェック
+let g:syntastic_check_on_wq = 0 " wqではチェックしない
+let g:syntastic_auto_loc_list=1 "エラーがあったら自動でロケーションリストを開く
+let g:syntastic_loc_list_height=6 "エラー表示ウィンドウの高さ
+set statusline+=%#warningmsg# "エラーメッセージの書式
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_javascript_checkers = ['eslint'] "ESLintを使う
+let g:syntastic_mode_map = {
+      \ 'mode': 'active',
+      \ 'active_filetypes': ['javascript'],
+      \ 'passive_filetypes': []
+      \ }
 
 " --- neocomplete -----------------------
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
@@ -238,8 +263,9 @@ nnoremap <silent> [unite]h :<C-u>Unite -start-insert history/unite<CR>
 nnoremap <silent> [unite]r :<C-u>Unite register<CR>
 
 " file
-"nnoremap [file] <Nop>
-"nmap <Space>f [file]
+nnoremap [file] <Nop>
+nmap <Space>f [file]
+nnoremap <silent> [file]t :<C-u>NERDTreeTabsToggle<CR>
 "nnoremap <silent> [file]f :<C-u>Unite -start-insert file<CR>
 "nnoremap <silent> [file]r :<C-u>Unite -start-insert file_rec/async:!<CR>
 "nnoremap <silent> [file]g :<C-u>Unite -start-insert file_rec/git<CR>
