@@ -6,7 +6,7 @@ set fileencoding=utf-8  " encoding for file
 " encodings considered when starting to edit an existing file
 set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1
 set fileformats=unix,dos,mac  " end-of-line (<EOL>) formats
-"set ambiwidth=double
+set ambiwidth=double
 
 " --- clipboard -----------------------
 set clipboard+=autoselect      " visual selection -> clipboard
@@ -108,7 +108,8 @@ NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'freitass/todo.txt-vim'
-NeoBundle 'altercation/vim-colors-solarized'
+"NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'jnurmine/Zenburn'
 NeoBundle 'itchyny/lightline.vim'
 
 call neobundle#end()
