@@ -31,15 +31,15 @@ alias tmux="env TERM=xterm-256color tmux"
 
 # emacs
 EMACS_ENV="TERM=xterm-256color"
-#if (uname | grep -qE "Darwin"); then
-#    EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs"
-#    EMACSCLIENT="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
-#else
-#    EMACS=$(which emacs)
-#    EMACSCLIENT=$(which emacsclient)
-#fi
-EMACS=$(which emacs)
-EMACSCLIENT=$(which emacsclient)
+if (uname | grep -qE "Darwin"); then
+    EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs"
+    EMACSCLIENT="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+else
+    EMACS=$(which emacs)
+    EMACSCLIENT=$(which emacsclient)
+fi
+#EMACS=$(which emacs)
+#EMACSCLIENT=$(which emacsclient)
 alias emacs="env $EMACS_ENV $EMACS"
 alias e="env $EMACS_ENV $EMACSCLIENT -t"
 alias ec="env $EMACS_ENV $EMACSCLIENT -c"
