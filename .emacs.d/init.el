@@ -1,16 +1,57 @@
-;;; UI
+;;; Package
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
+(unless package-archive-contents (package-refresh-contents))
+(let ((package-names '(evil
+                       evil-mc
+                       counsel
+                       neotree
+                       flycheck
+                       yasnippet
+                       company
+                       company-tern
+                       company-jedi
+                       markdown-mode
+                       web-mode
+                       emmet-mode
+                       js2-mode
+                       xclip
+                       exec-path-from-shell
+                       leuven-theme
+                       zenburn-theme)))
+  ;; install the missing packages
+  (dolist (package package-names)
+    (unless (package-installed-p package)
+      (package-install package))))
+
+;;;
+(require 'dired)
+(require 'grep)
+
+;;; Package Config
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+(ivy-mode 1)
+(evil-mode 1)
+(evil-mc-mode 1)
+(yas-global-mode 1)
+(add-hook 'after-init-hook #'global-company-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;;; Appearance
+
 (setq inhibit-startup-screen t)
 (column-number-mode 1)
-;;(global-linum-mode 1)
+(global-linum-mode 1)
+(unless window-system (setq linum-format "%4d \u2502 "))
 (show-paren-mode t)
 (setq show-paren-style 'mixed)
 (setq completion-ignore-case t)
 (menu-bar-mode 0)
-;;(load-theme 'misterioso t)  ; env TERM=xterm-256color
-;; dired
-(put 'dired-find-alternate-file 'disabled nil)
-(add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
-(setq dired-omit-mode t)
+(load-theme 'leuven t)
 
 (when window-system
   (menu-bar-mode 1)
@@ -20,145 +61,58 @@
   ;; font
   (cond
    ((eq system-type 'darwin)
-    (add-to-list 'default-frame-alist '(font . "Ubuntu Mono-16")))
-   (t (add-to-list 'default-frame-alist '(font . "Ubuntu Mono-12"))))
-  (set-fontset-font t 'japanese-jisx0208 (font-spec :family "TakaoGothic")))
+    (add-to-list 'default-frame-alist '(font . "Ubuntu Mono-15")))
+   (t (add-to-list 'default-frame-alist '(font . "Ubuntu Mono-12")))))
+  ;;(set-fontset-font t 'japanese-jisx0208 (font-spec :family "TakaoGothic")))
 
-;; ido
-;;(require 'ido)
-;;(ido-mode t)
+;;; Control
+
+;;(ido-mode 1)
+;;(ido-everywhere 1)
+;;(setq ido-enable-flex-matching t)
+;;(unless window-system
+;;  (xterm-mouse-mode t))
 
 ;; smooth scroll
-;;(setq scroll-step 1)
-;;(defun scroll-down-with-lines ()
-;;  "" (interactive) (scroll-down 1))
-;;(defun scroll-up-with-lines ()
-;;  "" (interactive) (scroll-up 1))
-;;(global-set-key [mouse-4] 'scroll-down-with-lines)
-;;(global-set-key [mouse-5] 'scroll-up-with-lines)
-
+(setq scroll-step 1)
+(defun scroll-down-with-lines ()
+  "" (interactive) (scroll-down 1))
+(defun scroll-up-with-lines ()
+  "" (interactive) (scroll-up 1))
+(global-set-key [mouse-4] 'scroll-down-with-lines)
+(global-set-key [mouse-5] 'scroll-up-with-lines)
 
 ;;; Editor
-;;
+
+(setq-default indent-tabs-mode nil)
 ;;(when window-system
 ;;  (setq x-select-enable-clipboard t)
 ;;  (setq mouse-drag-copy-region t))
 
-;; indent
-(electric-indent-mode t)  ; default in 24.4
-(setq-default indent-tabs-mode nil tab-width 8)
-(setq c-default-style "k&r" c-basic-offset 4)
-(setq js-indent-level 2)
-;; css-mode
-(add-hook 'css-mode-hook (lambda() (setq css-indent-offset 2)))
+;;; Keymap
 
-;; org-mode
-(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
+(define-key evil-normal-state-map " " nil)
+(define-key dired-mode-map " " nil)
+(define-key grep-mode-map " " nil)
 
+(define-key evil-normal-state-map (kbd "SPC s") #'swiper)
+(define-key evil-normal-state-map (kbd "SPC c") #'counsel-M-x)
+(define-key evil-normal-state-map (kbd "SPC f f") #'counsel-find-file)
+(define-key evil-normal-state-map (kbd "SPC f t") #'neotree-dir)
+(define-key evil-normal-state-map (kbd "SPC g") #'grep-find)
 
-;;; Package Management
-(setq package-list
-      '(evil
-        helm
-        neotree
-        projectile
-        helm-projectile
-        auto-complete
-        ;;company
-        yasnippet
-        flycheck
-        jedi
-        ;;anaconda-mode
-        ;;ac-anaconda
-        jdee
-        emmet-mode
-        web-mode
-        scss-mode
-        rainbow-mode
-        markdown-mode
-        yaml-mode
-        auctex
-        xclip
-        zenburn-theme
-        color-theme-sanityinc-tomorrow))
+(define-key evil-normal-state-map (kbd "SPC b b") #'switch-to-buffer)
+(define-key evil-normal-state-map (kbd "SPC b k") #'kill-buffer)
 
-(require 'package)
-(setq package-archives
-      '(("gnu" . "http://elpa.gnu.org/packages/")
-        ("melpa" . "https://melpa.org/packages/")))
-(package-initialize)
+(define-key evil-normal-state-map (kbd "SPC w j") #'windmove-down)
+(define-key evil-normal-state-map (kbd "SPC w k") #'windmove-up)
+(define-key evil-normal-state-map (kbd "SPC w h") #'windmove-left)
+(define-key evil-normal-state-map (kbd "SPC w l") #'windmove-right)
 
-(unless package-archive-contents (package-refresh-contents))
-;; install the missing packages
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
+;;; Mode config
 
-
-;;; Package Config
-
-;; evil
-(require 'evil)
-(evil-mode 1)
-
-;; theme - env TERM=xterm-256color
-(load-theme 'zenburn t)
-
-;; helm
-(require 'helm-config)
-(helm-mode 1)
-(global-set-key (kbd "M-x")     'helm-M-x)
-(global-set-key (kbd "C-x r b") 'helm-filtered-bookmarks)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x b")   'helm-buffers-list)
-
-;; neotree
-(global-set-key [f8] 'neotree-toggle)
-(add-hook 'neotree-mode-hook
-          (lambda ()
-            (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-            (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
-
-;; projectile
-(projectile-global-mode)
-(require 'helm-projectile)
-(helm-projectile-on)
-
-;; yasnippet
-;; should be loaded before auto-complete
-(require 'yasnippet)
-(yas-global-mode 1)
-
-;;; anaconda, ac-anaconda
-;;(add-hook 'python-mode-hook 'anaconda-mode)
-;;(add-hook 'python-mode-hook 'eldoc-mode)
-;;(add-hook 'python-mode-hook 'ac-anaconda-setup)
-
-;; auto-complete
-(require 'auto-complete-config)
-(ac-config-default)
-(add-hook 'auto-complete-mode-hook
-          (lambda ()
-            (progn
-              (add-to-list 'ac-sources 'ac-source-filename)
-              (add-to-list 'ac-sources 'ac-source-yasnippet))))
-
-;; company
-;;(add-hook 'after-init-hook 'global-company-mode)
-
-;; flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
-;; jedi
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
-
-;; jdee
-(setq jdee-server-dir "~/.emacs.d/jdee/jdee-server/target")
-
-;; web-mode
+;;(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
@@ -167,49 +121,44 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-hook 'css-mode-hook 'web-mode)
-;; indent
-(setq web-mode-markup-indent-offset 2)
-(setq web-mode-css-indent-offset 2)
-(setq web-mode-code-indent-offset 2)
-;; ac
-(defvar ac-source-css-property-names
-  '((candidates . (loop for property in ac-css-property-alist
-                        collect (car property)))))
-(defun my-css-mode-hook ()
-  (add-to-list 'ac-sources 'ac-source-css-property)
-  (add-to-list 'ac-sources 'ac-source-css-property-names))
 
-(setq web-mode-ac-sources-alist
-  '(("html" . (ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer))
-    ("javascript" .
-     (ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer))
-    ("css" . (ac-source-css-property ac-source-css-property-names))))
+(defun my-web-mode-hook ()
+  (setq
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2))
+(add-hook 'web-mode-hook #'my-web-mode-hook)
 
-(add-to-list 'ac-modes 'web-mode)
+(defun my-js-mode-hook ()
+  (setq js2-basic-offset 2)
+  (tern-mode)
+  (add-to-list 'company-backends 'company-tern))
+(add-hook 'js2-jsx-mode-hook #'my-js-mode-hook)
+
+(defun my-python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+(add-hook 'python-mode-hook #'my-python-mode-hook)
+
+(defun my-neotree-mode-hook ()
+  (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+  :;(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
+  (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+  (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter))
+(add-hook 'neotree-mode-hook #'my-neotree-mode-hook)
 
 ;; emmet
-(add-hook 'sgml-mode-hook 'emmet-mode)
-(add-hook 'css-mode-hook  'emmet-mode)
-(add-hook 'nxml-mode-hook 'emmet-mode)
-(add-hook 'web-mode-hook  'emmet-mode)
-
-;; rainbow-mode
-(when window-system
-  (add-hook 'css-mode-hook 'rainbow-mode)
-  (add-hook 'less-mode-hook 'rainbow-mode)
-  (add-hook 'web-mode-hook 'rainbow-mode)
-  (add-hook 'html-mode-hook 'rainbow-mode))
-
+(add-hook 'sgml-mode-hook #'emmet-mode)
+(add-hook 'css-mode-hook #'emmet-mode)
+(add-hook 'web-mode-hook #'emmet-mode)
 
 ;;; System-specific configuration
 
 (when (eq system-type 'gnu/linux)
   ;; clipboard
-  (xclip-mode 1)
+  (xclip-mode 1))
   ;; mozc
-  (require 'mozc)  ; or (load-file "/path/to/mozc.el")
-  (setq default-input-method "japanese-mozc"))
+  ;;(require 'mozc)  ; or (load-file "/path/to/mozc.el")
+  ;;(setq default-input-method "japanese-mozc"))
 
 (when (eq system-type 'darwin)
   ;; clipboard
@@ -223,5 +172,22 @@
         (process-send-string proc text)
         (process-send-eof proc))))
 
-  (setq interprogram-cut-function 'paste-to-osx)
-  (setq interprogram-paste-function 'copy-from-osx))
+  (setq interprogram-cut-function #'paste-to-osx)
+  (setq interprogram-paste-function #'copy-from-osx))
+
+;;; Garbage
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (flycheck zenburn-theme web-mode js2-mode evil counsel company-tern company-jedi))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
