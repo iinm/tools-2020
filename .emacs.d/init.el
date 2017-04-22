@@ -6,6 +6,7 @@
 (let ((package-names '(evil
                        evil-mc
                        counsel
+                       dired-hacks-utils
                        neotree
                        flycheck
                        yasnippet
@@ -17,6 +18,7 @@
                        emmet-mode
                        js2-mode
                        xclip
+                       sicp
                        exec-path-from-shell
                        leuven-theme
                        zenburn-theme)))
