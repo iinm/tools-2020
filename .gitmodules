@@ -1,6 +1,3 @@
-[submodule ".emacs.d/jdee/jdee-server"]
-	path = .emacs.d/jdee/jdee-server
-	url = https://github.com/jdee-emacs/jdee-server
 [submodule ".vim/bundle/neobundle.vim"]
 	path = .vim/bundle/neobundle.vim
 	url = https://github.com/Shougo/neobundle.vim.git
@@ -22,9 +19,6 @@
 [submodule "tools/opt/nvm"]
 	path = tools/opt/nvm
 	url = https://github.com/creationix/nvm.git
-[submodule "spacemacs"]
-	path = spacemacs
-	url = https://github.com/syl20bnr/spacemacs
 [submodule "tools/opt/zsh-autoenv"]
 	path = tools/opt/zsh-autoenv
 	url = https://github.com/Tarrasch/zsh-autoenv
