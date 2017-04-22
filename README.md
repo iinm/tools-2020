@@ -28,14 +28,3 @@ pip3 install -U jedi  # for deoplete-jedi
 #### xclip (on Linux)
 
 Install xclip to use X clipboard.
-
-#### Jedi.el (Python)
-
-`pip install virtualenv` and `M-x jedi:install-server`.
-
-#### JDEE (Java)
-
-```sh
-cd ~/.emacs.d/jdee/jdee-server
-mvn assembly:assembly
-```
