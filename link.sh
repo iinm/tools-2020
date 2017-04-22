@@ -8,12 +8,12 @@ ln_opt="$1"
 files=(
     .zshrc .zshenv .oh-my-zsh
     .tmux.conf
-    #.emacs.d
+    .emacs.d
     .vimrc .vimrc.d .vim
     tools
     #.pystartup.py
     #.ipython
-    .spacemacs
+    #.spacemacs
 )
 
 for fname in "${files[@]}"; do
