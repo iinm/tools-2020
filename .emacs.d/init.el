@@ -1,4 +1,5 @@
 ;;; Package
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
@@ -8,6 +9,7 @@
                        counsel
                        dired-hacks-utils
                        neotree
+                       magit
                        flycheck
                        yasnippet
                        company
@@ -20,6 +22,7 @@
                        xclip
                        sicp
                        exec-path-from-shell
+                       rainbow-delimiters
                        leuven-theme
                        zenburn-theme)))
   ;; install the missing packages
@@ -27,7 +30,7 @@
     (unless (package-installed-p package)
       (package-install package))))
 
-;;;
+;;
 (require 'dired)
 (require 'grep)
 
@@ -35,13 +38,13 @@
 
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
-
 (ivy-mode 1)
 (evil-mode 1)
 (evil-mc-mode 1)
 (yas-global-mode 1)
 (add-hook 'after-init-hook #'global-company-mode)
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;;; Appearance
 
