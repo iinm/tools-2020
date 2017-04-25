@@ -90,6 +90,7 @@
 ;;; Editor
 
 (setq-default indent-tabs-mode nil)
+(global-auto-revert-mode t)
 ;;(when window-system
 ;;  (setq x-select-enable-clipboard t)
 ;;  (setq mouse-drag-copy-region t))
