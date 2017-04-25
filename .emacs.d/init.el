@@ -142,7 +142,8 @@
 (add-hook 'js2-jsx-mode-hook #'my-js-mode-hook)
 
 (defun my-python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
+  (add-to-list 'company-backends 'company-jedi)
+  (define-key evil-normal-state-map (kbd "SPC j") #'jedi:goto-definition))
 (add-hook 'python-mode-hook #'my-python-mode-hook)
 
 (defun my-neotree-mode-hook ()
