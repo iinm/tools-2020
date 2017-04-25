@@ -56,7 +56,7 @@
 (setq show-paren-style 'mixed)
 (setq completion-ignore-case t)
 (menu-bar-mode 0)
-(load-theme 'leuven t)
+(load-theme 'zenburn t)
 
 (when window-system
   (menu-bar-mode 1)
@@ -137,7 +137,8 @@
 (defun my-js-mode-hook ()
   (setq js2-basic-offset 2)
   (tern-mode)
-  (add-to-list 'company-backends 'company-tern))
+  (add-to-list 'company-backends 'company-tern)
+  (define-key evil-normal-state-map (kbd "SPC j") #'tern-find-definition))
 (add-hook 'js2-jsx-mode-hook #'my-js-mode-hook)
 
 (defun my-python-mode-hook ()
@@ -181,18 +182,3 @@
   (setq interprogram-paste-function #'copy-from-osx))
 
 ;;; Garbage
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (flycheck zenburn-theme web-mode js2-mode evil counsel company-tern company-jedi))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
