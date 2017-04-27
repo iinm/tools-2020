@@ -13,12 +13,14 @@
                        flycheck
                        yasnippet
                        company
-                       company-tern
-                       company-jedi
+                       company-tern ; JS
+                       company-jedi ; Python
+                       company-sourcekit ; Swift
                        markdown-mode
                        web-mode
                        emmet-mode
                        js2-mode
+                       swift-mode
                        xclip
                        sicp
                        exec-path-from-shell
@@ -147,6 +149,10 @@
   (define-key evil-normal-state-map (kbd "SPC j") #'jedi:goto-definition))
 (add-hook 'python-mode-hook #'my-python-mode-hook)
 
+(defun my-swift-mode-hook ()
+  (add-to-list 'company-backends 'company-sourcekit))
+(add-hook 'swift-mode-hook #'my-swift-mode-hook)
+
 (defun my-neotree-mode-hook ()
   (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
   :;(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
@@ -184,3 +190,17 @@
   (setq interprogram-paste-function #'copy-from-osx))
 
 ;;; Garbage
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (swift-mode zenburn-theme yasnippet xclip web-mode sicp rainbow-delimiters neotree markdown-mode magit leuven-theme js2-mode flycheck exec-path-from-shell evil-mc emmet-mode dired-hacks-utils counsel company-tern company-jedi))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
