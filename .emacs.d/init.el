@@ -21,6 +21,7 @@
                        emmet-mode
                        js2-mode
                        swift-mode
+                       go-mode
                        xclip
                        sicp
                        exec-path-from-shell
@@ -144,6 +145,10 @@
   (define-key evil-normal-state-map (kbd "SPC j") #'tern-find-definition))
 (add-hook 'js2-jsx-mode-hook #'my-js-mode-hook)
 
+(defun my-css-mode-hook ()
+  (setq css-indent-offset 2))
+(add-hook 'css-mode-hook #'my-css-mode-hook)
+
 (defun my-python-mode-hook ()
   (add-to-list 'company-backends 'company-jedi)
   (define-key evil-normal-state-map (kbd "SPC j") #'jedi:goto-definition))
@@ -152,6 +157,11 @@
 (defun my-swift-mode-hook ()
   (add-to-list 'company-backends 'company-sourcekit))
 (add-hook 'swift-mode-hook #'my-swift-mode-hook)
+
+(defun my-go-mode-hook ()
+  (setq indent-tabs-mode t)
+  (setq default-tab-width 4))
+(add-hook 'go-mode-hook #'my-go-mode-hook)
 
 (defun my-neotree-mode-hook ()
   (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
