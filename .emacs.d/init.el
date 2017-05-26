@@ -48,6 +48,7 @@
 (add-hook 'after-init-hook #'global-company-mode)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(setq-default neo-show-hidden-files t)
 
 ;;; Appearance
 
@@ -122,6 +123,7 @@
 
 ;;(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
+(add-to-list 'auto-mode-alist '("\\.json\\'" . js2-jsx-mode))
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
@@ -140,10 +142,14 @@
 
 (defun my-js-mode-hook ()
   (setq js2-basic-offset 2)
+  (setq js-indent-level 2)
+  (setq js2-strict-missing-semi-warning nil)
+  (flycheck-select-checker 'javascript-eslint)
   (tern-mode)
   (add-to-list 'company-backends 'company-tern)
   (define-key evil-normal-state-map (kbd "SPC j") #'tern-find-definition))
 (add-hook 'js2-jsx-mode-hook #'my-js-mode-hook)
+(add-hook 'js-mode-hook #'my-js-mode-hook)
 
 (defun my-css-mode-hook ()
   (setq css-indent-offset 2))
