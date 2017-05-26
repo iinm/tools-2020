@@ -24,12 +24,11 @@ source $GVM_ROOT/scripts/gvm-default
 export NVM_DIR=$tools_dir/opt/nvm
 test -s $NVM_DIR/nvm.sh && source $NVM_DIR/nvm.sh
 
-## autoenv
-source $tools_dir/opt/zsh-autoenv/autoenv.zsh
-
-
 # load machine specific config
 test -f $HOME/.zshenv.local && source $HOME/.zshenv.local
+
+## autoenv
+source $tools_dir/opt/zsh-autoenv/autoenv.zsh
 
 # clean out duplicate entries
 typeset -U path PATH
