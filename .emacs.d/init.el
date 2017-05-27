@@ -26,6 +26,7 @@
                        sicp
                        exec-path-from-shell
                        rainbow-delimiters
+                       base16-theme
                        leuven-theme
                        zenburn-theme)))
   ;; install the missing packages
@@ -60,7 +61,7 @@
 (setq show-paren-style 'mixed)
 (setq completion-ignore-case t)
 (menu-bar-mode 0)
-(load-theme 'zenburn t)
+(load-theme 'base16-mocha t)
 
 (when window-system
   (menu-bar-mode 1)
