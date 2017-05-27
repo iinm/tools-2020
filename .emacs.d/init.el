@@ -107,7 +107,8 @@
 
 (define-key evil-normal-state-map (kbd "SPC s") #'swiper)
 (define-key evil-normal-state-map (kbd "SPC c") #'counsel-M-x)
-(define-key evil-normal-state-map (kbd "SPC f f") #'counsel-find-file)
+(define-key evil-normal-state-map (kbd "SPC f o") #'counsel-find-file)
+(define-key evil-normal-state-map (kbd "SPC f f") #'find-name-dired)
 (define-key evil-normal-state-map (kbd "SPC f t") #'neotree-dir)
 (define-key evil-normal-state-map (kbd "SPC g") #'grep-find)
 
