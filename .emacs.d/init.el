@@ -20,6 +20,7 @@
                        web-mode
                        emmet-mode
                        js2-mode
+                       rjsx-mode
                        swift-mode
                        go-mode
                        xclip
@@ -123,7 +124,7 @@
 ;;; Mode config
 
 ;;(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . js2-jsx-mode))
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
@@ -150,6 +151,7 @@
   (tern-mode)
   (add-to-list 'company-backends 'company-tern)
   (define-key evil-normal-state-map (kbd "SPC j") #'tern-find-definition))
+(add-hook 'rjsxmode-hook #'my-js-mode-hook)
 (add-hook 'js2-jsx-mode-hook #'my-js-mode-hook)
 (add-hook 'js-mode-hook #'my-js-mode-hook)
 
