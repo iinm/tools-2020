@@ -145,6 +145,7 @@
   (setq js2-basic-offset 2)
   (setq js-indent-level 2)
   (setq js2-strict-missing-semi-warning nil)
+  (setq js2-strict-trailing-comma-warning nil)
   (flycheck-select-checker 'javascript-eslint)
   (tern-mode)
   (add-to-list 'company-backends 'company-tern)
@@ -172,7 +173,8 @@
 
 (defun my-neotree-mode-hook ()
   (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
-  :;(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
+  ;;(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
+  (evil-define-key 'normal neotree-mode-map (kbd "r") 'neotree-refresh)
   (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
   (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter))
 (add-hook 'neotree-mode-hook #'my-neotree-mode-hook)
