@@ -37,6 +37,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'ternjs/tern_for_vim'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'gutenye/json5.vim'
 Plug 'mattn/emmet-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -55,6 +56,20 @@ let g:ale_linters = {
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'base16_mocha'
+
+call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '--smart-case', '--ignore-dir', 'node_modules', '--ignore-dir', '.git', '--ignore-dir', '.idea', '--ignore', '*~', '--ignore', '*.swp', '-g', ''])
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
+
+"call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+"      \ [ '*~', '*.o', '*.exe', '*.bak',
+"      \ '.DS_Store', '*.pyc', '*.sw[po]', '*.class',
+"      \ '.hg/', '.git/', '.bzr/', '.svn/',
+"      \ 'node_modules/', 'bower_components/', 'tmp/', 'log/', 'vendor/ruby',
+"      \ '.idea/', 'dist/',
+"      \ 'tags', 'tags-*'])
 
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -102,9 +117,9 @@ call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'nor
 nnoremap [file] <Nop>
 nmap <Space>f [file]
 nnoremap <silent> [file]t :<C-u>NERDTreeTabsToggle<CR>
-nnoremap <silent> [file]f :<C-u>Denite file<CR>
-nnoremap <silent> [file]r :<C-u>Denite file_rec<CR>
-nnoremap <silent> [file]b :<C-u>DeniteBuffer file<CR>
+nnoremap <silent> [file]f :<C-u>Denite file_rec<CR>
+nnoremap <silent> [file]p :<C-u>DeniteProjectDir file_rec<CR>
+nnoremap <silent> [file]b :<C-u>DeniteBuffer file_rec<CR>
 nnoremap <silent> [file]m :<C-u>Denite file_mru<CR>
 
 nnoremap [buffer] <Nop>
