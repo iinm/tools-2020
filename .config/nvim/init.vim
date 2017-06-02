@@ -1,129 +1,138 @@
-" An example for a vimrc file.
-"
-" To use it, copy it to
-"     for Unix:     $HOME/.config/nvim/init.vim
-"     for Windows:  %LOCALAPPDATA%\nvim\init.vim
+set backup
+set undofile
+set ruler
+set showcmd
+set number
+set mouse=a
+set clipboard+=unnamedplus
+" highlight space
+set list
+set listchars=tab:>-,trail:·,extends:>,precedes:<
+" search
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
 
-set backup             " keep a backup file (restore to previous version)
-set undofile           " keep an undo file (undo changes after closing)
-set ruler              " show the cursor position all the time
-set showcmd            " display incomplete commands
-
-" Don't use Ex mode, use Q for formatting
-noremap Q gq
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
-" Switch syntax highlighting on
 syntax on
-
-" Enable file type detection.
-" Use the default filetype settings, so that mail gets 'textwidth' set to 72,
-" 'cindent' is on in C files, etc.
-" Also load indent files, to automatically do language-dependent indenting.
 filetype plugin indent on
 
-" Put these in an autocmd group, so that we can delete them easily.
-augroup vimrcEx
-  autocmd!
+"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors
+let base16colorspace=256
+"colorscheme desert
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+" plugins
+call plug#begin('~/.config/nvim/plugged')
+Plug 'junegunn/vim-plug'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Shougo/denite.nvim'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/deoplete.nvim'
+Plug 'w0rp/ale'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'ternjs/tern_for_vim'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'mattn/emmet-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'jnurmine/Zenburn'
+Plug 'chriskempson/base16-vim'
+call plug#end()
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  autocmd BufReadPost *
-    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
-    \   execute "normal! g`\"" |
-    \ endif
+" plugin config
+colorscheme base16-mocha
 
-augroup END
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set buftype=nofile | read ++edit # | 0d_ | diffthis
-                 \ | wincmd p | diffthis
-endif
-" End /usr/local/share/nvim/runtime/vimrc_example.vim
-
-
-" dein --------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
-" Required:
-set runtimepath^=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-call dein#begin(expand('~/.config/nvim/dein'))
-
-" Let dein manage dein
-" Required:
-call dein#add('Shougo/dein.vim')
-
-" Add or remove your plugins here:
-call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/deoplete.nvim')
-call dein#add('Shougo/neosnippet.vim')
-call dein#add('Shougo/neosnippet-snippets')
-call dein#add('zchee/deoplete-jedi') " Python
-call dein#add('mattn/emmet-vim')
-call dein#add('scrooloose/nerdtree')
-call dein#add('fatih/vim-go')
-
-" You can specify revision/branch/tag.
-"call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-
-" Required:
-call dein#end()
-
-" Required:
-filetype plugin indent on
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
-" End dein --------------------
-
-
-" Use deoplete.
 let g:deoplete#enable_at_startup = 1
 
+let g:ale_linters = {
+\   'javascript': ['eslint', 'flow'],
+\}
 
-" neosnippet --------------------
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'base16_mocha'
+
 " Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
-
 " SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 "imap <expr><TAB>
 " \ pumvisible() ? "\<C-n>" :
 " \ neosnippet#expandable_or_jumpable() ?
 " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
 " For conceal markers.
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
-" End neosnippet --------------------
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.config/nvim/plugged/snippets/snippets'
 
+" keymap
+let maplocalleader = ","
+let mapleader = ","
 
-" etc --------------------
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-colorscheme desert
-set clipboard+=unnamedplus
-" highlight space
-set list
-set listchars=tab:>-,trail:·,extends:>,precedes:<
-" End etc --------------------
+nnoremap [denite] <Nop>
+nmap <Space>d [denite]
+nnoremap [denite]d :<C-u>Denite 
+nnoremap [denite]b :<C-u>DeniteBufferDir 
+nnoremap [denite]p :<C-u>DeniteProjectDir 
+nnoremap [denite]w :<C-u>DeniteCursorWord 
+nnoremap <silent> [denite]c :<C-u>Denite command<CR>
+nnoremap <silent> [denite]g :<C-u>Denite -auto_preview grep<CR>
+nnoremap <silent> [denite]j :<C-u>Denite jump<CR>
+nnoremap <silent> [denite]h :<C-u>Denite help<CR>
+
+call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
+
+nnoremap [file] <Nop>
+nmap <Space>f [file]
+nnoremap <silent> [file]t :<C-u>NERDTreeTabsToggle<CR>
+nnoremap <silent> [file]f :<C-u>Denite file<CR>
+nnoremap <silent> [file]r :<C-u>Denite file_rec<CR>
+nnoremap <silent> [file]b :<C-u>DeniteBuffer file<CR>
+nnoremap <silent> [file]m :<C-u>Denite file_mru<CR>
+
+nnoremap [buffer] <Nop>
+nmap <Space>b [buffer]
+nnoremap <silent> [buffer]b :<C-u>Denite buffer<CR>
+nnoremap [buffer]d :<C-u>bdelete<CR>
+
+nnoremap [tab] <Nop>
+nmap <Space>t [tab]
+nnoremap [tab]e :<C-u>tabedit 
+nnoremap <silent> [tab]n :<C-u>tabnew<CR>
+nnoremap <silent> [tab]l :<C-u>tabnext<CR>
+nnoremap <silent> [tab]h :<C-u>tabprevious<CR>
+nnoremap <silent> [tab]t gt
+
+nnoremap [window] <Nop>
+nmap <Space>w [window]
+nnoremap <silent> [window]s :<C-u>split<CR>
+nnoremap <silent> [window]v :<C-u>vsplit<CR>
+nnoremap <silent> [window]w <C-w><C-w>
+nnoremap <silent> [window]h <C-w>h
+nnoremap <silent> [window]j <C-w>j
+nnoremap <silent> [window]k <C-w>k
+nnoremap <silent> [window]l <C-w>l
+"nnoremap <silent> [window]_ <C-w>_
+"nnoremap <silent> [window]| <C-w>|
+nnoremap <silent> [window]= <C-w>=
+nnoremap <silent> [window]> <C-w>>
+nnoremap <silent> [window]< <C-w><
+nnoremap <silent> [window]+ <C-w>+
+nnoremap <silent> [window]- <C-w>-
