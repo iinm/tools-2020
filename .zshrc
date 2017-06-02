@@ -25,9 +25,9 @@ else
     alias ls="ls --color=auto -F"
 fi
 
-alias view="vim -R"
+alias view="nvim -R"
 export TERM=xterm-256color
-export EDITOR="vim"
+export EDITOR="nvim"
 #alias tmux="env TERM=xterm-256color tmux"
 
 # emacs
