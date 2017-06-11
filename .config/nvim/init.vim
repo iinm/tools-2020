@@ -30,6 +30,7 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'w0rp/ale'
@@ -42,12 +43,15 @@ Plug 'gutenye/json5.vim'
 Plug 'mattn/emmet-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'jnurmine/Zenburn'
 Plug 'chriskempson/base16-vim'
 call plug#end()
 
 " plugin config
 colorscheme base16-mocha
+
+let NERDTreeShowHidden = 1
 
 let g:deoplete#enable_at_startup = 1
 
@@ -93,7 +97,7 @@ endif
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
 " Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.config/nvim/plugged/snippets/snippets'
+let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippets'
 
 " keymap
 let maplocalleader = ","
@@ -126,7 +130,8 @@ nnoremap <silent> [file]m :<C-u>Denite file_mru<CR>
 nnoremap [buffer] <Nop>
 nmap <Space>b [buffer]
 nnoremap <silent> [buffer]b :<C-u>Denite buffer<CR>
-nnoremap [buffer]d :<C-u>bdelete<CR>
+nnoremap [buffer]d :<C-c> :bp\|bd #<CR>
+"nnoremap [buffer]d :<C-u>bdelete<CR>
 
 nnoremap [tab] <Nop>
 nmap <Space>t [tab]
