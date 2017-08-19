@@ -1,7 +1,6 @@
 *
 !.gitignore
-!todo.txt-cli
 !pyenv
 !gvm
 !nvm
-!zsh-autoenv
+!antigen
