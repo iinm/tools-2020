@@ -16,9 +16,6 @@
 [submodule "tools/opt/nvm"]
 	path = tools/opt/nvm
 	url = https://github.com/creationix/nvm.git
-[submodule "tools/opt/zsh-autoenv"]
-	path = tools/opt/zsh-autoenv
-	url = https://github.com/Tarrasch/zsh-autoenv
 [submodule ".config/nvim/plugged/vim-plug"]
 	path = .config/nvim/plugged/vim-plug
 	url = https://github.com/junegunn/vim-plug
