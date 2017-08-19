@@ -22,3 +22,6 @@
 [submodule ".config/nvim/plugged/vim-plug"]
 	path = .config/nvim/plugged/vim-plug
 	url = https://github.com/junegunn/vim-plug
+[submodule "tools/opt/antigen"]
+	path = tools/opt/antigen
+	url = https://github.com/zsh-users/antigen
