@@ -62,19 +62,15 @@ let g:ale_linters = {
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'base16_mocha'
 
-call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '--smart-case', '--ignore-dir', 'node_modules', '--ignore-dir', '.git', '--ignore-dir', '.idea', '--ignore', '*~', '--ignore', '*.swp', '-g', ''])
-call denite#custom#var('grep', 'command', ['ag'])
+" denite grep
+"call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '--smart-case', '--ignore-dir', 'node_modules', '--ignore-dir', '.git', '--ignore-dir', '.idea', '--ignore', '*~', '--ignore', '*.swp', '-g', ''])
+call denite#custom#var('file_rec', 'command', ['rg', '--hidden', '--files', '--glob', '!.git', ''])
+call denite#custom#var('grep', 'command', ['rg'])
+call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--no-heading'])
 call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
-
-"call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-"      \ [ '*~', '*.o', '*.exe', '*.bak',
-"      \ '.DS_Store', '*.pyc', '*.sw[po]', '*.class',
-"      \ '.hg/', '.git/', '.bzr/', '.svn/',
-"      \ 'node_modules/', 'bower_components/', 'tmp/', 'log/', 'vendor/ruby',
-"      \ '.idea/', 'dist/',
-"      \ 'tags', 'tags-*'])
+call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
 
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
