@@ -105,7 +105,7 @@ let maplocalleader = ","
 let mapleader = ","
 
 nnoremap [denite] <Nop>
-nmap <Space>d [denite]
+nmap <Space><Space> [denite]
 nnoremap [denite]d :<C-u>Denite 
 nnoremap [denite]b :<C-u>DeniteBufferDir 
 nnoremap [denite]p :<C-u>DeniteProjectDir 
