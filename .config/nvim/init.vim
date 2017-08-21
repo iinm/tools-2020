@@ -107,7 +107,7 @@ nnoremap [denite]b :<C-u>DeniteBufferDir
 nnoremap [denite]p :<C-u>DeniteProjectDir 
 nnoremap [denite]w :<C-u>DeniteCursorWord 
 nnoremap <silent> [denite]c :<C-u>Denite command<CR>
-nnoremap <silent> [denite]g :<C-u>Denite -auto_preview grep<CR>
+nnoremap <silent> [denite]g :<C-u>Denite grep<CR>
 nnoremap <silent> [denite]j :<C-u>Denite jump<CR>
 nnoremap <silent> [denite]h :<C-u>Denite help<CR>
 
