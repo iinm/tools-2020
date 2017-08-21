@@ -13,6 +13,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 antigen bundle Tarrasch/zsh-autoenv
+antigen bundle rupa/z
 
 # Load the theme.
 #antigen theme robbyrussell
