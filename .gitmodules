@@ -16,3 +16,6 @@
 [submodule "tools/opt/antigen"]
 	path = tools/opt/antigen
 	url = https://github.com/zsh-users/antigen
+[submodule "tools/opt/fasd"]
+	path = tools/opt/fasd
+	url = https://github.com/clvv/fasd
