@@ -41,9 +41,11 @@ Plug 'ternjs/tern_for_vim'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'gutenye/json5.vim'
 Plug 'mattn/emmet-vim'
+Plug 'freitass/todo.txt-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'scrooloose/nerdcommenter'
 Plug 'jnurmine/Zenburn'
 Plug 'chriskempson/base16-vim'
 call plug#end()
