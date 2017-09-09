@@ -24,6 +24,10 @@ source $GVM_ROOT/scripts/gvm-default
 export NVM_DIR=$tools_dir/opt/nvm
 test -s $NVM_DIR/nvm.sh && source $NVM_DIR/nvm.sh
 
+## fasd
+export PATH=$tools_dir/opt/fasd:$PATH
+eval "$(fasd --init auto)"
+
 # load machine specific config
 test -f $HOME/.zshenv.local && source $HOME/.zshenv.local
 
