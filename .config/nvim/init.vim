@@ -32,16 +32,19 @@ Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
 Plug 'Shougo/neomru.vim'
-Plug 'Shougo/deoplete.nvim'
+Plug 'valloric/youcompleteme'
+"Plug 'Shougo/deoplete.nvim'
 Plug 'w0rp/ale'
-Plug 'zchee/deoplete-jedi'
+"Plug 'zchee/deoplete-jedi'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'ternjs/tern_for_vim'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+"Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'gutenye/json5.vim'
 Plug 'mattn/emmet-vim'
 Plug 'freitass/todo.txt-vim'
+Plug 'jceb/vim-orgmode'
+Plug 'godlygeek/tabular'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -55,7 +58,7 @@ colorscheme base16-mocha
 
 let NERDTreeShowHidden = 1
 
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 
 let g:ale_linters = {
 \   'javascript': ['eslint', 'flow'],
