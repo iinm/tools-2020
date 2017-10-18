@@ -24,41 +24,37 @@ let base16colorspace=256
 
 " plugins
 call plug#begin('~/.config/nvim/plugged')
-Plug 'junegunn/vim-plug'
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'Shougo/denite.nvim'
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'honza/vim-snippets'
-Plug 'Shougo/neomru.vim'
-Plug 'valloric/youcompleteme'
-"Plug 'Shougo/deoplete.nvim'
-Plug 'w0rp/ale'
-"Plug 'zchee/deoplete-jedi'
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'ternjs/tern_for_vim'
-"Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'gutenye/json5.vim'
-Plug 'mattn/emmet-vim'
+"Plug 'ternjs/tern_for_vim'
+Plug 'SirVer/ultisnips'
+Plug 'chriskempson/base16-vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'freitass/todo.txt-vim'
-Plug 'jceb/vim-orgmode'
 Plug 'godlygeek/tabular'
+Plug 'gutenye/json5.vim'
+Plug 'honza/vim-snippets'
+Plug 'jceb/vim-orgmode'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'jnurmine/Zenburn'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-plug'
+Plug 'majutsushi/tagbar'
+Plug 'mattn/emmet-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'pangloss/vim-javascript'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'scrooloose/nerdcommenter'
-Plug 'jnurmine/Zenburn'
-Plug 'chriskempson/base16-vim'
+Plug 'w0rp/ale'
 call plug#end()
 
 " plugin config
 colorscheme base16-mocha
 
 let NERDTreeShowHidden = 1
-
-"let g:deoplete#enable_at_startup = 1
 
 let g:ale_linters = {
 \   'javascript': ['eslint', 'flow'],
@@ -67,71 +63,41 @@ let g:ale_linters = {
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'base16_mocha'
 
-" denite grep
-"call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '--smart-case', '--ignore-dir', 'node_modules', '--ignore-dir', '.git', '--ignore-dir', '.idea', '--ignore', '*~', '--ignore', '*.swp', '-g', ''])
-call denite#custom#var('file_rec', 'command', ['rg', '--hidden', '--files', '--glob', '!.git', ''])
-call denite#custom#var('grep', 'command', ['rg'])
-call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--no-heading'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
 
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-" this breaks curor position when click Japanese text
-"" For conceal markers.
-"if has('conceal')
-"  set conceallevel=2 concealcursor=niv
-"endif
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets/snippets'
+set wildignore+=*/.git/*,*/tmp/*,*.swp
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --hidden --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+" plugin keymap
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 " keymap
 let maplocalleader = ","
 let mapleader = ","
 
-nnoremap [denite] <Nop>
-nmap <Space><Space> [denite]
-nnoremap [denite]d :<C-u>Denite 
-nnoremap [denite]b :<C-u>DeniteBufferDir 
-nnoremap [denite]p :<C-u>DeniteProjectDir 
-nnoremap [denite]w :<C-u>DeniteCursorWord 
-nnoremap <silent> [denite]c :<C-u>Denite command<CR>
-nnoremap <silent> [denite]g :<C-u>Denite grep<CR>
-nnoremap <silent> [denite]j :<C-u>Denite jump<CR>
-nnoremap <silent> [denite]h :<C-u>Denite help<CR>
-
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-
 nnoremap [file] <Nop>
 nmap <Space>f [file]
 nnoremap <silent> [file]t :<C-u>NERDTreeTabsToggle<CR>
-nnoremap <silent> [file]f :<C-u>Denite file_rec<CR>
-nnoremap <silent> [file]p :<C-u>DeniteProjectDir file_rec<CR>
-nnoremap <silent> [file]b :<C-u>DeniteBuffer file_rec<CR>
-nnoremap <silent> [file]m :<C-u>Denite file_mru<CR>
+"nnoremap <silent> [file]f :<C-u>Denite file_rec<CR>
+"nnoremap <silent> [file]p :<C-u>DeniteProjectDir file_rec<CR>
+"nnoremap <silent> [file]b :<C-u>DeniteBuffer file_rec<CR>
+"nnoremap <silent> [file]m :<C-u>Denite file_mru<CR>
 
 nnoremap [buffer] <Nop>
 nmap <Space>b [buffer]
-nnoremap <silent> [buffer]b :<C-u>Denite buffer<CR>
+"nnoremap <silent> [buffer]b :<C-u>Denite buffer<CR>
 nnoremap [buffer]d :<C-c> :bp\|bd #<CR>
 "nnoremap [buffer]d :<C-u>bdelete<CR>
 
