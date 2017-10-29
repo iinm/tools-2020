@@ -24,7 +24,6 @@ let base16colorspace=256
 
 " plugins
 call plug#begin('~/.config/nvim/plugged')
-"Plug 'ternjs/tern_for_vim'
 Plug 'SirVer/ultisnips'
 Plug 'chriskempson/base16-vim'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -43,8 +42,10 @@ Plug 'mattn/emmet-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'pangloss/vim-javascript'
+"Plug 'python-rope/ropevim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'terryma/vim-multiple-cursors'
 Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -90,14 +91,12 @@ let mapleader = ","
 nnoremap [file] <Nop>
 nmap <Space>f [file]
 nnoremap <silent> [file]t :<C-u>NERDTreeTabsToggle<CR>
-"nnoremap <silent> [file]f :<C-u>Denite file_rec<CR>
-"nnoremap <silent> [file]p :<C-u>DeniteProjectDir file_rec<CR>
-"nnoremap <silent> [file]b :<C-u>DeniteBuffer file_rec<CR>
-"nnoremap <silent> [file]m :<C-u>Denite file_mru<CR>
+nnoremap <silent> [file]f :<C-u>CtrlPCurFile<CR>
+nnoremap <silent> [file]m :<C-u>CtrlPMRUFiles<CR>
 
 nnoremap [buffer] <Nop>
 nmap <Space>b [buffer]
-"nnoremap <silent> [buffer]b :<C-u>Denite buffer<CR>
+nnoremap <silent> [buffer]b :<C-u>CtrlPBuffer<CR>
 nnoremap [buffer]d :<C-c> :bp\|bd #<CR>
 "nnoremap [buffer]d :<C-u>bdelete<CR>
 
