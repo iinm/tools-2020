@@ -33,7 +33,14 @@ else
 fi
 
 alias view="nvim -R"
+
 export TERM=xterm-256color
 export EDITOR=nvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+function fcd() {
+  dir=$(fasd_cd -dl | fzf)
+  echo $dir
+  cd $dir
+}
