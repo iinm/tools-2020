@@ -34,6 +34,11 @@ fi
 
 alias view="nvim -R"
 
+if (uname | grep -qE "Linux"); then
+  alias pbcopy="xsel -i -p && xsel -o -p | xsel -i -b"
+  alias pbpaste="xsel -o"
+fi
+
 export TERM=xterm-256color
 export EDITOR=nvim
 
