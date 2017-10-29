@@ -37,6 +37,7 @@ alias view="nvim -R"
 if (uname | grep -qE "Linux"); then
   alias pbcopy="xsel -i -p && xsel -o -p | xsel -i -b"
   alias pbpaste="xsel -o"
+  alias open="xdg-open"
 fi
 
 export TERM=xterm-256color
@@ -44,8 +45,10 @@ export EDITOR=nvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-function fcd() {
-  dir=$(fasd_cd -dl | fzf)
-  echo $dir
-  cd $dir
+function fz() {
+  dir=$(fasd_cd -dl | fzf) && cd "$dir"
+}
+
+function ff() {
+  f=$(fzf) && open "$f"
 }
