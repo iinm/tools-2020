@@ -24,6 +24,7 @@ let base16colorspace=256
 
 " plugins
 call plug#begin('~/.config/nvim/plugged')
+"Plug 'python-rope/ropevim'
 Plug 'SirVer/ultisnips'
 Plug 'chriskempson/base16-vim'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -34,6 +35,7 @@ Plug 'honza/vim-snippets'
 Plug 'jceb/vim-orgmode'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'jnurmine/Zenburn'
+Plug 'joshdick/onedark.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-plug'
@@ -42,7 +44,6 @@ Plug 'mattn/emmet-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'pangloss/vim-javascript'
-"Plug 'python-rope/ropevim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-multiple-cursors'
@@ -53,7 +54,8 @@ Plug 'w0rp/ale'
 call plug#end()
 
 " plugin config
-colorscheme base16-mocha
+"colorscheme base16-mocha
+colorscheme onedark
 
 let NERDTreeShowHidden = 1
 
@@ -62,7 +64,8 @@ let g:ale_linters = {
 \}
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'base16_mocha'
+"let g:airline_theme = 'base16_mocha'
+let g:airline_theme = 'onedark'
 
 if executable('rg')
   set grepprg=rg\ --color=never
