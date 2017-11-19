@@ -47,9 +47,16 @@ export EDITOR=nvim
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 function fz() {
-  dir=$(fasd_cd -dl | fzf) && cd "$dir"
+  dir=$(fasd_cd -dl | fzf-tmux) && cd "$dir"
 }
 
-function ff() {
-  f=$(fzf) && open "$f"
+# open file
+function fo() {
+  f=$(fzf-tmux) && open "$f"
+}
+
+# cd
+function fcd() {
+  local dir
+  dir=$(find ${1:-.} -type d 2> /dev/null | fzf-tmux) && cd "$dir"
 }
