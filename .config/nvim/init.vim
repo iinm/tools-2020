@@ -82,6 +82,12 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
+let g:user_emmet_settings = {
+\  'javascript' : {
+\      'extends' : 'jsx',
+\  },
+\}
+
 " plugin keymap
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
@@ -94,7 +100,9 @@ let mapleader = ","
 nnoremap [file] <Nop>
 nmap <Space>f [file]
 nnoremap <silent> [file]t :<C-u>NERDTreeTabsToggle<CR>
-nnoremap <silent> [file]f :<C-u>CtrlPCurFile<CR>
+nnoremap <silent> [file]T :<C-u>NERDTreeFind<CR>
+nnoremap <silent> [file]f :<C-u>FZF<CR>
+nnoremap <silent> [file]c :<C-u>CtrlPCurFile<CR>
 nnoremap <silent> [file]m :<C-u>CtrlPMRUFiles<CR>
 
 nnoremap [buffer] <Nop>
@@ -127,3 +135,12 @@ nnoremap <silent> [window]> <C-w>>
 nnoremap <silent> [window]< <C-w><
 nnoremap <silent> [window]+ <C-w>+
 nnoremap <silent> [window]- <C-w>-
+
+nnoremap [ycm] <Nop>
+nmap <Space>m [ft]
+nnoremap [ycm]g :<C-u>YcmCompleter GoTo<CR>
+nnoremap [ycm]j :<C-u>YcmCompleter GoToDefinition<CR>
+nnoremap [ycm]d :<C-u>YcmCompleter GetDoc<CR>
+nnoremap [ycm]t :<C-u>YcmCompleter GetType<CR>
+nnoremap [ycm]r :<C-u>YcmCompleter GoToReferences<CR>
+nnoremap [ycm]n :<C-u>YcmCompleter RefactorRename<CR>
