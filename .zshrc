@@ -44,19 +44,23 @@ fi
 export TERM=xterm-256color
 export EDITOR=nvim
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -f ~/.fzf.zsh ]; then
+  source ~/.fzf.zsh
+  zle     -N   fzf-file-widget
+  bindkey '^Y' fzf-file-widget
 
-function fz() {
-  dir=$(fasd_cd -dl | fzf-tmux) && cd "$dir"
-}
+  function fz() {
+    dir=$(fasd_cd -dl | fzf-tmux) && cd "$dir"
+  }
 
-# open file
-function fo() {
-  f=$(fzf-tmux) && open "$f"
-}
+  # open file
+  function fo() {
+    f=$(fzf-tmux) && open "$f"
+  }
 
-# cd
-function fcd() {
-  local dir
-  dir=$(find ${1:-.} -type d 2> /dev/null | fzf-tmux) && cd "$dir"
-}
+  # cd
+  function fcd() {
+    local dir
+    dir=$(find ${1:-.} -type d 2> /dev/null | fzf-tmux) && cd "$dir"
+  }
+fi
