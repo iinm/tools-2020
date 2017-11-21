@@ -104,6 +104,7 @@ nnoremap <silent> [file]T :<C-u>NERDTreeFind<CR>
 nnoremap <silent> [file]f :<C-u>FZF<CR>
 nnoremap <silent> [file]c :<C-u>CtrlPCurFile<CR>
 nnoremap <silent> [file]m :<C-u>CtrlPMRUFiles<CR>
+nnoremap <silent> [file]g :<C-u>GitFiles<CR>
 
 nnoremap [buffer] <Nop>
 nmap <Space>b [buffer]
