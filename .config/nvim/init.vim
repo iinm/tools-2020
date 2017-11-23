@@ -125,6 +125,7 @@ nmap <Space>w [window]
 nnoremap <silent> [window]s :<C-u>split<CR>
 nnoremap <silent> [window]v :<C-u>vsplit<CR>
 nnoremap <silent> [window]w <C-w><C-w>
+nnoremap <silent> [window]o <C-w><C-o>
 nnoremap <silent> [window]h <C-w>h
 nnoremap <silent> [window]j <C-w>j
 nnoremap <silent> [window]k <C-w>k
