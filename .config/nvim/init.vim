@@ -137,11 +137,11 @@ nnoremap <silent> [window]< <C-w><
 nnoremap <silent> [window]+ <C-w>+
 nnoremap <silent> [window]- <C-w>-
 
-nnoremap [ycm] <Nop>
-nmap <Space>m [ft]
-nnoremap [ycm]g :<C-u>YcmCompleter GoTo<CR>
-nnoremap [ycm]j :<C-u>YcmCompleter GoToDefinition<CR>
-nnoremap [ycm]d :<C-u>YcmCompleter GetDoc<CR>
-nnoremap [ycm]t :<C-u>YcmCompleter GetType<CR>
-nnoremap [ycm]r :<C-u>YcmCompleter GoToReferences<CR>
-nnoremap [ycm]n :<C-u>YcmCompleter RefactorRename<CR>
+nnoremap [code] <Nop>
+nmap <Space>c [code]
+nnoremap [code]g :<C-u>YcmCompleter GoTo<CR>
+nnoremap [code]j :<C-u>YcmCompleter GoToDefinition<CR>
+nnoremap [code]d :<C-u>YcmCompleter GetDoc<CR>
+nnoremap [code]t :<C-u>YcmCompleter GetType<CR>
+nnoremap [code]r :<C-u>YcmCompleter GoToReferences<CR>
+nnoremap [code]n :<C-u>YcmCompleter RefactorRename<CR>
