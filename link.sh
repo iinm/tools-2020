@@ -8,11 +8,9 @@ ln_opt="$1"
 files=(
     .zshrc .zshenv
     .tmux.conf
-    .emacs.d
-    .vimrc .vim
+    .tmux_linux.conf
+    .tmux_darwin.conf
     tools
-    #.pystartup.py
-    #.ipython
 )
 
 for fname in "${files[@]}"; do
@@ -21,7 +19,7 @@ done
 
 # $XDG_CONFIG_HOME
 case "$(uname)" in
-    "Linux" ) config_files=(fontconfig nvim terminator) ;;
+    "Linux" ) config_files=(fontconfig nvim) ;;
     "Darwin" ) config_files=(nvim) ;;
     * ) config_files=() ;;
 esac
