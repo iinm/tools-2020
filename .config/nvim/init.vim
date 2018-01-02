@@ -46,7 +46,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'shime/vim-livedown'
+Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fireplace'
 Plug 'valloric/youcompleteme'
