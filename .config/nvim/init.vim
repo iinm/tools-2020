@@ -24,10 +24,10 @@ let base16colorspace=256
 
 " plugins
 call plug#begin('~/.config/nvim/plugged')
-"Plug 'python-rope/ropevim'
 Plug 'SirVer/ultisnips'
 Plug 'chriskempson/base16-vim'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'freitass/todo.txt-vim'
 Plug 'godlygeek/tabular'
 Plug 'gutenye/json5.vim'
@@ -53,6 +53,7 @@ Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
+"Plug 'python-rope/ropevim'
 call plug#end()
 
 " plugin config
