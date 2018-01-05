@@ -11,6 +11,9 @@ tools_dir=$HOME/tools
 
 #export PATH=$tools_dir/bin:$PATH
 
+## direnv; go get github.com/direnv/direnv
+direnv &> /dev/null && eval "$(direnv hook zsh)"
+
 ## pyenv
 export PYENV_ROOT=$tools_dir/opt/pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
