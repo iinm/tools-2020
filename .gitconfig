@@ -7,6 +7,7 @@ lg = !"git lg1"
 
 [core]
 trustctime = false
+excludesfile = ~/.etc/.gitignore_global
 
 [merge]
 tool = vimdiff
