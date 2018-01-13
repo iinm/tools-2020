@@ -64,3 +64,5 @@ if [ -f ~/.fzf.zsh ]; then
     dir=$(find ${1:-.} -type d 2> /dev/null | fzf-tmux) && cd "$dir"
   }
 fi
+
+test -f $HOME/.zshrc.local && source $HOME/.zshrc.local

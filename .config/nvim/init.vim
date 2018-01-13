@@ -36,7 +36,6 @@ Plug 'jceb/vim-orgmode'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'jnurmine/Zenburn'
 Plug 'joshdick/onedark.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-plug'
 Plug 'majutsushi/tagbar'
