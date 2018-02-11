@@ -25,18 +25,14 @@ let base16colorspace=256
 " plugins
 call plug#begin('~/.config/nvim/plugged')
 Plug 'SirVer/ultisnips'
-Plug 'chriskempson/base16-vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'fatih/vim-go'
 Plug 'freitass/todo.txt-vim'
 Plug 'godlygeek/tabular'
-Plug 'gutenye/json5.vim'
 Plug 'honza/vim-snippets'
-Plug 'jceb/vim-orgmode'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'jnurmine/Zenburn'
 Plug 'joshdick/onedark.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-plug'
 Plug 'majutsushi/tagbar'
@@ -53,6 +49,10 @@ Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
+"Plug 'chriskempson/base16-vim'
+"Plug 'gutenye/json5.vim'
+"Plug 'jceb/vim-orgmode'
+"Plug 'jnurmine/Zenburn'
 "Plug 'python-rope/ropevim'
 call plug#end()
 
@@ -60,35 +60,33 @@ call plug#end()
 "colorscheme base16-mocha
 colorscheme onedark
 
-let NERDTreeShowHidden = 1
-
-let g:ale_linters = {
-\   'javascript': ['eslint', 'flow'],
-\}
-
-" npm install -g prettier
-let g:ale_fixers = {
-\ 'javascript': ['prettier'],
-\ 'json': ['prettier']
-\ }
-let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5 --no-semi --arrow-parens always'
-"let g:ale_fix_on_save = 1
-
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme = 'base16_mocha'
 let g:airline_theme = 'onedark'
 
+let NERDTreeShowHidden = 1
+
+let g:ale_linters = {
+\ 'javascript': ['eslint', 'flow'],
+\}
+
+let g:ale_fixers = {
+\ 'javascript': ['prettier'],
+\ 'json': ['prettier'],
+\ 'go': ['goimports', 'gofmt']
+\ }
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5 --no-semi --arrow-parens always'
+"let g:ale_fix_on_save = 1
+
 if executable('rg')
   set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
-  let g:ctrlp_use_caching = 0
 endif
 
 set wildignore+=*/.git/*,*/tmp/*,*.swp
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --hidden --glob "!.git" --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   'rg --hidden --glob "!.git" --glob "!*~" --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
@@ -108,18 +106,19 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let maplocalleader = ","
 let mapleader = ","
 
+nnoremap <space><space> :<C-u>Commands<CR>
+
 nnoremap [file] <Nop>
 nmap <Space>f [file]
 nnoremap <silent> [file]t :<C-u>NERDTreeTabsToggle<CR>
 nnoremap <silent> [file]T :<C-u>NERDTreeFind<CR>
-nnoremap <silent> [file]f :<C-u>FZF<CR>
-nnoremap <silent> [file]c :<C-u>CtrlPCurFile<CR>
-nnoremap <silent> [file]m :<C-u>CtrlPMRUFiles<CR>
+nnoremap <silent> [file]f :<C-u>Files<CR>
+nnoremap <silent> [file]h :<C-u>History<CR>
 nnoremap <silent> [file]g :<C-u>GitFiles<CR>
 
 nnoremap [buffer] <Nop>
 nmap <Space>b [buffer]
-nnoremap <silent> [buffer]b :<C-u>CtrlPBuffer<CR>
+nnoremap <silent> [buffer]b :<C-u>Buffers<CR>
 nnoremap [buffer]d :<C-c> :bp\|bd #<CR>
 "nnoremap [buffer]d :<C-u>bdelete<CR>
 
