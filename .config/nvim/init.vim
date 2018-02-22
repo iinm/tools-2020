@@ -45,6 +45,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-fugitive'
 Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
