@@ -27,5 +27,5 @@ pip install neovim
 go get github.com/direnv/direnv
 cargo install ripgrep
 cd ~/.config/nvim/plugged/youcompleteme \
-  && ./install.py --go-completer --js-completer --rust-completer --clang-completer
+  && ./install.py --system-libclang --go-completer --js-completer --rust-completer --clang-completer
 ```
