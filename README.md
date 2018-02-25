@@ -29,3 +29,7 @@ cargo install ripgrep
 cd ~/.config/nvim/plugged/youcompleteme \
   && ./install.py --system-libclang --go-completer --js-completer --rust-completer --clang-completer
 ```
+
+## Tips
+
+- Custom command for gnome-terminal / iterm2 : `sh -c "(tmux ls && tmux at) || tmux new`
