@@ -45,7 +45,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fireplace'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive', { 'on': [] }
 Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -97,6 +97,18 @@ let g:user_emmet_settings = {
 \      'extends' : 'jsx',
 \  },
 \}
+
+" https://github.com/junegunn/vim-plug/issues/164
+command! Gstatus call LazyLoadFugitive('Gstatus')
+command! Gdiff call LazyLoadFugitive('Gdiff')
+command! Glog call LazyLoadFugitive('Glog')
+command! Gblame call LazyLoadFugitive('Gblame')
+
+function! LazyLoadFugitive(cmd)
+  call plug#load('vim-fugitive')
+  call fugitive#detect(expand('%:p'))
+  exe a:cmd
+endfunction
 
 " plugin keymap
 let g:UltiSnipsExpandTrigger="<c-k>"
