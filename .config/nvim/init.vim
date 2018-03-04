@@ -120,6 +120,7 @@ let maplocalleader = ","
 let mapleader = ","
 
 nnoremap <space><space> :<C-u>Commands<CR>
+nnoremap <space>g :<C-u>Rg 
 
 nnoremap [file] <Nop>
 nmap <Space>f [file]
