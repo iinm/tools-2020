@@ -27,9 +27,9 @@ pip install neovim
 go get github.com/direnv/direnv
 cargo install ripgrep
 cd ~/.config/nvim/plugged/youcompleteme \
-  && ./install.py --system-libclang --go-completer --js-completer --rust-completer --clang-completer
+  && ./install.py --system-libclang --go-completer --js-completer --rust-completer --clang-completer --java-completer
 ```
 
 ## Tips
 
-- Custom command for gnome-terminal / iterm2 : `sh -c "(tmux ls && tmux at) || tmux new`
+- Custom command for gnome-terminal / iterm2 : `zsh -c "(tmux ls && tmux at) || tmux new`
