@@ -85,9 +85,27 @@ endif
 
 set wildignore+=*/.git/*,*/tmp/*,*.swp
 
+" :Rg  - Start fzf with hidden preview window that can be enabled with "?" key
+" :Rg! - Start fzf in fullscreen and display the preview window above
+let s:rg_command = 'rg --hidden --glob "!.git" --glob "!*~" --column --line-number --no-heading --color=always '
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --hidden --glob "!.git" --glob "!*~" --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   s:rg_command.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+" grep word under cursor
+command! -bang -nargs=0 RgCursorWord
+  \ call fzf#vim#grep(
+  \   s:rg_command.shellescape(expand('<cword>')), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+command! -bang -nargs=0 RgCursorWordExact
+  \ call fzf#vim#grep(
+  \   s:rg_command.shellescape('\b' . expand('<cword>') . '\b'), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
@@ -120,7 +138,6 @@ let maplocalleader = ","
 let mapleader = ","
 
 nnoremap <space><space> :<C-u>Commands<CR>
-nnoremap <space>g :<C-u>Rg 
 
 nnoremap [file] <Nop>
 nmap <Space>f [file]
@@ -129,6 +146,12 @@ nnoremap <silent> [file]T :<C-u>NERDTreeFind<CR>
 nnoremap <silent> [file]f :<C-u>Files<CR>
 nnoremap <silent> [file]h :<C-u>History<CR>
 nnoremap <silent> [file]g :<C-u>GitFiles<CR>
+
+nnoremap [grep] <Nop>
+nmap <Space>g [grep]
+nnoremap [grep]g :<C-u>Rg 
+nnoremap [grep]c :<C-u>RgCursorWord<CR>
+nnoremap [grep]w :<C-u>RgCursorWordExact<CR>
 
 nnoremap [buffer] <Nop>
 nmap <Space>b [buffer]
