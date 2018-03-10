@@ -128,6 +128,10 @@ function! LazyLoadFugitive(cmd)
   exe a:cmd
 endfunction
 
+" YouCompleteMe; enable lombok
+let s:lombok_jar_path = expand('~/tools/opt/lombok.jar')
+let $JAVA_TOOL_OPTIONS = '-javaagent:' . s:lombok_jar_path . ' -Xbootclasspath/p:' . s:lombok_jar_path
+
 " plugin keymap
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
