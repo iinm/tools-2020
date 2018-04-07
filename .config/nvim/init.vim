@@ -25,6 +25,7 @@ let base16colorspace=256
 " plugins
 call plug#begin('~/.config/nvim/plugged')
 Plug 'SirVer/ultisnips'
+Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'fatih/vim-go'
 Plug 'freitass/todo.txt-vim'
