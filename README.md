@@ -24,8 +24,12 @@ setup_rust
 
 ```
 pip install neovim
+
 go get github.com/direnv/direnv
+
 cargo install ripgrep
+cargo install fd-find
+
 cd ~/.config/nvim/plugged/youcompleteme \
   && ./install.py --system-libclang --go-completer --js-completer --rust-completer --clang-completer --java-completer
 ```

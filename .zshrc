@@ -49,19 +49,26 @@ if [ -f ~/.fzf.zsh ]; then
   zle     -N   fzf-file-widget
   bindkey '^Y' fzf-file-widget
 
+  #export FZF_DEFAULT_COMMAND="rg --hidden --glob '!.git' --glob '!*~' --files ."
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude "*~"'
+  export FZF_DEFAULT_OPTS='--reverse'
+  export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+  export FZF_CTRL_T_OPTS=$FZF_DEFAULT_OPTS
+
   function fz() {
-    dir=$(fasd_cd -dl | fzf-tmux) && cd "$dir"
+    dir=$(fasd_cd -dl | fzf) && cd "$dir"
   }
 
   # open file
   function fo() {
-    f=$(fzf-tmux) && open "$f"
+    f=$(fzf) && open "$f"
   }
 
   # cd
   function fcd() {
     local dir
-    dir=$(find ${1:-.} -type d 2> /dev/null | fzf-tmux) && cd "$dir"
+    #dir=$(find ${1:-.} -type d 2> /dev/null | fzf) && cd "$dir"
+    dir=$(fd --type d --hidden --follow --exclude .git 2> /dev/null | fzf) && cd "$dir"
   }
 fi
 
