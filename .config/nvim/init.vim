@@ -77,10 +77,12 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \ 'javascript': ['prettier'],
 \ 'json': ['prettier'],
-\ 'go': ['goimports', 'gofmt']
+\ 'go': ['goimports']
 \ }
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5 --no-semi --arrow-parens always'
 "let g:ale_fix_on_save = 1
+
+let g:go_fmt_command = "goimports"
 
 if executable('rg')
   set grepprg=rg\ --color=never
@@ -200,3 +202,9 @@ nnoremap [code]d :<C-u>YcmCompleter GetDoc<CR>
 nnoremap [code]t :<C-u>YcmCompleter GetType<CR>
 nnoremap [code]r :<C-u>YcmCompleter GoToReferences<CR>
 nnoremap [code]n :<C-u>YcmCompleter RefactorRename<CR>
+
+autocmd FileType go nnoremap [code]i :<C-u>GoImport 
+autocmd FileType go nnoremap [code]j :<C-u>GoDef<CR>
+autocmd FileType go nnoremap [code]d :<C-u>GoDoc<CR>
+autocmd FileType go nnoremap [code]tt :<C-u>GoTest<CR>
+autocmd FileType go nnoremap [code]tf :<C-u>GoTestFunc<CR>
