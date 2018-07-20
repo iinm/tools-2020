@@ -56,7 +56,7 @@ if [ -f ~/.fzf.zsh ]; then
   export FZF_CTRL_T_OPTS=$FZF_DEFAULT_OPTS
 
   function fz() {
-    dir=$(fasd_cd -dl | fzf) && cd "$dir"
+    dir=$(fasd_cd -dlR | fzf) && cd "$dir"
   }
 
   # open file
