@@ -72,4 +72,16 @@ if [ -f ~/.fzf.zsh ]; then
   }
 fi
 
+function with_notify() {
+  message="$@"
+  $@
+  if [ $? -eq 0 ]; then
+    title="Success 😁"
+  else
+    title="Fail 😨"
+  fi
+  # Macの通知
+  osascript -e "display notification \"${message//\"/\\\"}\" with title \"${title//\"/\\\"}\""
+}
+
 test -f $HOME/.zshrc.local && source $HOME/.zshrc.local
