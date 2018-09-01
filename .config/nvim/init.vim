@@ -2,7 +2,7 @@ set backup
 set undofile
 set ruler
 set showcmd
-set number
+set number relativenumber
 set mouse=a
 set clipboard+=unnamedplus
 " highlight space
