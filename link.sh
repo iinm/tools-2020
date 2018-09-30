@@ -19,7 +19,7 @@ done
 
 # $XDG_CONFIG_HOME
 case "$(uname)" in
-    "Linux" ) config_files=(fontconfig nvim) ;;
+    "Linux" ) config_files=(nvim) ;;
     "Darwin" ) config_files=(nvim) ;;
     * ) config_files=() ;;
 esac
