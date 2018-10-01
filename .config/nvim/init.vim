@@ -24,6 +24,7 @@ let base16colorspace=256
 
 " plugins
 call plug#begin('~/.config/nvim/plugged')
+Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'SirVer/ultisnips'
 Plug 'andreshazard/vim-freemarker'
 Plug 'cespare/vim-toml'
