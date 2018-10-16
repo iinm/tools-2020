@@ -12,6 +12,7 @@ tools_dir=$HOME/tools
 #export PATH=$tools_dir/bin:$PATH
 
 ## pyenv
+export PYTHON_CONFIGURE_OPTS="--enable-shared"
 export PYENV_ROOT=$tools_dir/opt/pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
