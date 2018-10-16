@@ -36,4 +36,4 @@ cd ~/.config/nvim/plugged/youcompleteme \
 
 ## Tips
 
-- Custom command for gnome-terminal / iterm2 : `zsh -c "(tmux ls && tmux at) || tmux new`
+- Custom command for gnome-terminal / iterm2 : `zsh -c "(tmux ls && tmux at) || tmux new"`
