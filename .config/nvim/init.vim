@@ -57,7 +57,7 @@ Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
-"Plug 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 "Plug 'gutenye/json5.vim'
 "Plug 'jceb/vim-orgmode'
 "Plug 'jnurmine/Zenburn'
@@ -66,11 +66,13 @@ call plug#end()
 
 " plugin config
 "colorscheme base16-mocha
-colorscheme onedark
+"colorscheme onedark
+colorscheme base16-solarized-light
 
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme = 'base16_mocha'
-let g:airline_theme = 'onedark'
+"let g:airline_theme = 'onedark'
+let g:airline_theme = 'solarized'
 
 let NERDTreeShowHidden = 1
 
