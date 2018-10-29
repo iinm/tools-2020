@@ -25,3 +25,6 @@
 [submodule "tools/opt/fzf"]
 	path = tools/opt/fzf
 	url = https://github.com/junegunn/fzf
+[submodule "tools/opt/todo.txt-cli"]
+	path = tools/opt/todo.txt-cli
+	url = https://github.com/todotxt/todo.txt-cli

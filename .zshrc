@@ -47,6 +47,8 @@ if (uname | grep -qE "Linux"); then
   alias open="xdg-open"
 fi
 
+alias t="~/tools/opt/todo.txt-cli/todo.sh -d ~/notes/todo.cfg"
+
 export TERM=xterm-256color
 export EDITOR=nvim
 
