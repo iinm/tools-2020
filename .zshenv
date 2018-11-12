@@ -26,7 +26,7 @@ direnv &> /dev/null && eval "$(direnv hook zsh)"
 
 ## nvm
 export NVM_DIR=$tools_dir/opt/nvm
-test -s $NVM_DIR/nvm.sh && source $NVM_DIR/nvm.sh
+test -s $NVM_DIR/nvm.sh && source $NVM_DIR/nvm.sh 2> /dev/null
 
 ## fasd
 export PATH=$tools_dir/opt/fasd:$PATH
