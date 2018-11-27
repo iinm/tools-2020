@@ -5,15 +5,15 @@ antigen use oh-my-zsh
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
 antigen bundle git
-antigen bundle pip
-antigen bundle lein
+#antigen bundle pip
+#antigen bundle lein
 antigen bundle command-not-found
 antigen bundle docker
 
-antigen bundle zsh-users/zsh-syntax-highlighting
+#antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
-antigen bundle Tarrasch/zsh-autoenv
+#antigen bundle Tarrasch/zsh-autoenv
 
 # Load the theme.
 #antigen theme robbyrussell
@@ -95,3 +95,7 @@ function with_notify() {
 }
 
 test -f $HOME/.zshrc.local && source $HOME/.zshrc.local
+
+if (which zprof > /dev/null 2>&1) ;then
+  zprof
+fi
