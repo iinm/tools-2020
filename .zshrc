@@ -12,7 +12,20 @@ setopt append_history
 setopt share_history
 setopt inc_append_history
 
-export PROMPT='%B%#%b '
+#autoload -Uz colors; colors
+autoload -Uz vcs_info
+precmd() { vcs_info }
+# format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "+"
+zstyle ':vcs_info:git:*' unstagedstr "!"
+zstyle ':vcs_info:*' formats "(%c%u%b)"
+zstyle ':vcs_info:*' actionformats '(%b|%a)'
+setopt prompt_subst
+
+#PROMPT='%B%#%b '
+PROMPT=$'%Bin ${PWD/#$HOME/~} ${vcs_info_msg_0_}\n_>%b '
+RPROMPT=$'%B[%?]%b'
 
 function show_status() {
   last_status=$?
