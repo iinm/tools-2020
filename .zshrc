@@ -1,10 +1,5 @@
 fpath=($HOME/tools/opt/my-zsh-completions $HOME/tools/opt/zsh-completions/src $fpath)
-autoload -Uz compinit
-if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-  compinit
-else
-  compinit -C
-fi
+autoload -Uz compinit && compinit
 zstyle ':completion:*:default' menu select=2
 setopt interactive_comments
 
