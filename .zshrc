@@ -15,7 +15,9 @@ setopt inc_append_history
 export PROMPT='%B%#%b '
 
 function show_status() {
+  last_status=$?
   echo
+  echo $last_status
   pwd
   git symbolic-ref --short HEAD 2> /dev/null
   zle reset-prompt
