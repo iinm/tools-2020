@@ -3,8 +3,10 @@
 !pyenv
 !gvm
 !nvm
-!antigen
 !fasd
 !rustup.rs
 !fzf
 !todo.txt-cli
+!zsh-completions
+!my-zsh-completions
+!my-zsh-completions/.gitkeep

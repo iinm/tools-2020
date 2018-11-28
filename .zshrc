@@ -1,34 +1,30 @@
-source $HOME/tools/opt/antigen/antigen.zsh
+fpath=($HOME/tools/opt/my-zsh-completions $HOME/tools/opt/zsh-completions/src $fpath)
+autoload -Uz compinit && compinit
+zstyle ':completion:*:default' menu select=2
+setopt interactive_comments
 
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=50000
+setopt hist_ignore_dups
+setopt extended_history
+setopt append_history
+setopt share_history
+setopt inc_append_history
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle git
-#antigen bundle pip
-#antigen bundle lein
-antigen bundle command-not-found
-antigen bundle docker
+export PROMPT='%B%#%b '
 
-#antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-completions
-#antigen bundle Tarrasch/zsh-autoenv
+function show_status() {
+  echo
+  pwd
+  git symbolic-ref --short HEAD 2> /dev/null
+  zle reset-prompt
+}
+zle -N show_status
+bindkey '^U' show_status
 
-# Load the theme.
-#antigen theme robbyrussell
-#antigen theme wezm
-#antigen theme candy
-PROMPT=$'%{$fg_bold[green]%}%n@%m %{$fg[blue]%}%D{[%X]} %{$reset_color%}%{$fg[green]%}[%~]%{$reset_color%} $(git_prompt_info)\
-%{$fg[blue]%}->%{$fg_bold[blue]%} %#%{$reset_color%} '
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[green]%}["
-ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}*%{$fg[green]%}"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
-
-# Tell Antigen that you're done.
-antigen apply
-
+export TERM=xterm-256color
+export EDITOR=nvim
 
 alias rm="rm -i"
 alias cp="cp -i"
@@ -47,10 +43,11 @@ if (uname | grep -qE "Linux"); then
   alias open="xdg-open"
 fi
 
-alias t="~/tools/opt/todo.txt-cli/todo.sh -d ~/notes/todo.cfg"
+alias gco="git checkout"
+alias gst="git status"
+alias gl="git pull"
 
-export TERM=xterm-256color
-export EDITOR=nvim
+alias t="~/tools/opt/todo.txt-cli/todo.sh -d ~/notes/todo.cfg"
 
 if [ -f ~/.fzf.zsh ]; then
   source ~/.fzf.zsh

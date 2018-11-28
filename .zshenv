@@ -17,10 +17,7 @@ tools_dir=$HOME/tools
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
 export PYENV_ROOT=$tools_dir/opt/pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
-function pyenv() {
-  eval "$($PYENV_ROOT/bin/pyenv init -)"
-  $PYENV_ROOT/bin/pyenv "$@"
-}
+eval "$(pyenv init -)"
 
 ## gvm
 export GVM_ROOT=$tools_dir/opt/gvm
