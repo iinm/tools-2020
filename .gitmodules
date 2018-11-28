@@ -28,3 +28,9 @@
 [submodule "tools/opt/zsh-completions"]
 	path = tools/opt/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
+[submodule "tools/opt/zsh-syntax-highlighting"]
+	path = tools/opt/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "tools/opt/zsh-autosuggestions"]
+	path = tools/opt/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions

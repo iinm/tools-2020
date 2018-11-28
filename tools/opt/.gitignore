@@ -10,3 +10,5 @@
 !zsh-completions
 !my-zsh-completions
 !my-zsh-completions/.gitkeep
+!zsh-syntax-highlighting
+!zsh-autosuggestions

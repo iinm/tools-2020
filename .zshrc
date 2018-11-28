@@ -1,5 +1,10 @@
 fpath=($HOME/tools/opt/my-zsh-completions $HOME/tools/opt/zsh-completions/src $fpath)
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
 zstyle ':completion:*:default' menu select=2
 setopt interactive_comments
 
@@ -12,20 +17,19 @@ setopt append_history
 setopt share_history
 setopt inc_append_history
 
-#autoload -Uz colors; colors
+autoload -Uz colors; colors
 autoload -Uz vcs_info
 precmd() { vcs_info }
 # format the vcs_info_msg_0_ variable
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "+"
-zstyle ':vcs_info:git:*' unstagedstr "!"
-zstyle ':vcs_info:*' formats "(%c%u%b)"
-zstyle ':vcs_info:*' actionformats '(%b|%a)'
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}+"
+zstyle ':vcs_info:git:*' unstagedstr "%F{magenta}!"
+zstyle ':vcs_info:*' formats "(%F{green}%c%u%b%f)"
+zstyle ':vcs_info:*' actionformats '%F{magenta}(%b|%a)%f'
 setopt prompt_subst
 
 #PROMPT='%B%#%b '
-PROMPT=$'%Bin ${PWD/#$HOME/~} ${vcs_info_msg_0_}\n_>%b '
-RPROMPT=$'%B[%?]%b'
+PROMPT=$'%(?..%F{red}=> %?\n%f)%F{cyan}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n%B_>%b '
 
 function show_status() {
   last_status=$?
@@ -105,6 +109,11 @@ function with_notify() {
   osascript -e "display notification \"${message//\"/\\\"}\" with title \"${title//\"/\\\"}\""
   return $RET
 }
+
+# plugins
+source ~/tools/opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/tools/opt/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 
 test -f $HOME/.zshrc.local && source $HOME/.zshrc.local
 
