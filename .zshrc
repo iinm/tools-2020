@@ -17,14 +17,15 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 # format the vcs_info_msg_0_ variable
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}+"
-zstyle ':vcs_info:git:*' unstagedstr "%F{magenta}!"
-zstyle ':vcs_info:*' formats "(%F{green}%c%u%b%f)"
-zstyle ':vcs_info:*' actionformats '%F{magenta}(%b|%a)%f'
+zstyle ':vcs_info:git:*' stagedstr "+"
+zstyle ':vcs_info:git:*' unstagedstr "!"
+zstyle ':vcs_info:*' formats "(%c%u%b)"
+zstyle ':vcs_info:*' actionformats '(%b|%a)'
 setopt prompt_subst
 
 #PROMPT='%B%#%b '
-PROMPT=$'%(?..%F{red}=> %?\n%f)%F{cyan}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n%B_>%b '
+#PROMPT=$'%(?..%F{red}=> %?\n%f)%F{cyan}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n%B_>%b '
+PROMPT=$'%(?..%B=> %?%b\n)${PWD/#$HOME/~} ${vcs_info_msg_0_}\n%B_>%b '
 
 function show_status() {
   last_status=$?
