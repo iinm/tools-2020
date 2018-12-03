@@ -35,7 +35,7 @@ setopt prompt_subst
 
 #PROMPT='%B%#%b '
 #PROMPT=$'%(?..%F{red}=> %?\n%f)%F{cyan}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n%B_>%b '
-PROMPT=$'%(?..%B=> %?%b\n)${PWD/#$HOME/~} ${vcs_info_msg_0_}\n%B_>%b '
+PROMPT=$'%(?..%B=> %?%b\n)%B${PWD/#$HOME/~} ${vcs_info_msg_0_}\n_>%b '
 
 function show_status() {
   last_status=$?
