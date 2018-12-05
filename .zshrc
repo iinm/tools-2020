@@ -20,7 +20,7 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
 setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY
+#setopt SHARE_HISTORY
 
 autoload -Uz colors; colors
 autoload -Uz vcs_info
