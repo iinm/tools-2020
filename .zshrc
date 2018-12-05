@@ -1,9 +1,9 @@
 fpath=($HOME/tools/opt/my-zsh-completions $HOME/tools/opt/zsh-completions/src $fpath)
+
 zstyle ':completion:*' completer _complete
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
-autoload -Uz compinit && compinit
 zstyle ':completion:*:default' menu select=2
-setopt interactive_comments
+autoload -Uz compinit && compinit
 
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
@@ -27,26 +27,17 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 # format the vcs_info_msg_0_ variable
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "+"
-zstyle ':vcs_info:git:*' unstagedstr "!"
-zstyle ':vcs_info:*' formats "(%c%u%b)"
-zstyle ':vcs_info:*' actionformats '(%b|%a)'
-setopt prompt_subst
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}+%f"
+zstyle ':vcs_info:git:*' unstagedstr "%F{magenta}!%f"
+zstyle ':vcs_info:*' formats "%c%u%F{green}%b%f"
+zstyle ':vcs_info:*' actionformats '%F{magenta}%b|%a%f'
+setopt PROMPT_SUBST
 
 #PROMPT='%B%#%b '
-#PROMPT=$'%(?..%F{red}=> %?\n%f)%F{cyan}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n%B_>%b '
-PROMPT=$'%(?..%B=> %?%b\n)%B${PWD/#$HOME/~} ${vcs_info_msg_0_}\n_>%b '
+PROMPT=$'%(?..%F{red}=> %?\n%f)%F{cyan}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n%B_>%b '
+#PROMPT=$'%(?..%B=> %?%b\n)%B${PWD/#$HOME/~} ${vcs_info_msg_0_}\n_>%b '
 
-function show_status() {
-  last_status=$?
-  echo
-  echo $last_status
-  pwd
-  git symbolic-ref --short HEAD 2> /dev/null
-  zle reset-prompt
-}
-zle -N show_status
-bindkey '^U' show_status
+setopt INTERACTIVE_COMMENTS
 
 export TERM=xterm-256color
 export EDITOR=nvim

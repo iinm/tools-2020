@@ -66,13 +66,13 @@ call plug#end()
 
 " plugin config
 "colorscheme base16-mocha
-"colorscheme onedark
-colorscheme base16-solarized-light
+colorscheme onedark
+"colorscheme base16-solarized-light
 
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme = 'base16_mocha'
-"let g:airline_theme = 'onedark'
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'onedark'
+"let g:airline_theme = 'solarized'
 
 let NERDTreeShowHidden = 1
 
