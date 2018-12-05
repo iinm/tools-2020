@@ -3,6 +3,8 @@ fpath=($HOME/tools/opt/my-zsh-completions $HOME/tools/opt/zsh-completions/src $f
 zstyle ':completion:*' completer _complete
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 zstyle ':completion:*:default' menu select=2
+eval "$(dircolors 2> /dev/null || gdircolors 2> /dev/null)"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 autoload -Uz compinit && compinit
 
 HISTSIZE=5000
