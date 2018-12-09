@@ -69,6 +69,8 @@ alias dco="docker-compose"
 
 alias t="~/tools/opt/todo.txt-cli/todo.sh -d ~/notes/todo.cfg"
 
+bindkey -e
+
 if [ -f ~/.fzf.zsh ]; then
   source ~/.fzf.zsh
   zle     -N   fzf-file-widget
