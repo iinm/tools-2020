@@ -65,6 +65,8 @@ alias gco="git checkout"
 alias gst="git status"
 alias gl="git pull"
 
+alias dco="docker-compose"
+
 alias t="~/tools/opt/todo.txt-cli/todo.sh -d ~/notes/todo.cfg"
 
 if [ -f ~/.fzf.zsh ]; then
