@@ -53,6 +53,9 @@ else
     alias ls="ls --color=auto -F"
 fi
 
+alias la="ls -alh"
+alias ll="ls -lh"
+
 alias view="nvim -R"
 
 if (uname | grep -qE "Linux"); then
