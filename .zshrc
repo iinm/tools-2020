@@ -64,7 +64,7 @@ fi
 alias gco="git checkout"
 alias gst="git status"
 alias gl="git pull"
-alias gcd="cd $(git rev-parse --show-toplevel)"
+alias gcd='cd $(git rev-parse --show-toplevel)'
 
 alias dco="docker-compose"
 
