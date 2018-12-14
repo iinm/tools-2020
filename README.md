@@ -15,11 +15,21 @@ bash link.sh -f  # remove existing files
 ## Setup
 
 ```sh
-source setup_tools.sh
-setup_pyenv
-setup_gvm
-setup_nvm
-setup_rust
+test -f ~/.fzf.zsh || ~/tools/opt/fzf/install --all
+
+pyenv install -l
+pyenv install $py_version
+pyenv global $py_version
+
+gvm listall
+gvm install $go_version -B
+gvm use $go_version --default
+
+nvm ls-remote
+nvm install $node_version
+echo 'export PATH=~/tools/opt/nvm/versions/node/$node_version/bin:$PATH' >> ~/.zshenv.local
+
+~/tools/opt/rustup.rs/rustup-init.sh -y --no-modify-path
 ```
 
 ```
@@ -30,8 +40,13 @@ go get github.com/direnv/direnv
 cargo install ripgrep
 cargo install fd-find
 
-cd ~/.config/nvim/plugged/youcompleteme \
-  && ./install.py --system-libclang --go-completer --js-completer --rust-completer --clang-completer --java-completer
+cd ~/.config/nvim/plugged/youcompleteme && ./install.py \
+  --system-libclang \
+  --go-completer \
+  --js-completer \
+  --rust-completer \
+  --clang-completer \
+  --java-completer
 ```
 
 ## Tips
