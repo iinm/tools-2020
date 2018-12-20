@@ -117,6 +117,17 @@ function with_notify() {
   return $RET
 }
 
+# godoc
+GO_LIST_CACHE=~/.go-list-cache
+function update-go-list-cache() {
+  (cd ~ && go list ... 2> /dev/null > $GO_LIST_CACHE)
+}
+
+function fgodoc() {
+  # todo: method, struct名も対象としたい
+  go doc $(cat $GO_LIST_CACHE | fzf) | less
+}
+
 # plugins
 source ~/tools/opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/tools/opt/zsh-autosuggestions/zsh-autosuggestions.zsh
