@@ -122,7 +122,7 @@ FGODOC_CACHE_FILE=~/.fgodoc-cache
 function fgodoc-update() {
   for package in $(cd ~ && go list ... 2> /dev/null); do
     echo $package
-    for elem in $(go doc $package | grep -oE '^(type|func) [^({ ]+' | awk '{print $2}'); do
+    for elem in $(go doc $package | grep -oE '(type|func) [^({ ]+' | awk '{print $2}'); do
       echo $package.$elem
     done
   done > $FGODOC_CACHE_FILE
