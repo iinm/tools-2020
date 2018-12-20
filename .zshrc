@@ -118,14 +118,18 @@ function with_notify() {
 }
 
 # godoc
-GO_LIST_CACHE=~/.go-list-cache
-function update-go-list-cache() {
-  (cd ~ && go list ... 2> /dev/null > $GO_LIST_CACHE)
+FGODOC_CACHE_FILE=~/.fgodoc-cache
+function fgodoc-update() {
+  for package in $(cd ~ && go list ... 2> /dev/null); do
+    echo $package
+    for elem in $(go doc $package | grep -oE '^(type|func) [^({ ]+' | awk '{print $2}'); do
+      echo $package.$elem
+    done
+  done > $FGODOC_CACHE_FILE
 }
 
 function fgodoc() {
-  # todo: method, struct名も対象としたい
-  go doc $(cat $GO_LIST_CACHE | fzf) | less
+  go doc $(fzf < $FGODOC_CACHE_FILE) | less
 }
 
 # plugins
