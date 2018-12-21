@@ -64,6 +64,10 @@ if (uname | grep -qE "Linux"); then
   alias open="xdg-open"
 fi
 
+if (which gsed &> /dev/null); then
+  alias sed="gsed"
+fi
+
 alias gco="git checkout"
 alias gst="git status"
 alias gl="git pull"
@@ -117,19 +121,23 @@ function with_notify() {
   return $RET
 }
 
-# godoc
-FGODOC_CACHE_FILE=~/.fgodoc-cache
+# fzf godoc
+FGODOC_ENTRIES_FILE=~/.fgodoc-entries
+FGODOC_HIST_FILE=~/.fgodoc-hist
 function fgodoc-update() {
   for package in $(cd ~ && go list ... 2> /dev/null); do
     echo $package
-    for elem in $(go doc $package | grep -oE '(type|func) [^({ ]+' | awk '{print $2}'); do
+    for elem in $(godoc $package | sed -En 's/^(type|func) (\w+).+/\2/p'); do
       echo $package.$elem
     done
-  done > $FGODOC_CACHE_FILE
+    for elem in $(godoc $package | sed -En 's/^func \(\w* \*?(\w+)\) (\w+)\(.+/\1.\2/p'); do
+      echo $package.$elem
+    done
+  done | sort > $FGODOC_ENTRIES_FILE
 }
 
 function fgodoc() {
-  go doc $(fzf < $FGODOC_CACHE_FILE) | less
+  go doc $(fzf < $FGODOC_ENTRIES_FILE) | less
 }
 
 # plugins
