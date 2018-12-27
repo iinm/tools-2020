@@ -121,9 +121,8 @@ function with_notify() {
   return $RET
 }
 
-# fzf godoc
+# fzf godoc; requires gnu sed
 FGODOC_ENTRIES_FILE=~/.fgodoc-entries
-FGODOC_HIST_FILE=~/.fgodoc-hist
 function fgodoc-update() {
   for package in $(cd ~ && go list ... 2> /dev/null); do
     echo $package
@@ -137,7 +136,7 @@ function fgodoc-update() {
 }
 
 function fgodoc() {
-  go doc $(fzf < $FGODOC_ENTRIES_FILE) | less
+  go doc $(fzf < $FGODOC_ENTRIES_FILE)
 }
 
 # plugins
