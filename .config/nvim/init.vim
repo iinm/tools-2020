@@ -1,3 +1,4 @@
+set hidden
 set backup
 set undofile
 set ruler
@@ -24,58 +25,76 @@ let base16colorspace=256
 
 " plugins
 call plug#begin('~/.config/nvim/plugged')
-Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'SirVer/ultisnips'
-Plug 'andreshazard/vim-freemarker'
-Plug 'cespare/vim-toml'
-Plug 'chr4/nginx.vim'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'fatih/vim-go'
-Plug 'freitass/todo.txt-vim'
-Plug 'godlygeek/tabular'
-Plug 'honza/vim-snippets'
-Plug 'jiangmiao/auto-pairs'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'joshdick/onedark.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-plug'
-Plug 'majutsushi/tagbar'
-Plug 'mattn/emmet-vim'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'pangloss/vim-javascript'
-Plug 'robbles/logstash.vim'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-fireplace'
-Plug 'tpope/vim-fugitive', { 'on': [] }
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-surround'
-Plug 'valloric/youcompleteme'
+
+" ui
+Plug 'joshdick/onedark.vim'
+Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'majutsushi/tagbar'
+
+" language support
+Plug 'fatih/vim-go'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'cespare/vim-toml'
+Plug 'freitass/todo.txt-vim'
+Plug 'chr4/nginx.vim'
+Plug 'robbles/logstash.vim'
+Plug 'tpope/vim-fireplace'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'andreshazard/vim-freemarker'
+
+" lsp client
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'natebosch/vim-lsc'
 Plug 'w0rp/ale'
-Plug 'chriskempson/base16-vim'
-"Plug 'gutenye/json5.vim'
-"Plug 'jceb/vim-orgmode'
-"Plug 'jnurmine/Zenburn'
-"Plug 'python-rope/ropevim'
+
+" snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+" tools
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'godlygeek/tabular'
+Plug 'jiangmiao/auto-pairs'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive', { 'on': [] }
+Plug 'editorconfig/editorconfig-vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/nerdcommenter'
+Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
 call plug#end()
 
-" plugin config
+
 "colorscheme base16-mocha
 colorscheme onedark
 "colorscheme base16-solarized-light
-
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme = 'base16_mocha'
 let g:airline_theme = 'onedark'
 "let g:airline_theme = 'solarized'
-
 let NERDTreeShowHidden = 1
+
+
+let g:lsp_async_completion = 1
+if executable('go-langserver')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'go-langserver',
+        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
+        \ 'whitelist': ['go'],
+        \ })
+endif
 
 let g:ale_linters = {
 \ 'javascript': ['eslint', 'flow'],
@@ -90,6 +109,7 @@ let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5 --n
 "let g:ale_fix_on_save = 1
 
 let g:go_fmt_command = "goimports"
+
 
 if executable('rg')
   set grepprg=rg\ --color=never
@@ -140,9 +160,6 @@ function! LazyLoadFugitive(cmd)
   exe a:cmd
 endfunction
 
-" YouCompleteMe; enable lombok
-let s:lombok_jar_path = expand('~/tools/opt/lombok.jar')
-let $JAVA_TOOL_OPTIONS = '-javaagent:' . s:lombok_jar_path . ' -Xbootclasspath/p:' . s:lombok_jar_path
 
 " plugin keymap
 let g:UltiSnipsExpandTrigger="<c-k>"
@@ -203,15 +220,16 @@ nnoremap <silent> [window]- <C-w>-
 
 nnoremap [code] <Nop>
 nmap <Space>c [code]
-nnoremap [code]g :<C-u>YcmCompleter GoTo<CR>
-nnoremap [code]j :<C-u>YcmCompleter GoToDefinition<CR>
-nnoremap [code]d :<C-u>YcmCompleter GetDoc<CR>
-nnoremap [code]t :<C-u>YcmCompleter GetType<CR>
-nnoremap [code]r :<C-u>YcmCompleter GoToReferences<CR>
-nnoremap [code]n :<C-u>YcmCompleter RefactorRename<CR>
+"nnoremap [code]g :<C-u>LspDefinition<CR>
+nnoremap [code]j :<C-u>LspDefinition<CR>
+nnoremap [code]d :<C-u>LspHover<CR>
+nnoremap [code]t :<C-u>LspTypeDefinition<CR>
+nnoremap [code]r :<C-u>LspReference<CR>
+nnoremap [code]n :<C-u>LspRename<CR>
+nnoremap [code]s :<C-u>Snippets<CR>
 
 autocmd FileType go nnoremap [code]i :<C-u>GoImport 
-autocmd FileType go nnoremap [code]j :<C-u>GoDef<CR>
-autocmd FileType go nnoremap [code]d :<C-u>GoDoc<CR>
+"autocmd FileType go nnoremap [code]j :<C-u>GoDef<CR>
+"autocmd FileType go nnoremap [code]d :<C-u>GoDoc<CR>
 autocmd FileType go nnoremap [code]tt :<C-u>GoTest<CR>
 autocmd FileType go nnoremap [code]tf :<C-u>GoTestFunc<CR>
