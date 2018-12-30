@@ -1,12 +1,7 @@
 fpath=($HOME/tools/opt/my-zsh-completions $HOME/tools/opt/zsh-completions/src $fpath)
 
-zstyle ':completion:*' completer _complete
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
-zstyle ':completion:*:default' menu select=2
-eval "$(dircolors 2> /dev/null || gdircolors 2> /dev/null)"
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-autoload -Uz compinit && compinit
 
+# --- history
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=50000
@@ -24,6 +19,17 @@ setopt HIST_SAVE_NO_DUPS
 setopt INC_APPEND_HISTORY
 #setopt SHARE_HISTORY
 
+
+# --- completion
+zstyle ':completion:*' completer _complete
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
+zstyle ':completion:*:default' menu select=2
+eval "$(dircolors 2> /dev/null || gdircolors 2> /dev/null)"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+autoload -Uz compinit && compinit
+
+
+# --- looks
 autoload -Uz colors; colors
 autoload -Uz vcs_info
 precmd() { vcs_info }
@@ -39,11 +45,15 @@ setopt PROMPT_SUBST
 PROMPT=$'%(?..%F{red}=> %?\n%f)%F{cyan}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n%B_>%b '
 #PROMPT=$'%(?..%B=> %?%b\n)%B${PWD/#$HOME/~} ${vcs_info_msg_0_}\n_>%b '
 
+
+# --- etc.
 setopt INTERACTIVE_COMMENTS
 
 export TERM=xterm-256color
 export EDITOR=nvim
 
+
+# --- alias
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
@@ -52,21 +62,10 @@ if (uname | grep -qE "Darwin|BSD"); then
 else
     alias ls="ls --color=auto -F"
 fi
-
 alias la="ls -alh"
 alias ll="ls -lh"
 
 alias view="nvim -R"
-
-if (uname | grep -qE "Linux"); then
-  alias pbcopy="xsel -i -p && xsel -o -p | xsel -i -b"
-  alias pbpaste="xsel -o"
-  alias open="xdg-open"
-fi
-
-if (which gsed &> /dev/null); then
-  alias sed="gsed"
-fi
 
 alias gco="git checkout"
 alias gst="git status"
@@ -77,6 +76,22 @@ alias dco="docker-compose"
 
 alias t="~/tools/opt/todo.txt-cli/todo.sh -d ~/notes/todo.cfg"
 
+if (uname | grep -qE "Linux"); then
+  alias pbcopy="xsel -i -p && xsel -o -p | xsel -i -b"
+  alias pbpaste="xsel -o"
+  alias open="xdg-open"
+fi
+
+# for darwin
+if (which gsed &> /dev/null); then
+  alias sed="gsed"
+fi
+if (which gdate &> /dev/null); then
+  alias date="gdate"
+fi
+
+
+# --- key bind
 bindkey -e
 
 if [ -f ~/.fzf.zsh ]; then
@@ -89,25 +104,27 @@ if [ -f ~/.fzf.zsh ]; then
   export FZF_DEFAULT_OPTS='--reverse'
   export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
   export FZF_CTRL_T_OPTS=$FZF_DEFAULT_OPTS
-
-  function fz() {
-    dir=$(fasd_cd -dlR | fzf) && cd "$dir"
-  }
-
-  # open file
-  function fo() {
-    f=$(fzf) && open "$f"
-  }
-
-  # cd
-  function fcd() {
-    local dir
-    #dir=$(find ${1:-.} -type d 2> /dev/null | fzf) && cd "$dir"
-    dir=$(fd --type d --hidden --follow --exclude .git 2> /dev/null | fzf) && cd "$dir"
-  }
 fi
 
-function with_notify() {
+
+# --- functions
+function fz() {
+  dir=$(fasd_cd -dlR | fzf) && cd "$dir"
+}
+
+# open file
+function fo() {
+  f=$(fzf) && open "$f"
+}
+
+# cd
+function fcd() {
+  local dir
+  #dir=$(find ${1:-.} -type d 2> /dev/null | fzf) && cd "$dir"
+  dir=$(fd --type d --hidden --follow --exclude .git 2> /dev/null | fzf) && cd "$dir"
+}
+
+function with-notify() {
   message="$@"
   $@
   RET=$?
@@ -139,13 +156,17 @@ function fgodoc() {
   go doc $(fzf < $FGODOC_ENTRIES_FILE)
 }
 
-# plugins
+
+# --- plugins
 source ~/tools/opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/tools/opt/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
+# --- machine specific config
 test -f $HOME/.zshrc.local && source $HOME/.zshrc.local
 
+
+# --- profile
 if (which zprof > /dev/null 2>&1) ;then
   zprof
 fi

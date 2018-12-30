@@ -2,6 +2,12 @@
 
 Configuration files (a.k.a. dotfiles)
 
+## Install requirements
+
+```
+which brew && brew install zsh tmux neovim git tig ripgrep fd coreutils gnu-sed
+```
+
 ## Install
 
 ```sh
@@ -25,6 +31,7 @@ gvm listall
 gvm install $go_version -B
 gvm use $go_version --default
 
+enable-nvm
 nvm ls-remote
 nvm install $node_version
 echo 'export PATH=~/tools/opt/nvm/versions/node/$node_version/bin:$PATH' >> ~/.zshenv.local
@@ -39,14 +46,6 @@ go get github.com/direnv/direnv
 
 cargo install ripgrep
 cargo install fd-find
-
-cd ~/.config/nvim/plugged/youcompleteme && ./install.py \
-  --system-libclang \
-  --go-completer \
-  --js-completer \
-  --rust-completer \
-  --clang-completer \
-  --java-completer
 ```
 
 ## Tips

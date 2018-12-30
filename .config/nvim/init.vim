@@ -6,6 +6,7 @@ set showcmd
 set number relativenumber
 set mouse=a
 set clipboard+=unnamedplus
+set wildignore+=*/.git/*,*/tmp/*,*.swp
 " highlight space
 set list
 set listchars=tab:>-,trail:·,extends:>,precedes:<
@@ -21,9 +22,9 @@ filetype plugin indent on
 "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 let base16colorspace=256
-"colorscheme desert
 
-" plugins
+
+" --- plugins
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/vim-plug'
 
@@ -38,6 +39,7 @@ Plug 'majutsushi/tagbar'
 
 " language support
 Plug 'fatih/vim-go'
+Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'cespare/vim-toml'
@@ -56,27 +58,32 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'natebosch/vim-lsc'
 Plug 'w0rp/ale'
 
+Plug 'prabirshrestha/asyncomplete-file.vim'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+
 " snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
 
 " tools
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'godlygeek/tabular'
-Plug 'jiangmiao/auto-pairs'
-Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive', { 'on': [] }
-Plug 'editorconfig/editorconfig-vim'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdcommenter'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'godlygeek/tabular'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'tpope/vim-sleuth'
 Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
 call plug#end()
 
 
+" --- ui
 "colorscheme base16-mocha
 colorscheme onedark
 "colorscheme base16-solarized-light
@@ -87,6 +94,8 @@ let g:airline_theme = 'onedark'
 let NERDTreeShowHidden = 1
 
 
+" --- lsp
+" https://github.com/prabirshrestha/vim-lsp/wiki
 let g:lsp_async_completion = 1
 if executable('go-langserver')
   au User lsp_setup call lsp#register_server({
@@ -95,11 +104,33 @@ if executable('go-langserver')
         \ 'whitelist': ['go'],
         \ })
 endif
+if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+      \ 'name': 'typescript-language-server',
+      \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+      \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
+      \ 'whitelist': ['typescript', 'javascript', 'javascript.jsx']
+      \ })
+endif
+if executable('css-languageserver')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'css-languageserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
+        \ 'whitelist': ['css', 'less', 'sass'],
+        \ })
+endif
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}}
+        \ })
+endif
 
 let g:ale_linters = {
 \ 'javascript': ['eslint', 'flow'],
 \}
-
 let g:ale_fixers = {
 \ 'javascript': ['prettier'],
 \ 'json': ['prettier'],
@@ -108,14 +139,11 @@ let g:ale_fixers = {
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5 --no-semi --arrow-parens always'
 "let g:ale_fix_on_save = 1
 
-let g:go_fmt_command = "goimports"
 
-
+" --- search
 if executable('rg')
   set grepprg=rg\ --color=never
 endif
-
-set wildignore+=*/.git/*,*/tmp/*,*.swp
 
 " :Rg  - Start fzf with hidden preview window that can be enabled with "?" key
 " :Rg! - Start fzf in fullscreen and display the preview window above
@@ -142,6 +170,10 @@ command! -bang -nargs=0 RgCursorWordExact
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
+
+" --- etc.
+let g:go_fmt_command = "goimports"
+
 let g:user_emmet_settings = {
 \  'javascript' : {
 \      'extends' : 'jsx',
@@ -160,15 +192,32 @@ function! LazyLoadFugitive(cmd)
   exe a:cmd
 endfunction
 
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+      \ 'name': 'ultisnips',
+      \ 'whitelist': ['*'],
+      \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+      \ }))
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+      \ 'name': 'file',
+      \ 'whitelist': ['*'],
+      \ 'priority': 10,
+      \ 'completor': function('asyncomplete#sources#file#completor')
+      \ }))
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+      \ 'name': 'buffer',
+      \ 'whitelist': ['*'],
+      \ 'blacklist': ['go', 'javascript', 'javascript.jsx', 'typescript', 'python'],
+      \ 'completor': function('asyncomplete#sources#buffer#completor'),
+      \ }))
 
-" plugin keymap
+
+" --- keymap
+let maplocalleader = ","
+let mapleader = ","
+
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-
-" keymap
-let maplocalleader = ","
-let mapleader = ","
 
 nnoremap <space><space> :<C-u>Commands<CR>
 
