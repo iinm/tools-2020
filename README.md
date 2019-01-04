@@ -5,7 +5,7 @@ Configuration files (a.k.a. dotfiles)
 ## Install requirements
 
 ```
-which brew && brew install zsh tmux neovim git tig ripgrep fd coreutils gnu-sed
+which brew && brew install zsh tmux vim git tig ripgrep fd coreutils gnu-sed
 ```
 
 ## Install
@@ -40,8 +40,6 @@ echo 'export PATH=~/tools/opt/nvm/versions/node/$node_version/bin:$PATH' >> ~/.z
 ```
 
 ```
-pip install neovim
-
 go get github.com/direnv/direnv
 
 cargo install ripgrep

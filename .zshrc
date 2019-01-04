@@ -65,8 +65,6 @@ fi
 alias la="ls -alh"
 alias ll="ls -lh"
 
-alias view="nvim -R"
-
 alias gco="git checkout"
 alias gst="git status"
 alias gl="git pull"
