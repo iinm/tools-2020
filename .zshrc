@@ -26,11 +26,11 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 zstyle ':completion:*:default' menu select=2
 eval "$(dircolors 2> /dev/null || gdircolors 2> /dev/null)"
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+#compinit
 
 
 # --- looks
-autoload -Uz colors; colors
 autoload -Uz vcs_info
 precmd() { vcs_info }
 # format the vcs_info_msg_0_ variable
