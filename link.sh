@@ -7,9 +7,8 @@ ln_opt="$1"
 
 files=(
     .zshrc .zshenv
-    .tmux.conf
-    .tmux_linux.conf
-    .tmux_darwin.conf
+    .tmux.conf .tmux_linux.conf .tmux_darwin.conf
+    .vimrc .vim
     tools
 )
 
@@ -18,13 +17,13 @@ for fname in "${files[@]}"; do
 done
 
 # $XDG_CONFIG_HOME
-case "$(uname)" in
-    "Linux" ) config_files=(nvim) ;;
-    "Darwin" ) config_files=(nvim) ;;
-    * ) config_files=() ;;
-esac
+#case "$(uname)" in
+#    "Linux" ) config_files=(nvim) ;;
+#    "Darwin" ) config_files=(nvim) ;;
+#    * ) config_files=() ;;
+#esac
 
-mkdir -pv $HOME/.config
-for fname in "${config_files[@]}"; do
-    ln $ln_opt -sv $this_dir/.config/$fname $HOME/.config/
-done
+#mkdir -pv $HOME/.config
+#for fname in "${config_files[@]}"; do
+#    ln $ln_opt -sv $this_dir/.config/$fname $HOME/.config/
+#done
