@@ -65,7 +65,7 @@ packadd! vim-livedown
 " lazy load
 function! s:load_nerdtree()
   packadd nerdtree
-  let NERDTreeShowHidden = 1
+  "let g:NERDTreeShowHidden = 1
 endfunction
 
 function! s:load_fugitive()
