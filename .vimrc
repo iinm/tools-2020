@@ -19,6 +19,10 @@ set listchars=tab:>-,trail:·,extends:>,precedes:<
 if has('mouse_sgr')
   set ttymouse=sgr
 endif
+" cursor
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
 
 " --- plugins
 " looks
@@ -142,6 +146,8 @@ let g:user_emmet_settings = {
 \      'extends' : 'jsx',
 \  },
 \}
+
+let g:markdown_fenced_languages = ['go', 'python', 'sh', 'javascript', 'java', 'json', 'yaml']
 
 augroup asyncomplete_source_registration
   autocmd!
