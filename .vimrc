@@ -35,7 +35,7 @@ packadd! vim-snippets
 
 " language
 packadd! vim-go
-packadd! typescript-vim
+packadd! typescript-vim " todo: autocmd書かないとftdetectしてくれない
 packadd! vim-javascript
 packadd! vim-toml
 packadd! nginx.vim
@@ -291,7 +291,18 @@ augroup END
 " --- file detect
 augroup file_detect
   autocmd!
+
   autocmd BufNewFile,BufRead *.json5 setfiletype javascript
+
+  autocmd BufNewFile,BufRead *.ts  set filetype=typescript
+  autocmd BufNewFile,BufRead *.tsx setfiletype typescript
+
+  au BufRead,BufNewFile *.nginx set ft=nginx
+  au BufRead,BufNewFile nginx*.conf set ft=nginx
+  au BufRead,BufNewFile *nginx.conf set ft=nginx
+  au BufRead,BufNewFile */etc/nginx/* set ft=nginx
+  au BufRead,BufNewFile */usr/local/nginx/conf/* set ft=nginx
+  au BufRead,BufNewFile */nginx/*.conf set ft=nginx
 augroup END
 
 
