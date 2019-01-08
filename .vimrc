@@ -24,6 +24,7 @@ let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
+
 " --- plugins
 " looks
 packadd! onedark.vim
@@ -34,14 +35,14 @@ packadd! ultisnips
 packadd! vim-snippets
 
 " language
-packadd! vim-go
-packadd! typescript-vim " todo: autocmd書かないとftdetectしてくれない
-packadd! vim-javascript
-packadd! vim-toml
-packadd! nginx.vim
-packadd! logstash.vim
-packadd! Vim-Jinja2-Syntax
-packadd! vim-freemarker
+packadd vim-go
+packadd typescript-vim
+packadd vim-javascript
+packadd vim-toml
+packadd nginx.vim
+packadd logstash.vim
+packadd Vim-Jinja2-Syntax
+packadd vim-freemarker
 
 " completion & lsp
 packadd! asyncomplete.vim
@@ -65,6 +66,7 @@ packadd! auto-pairs
 packadd! vim-surround
 packadd! vim-sleuth
 packadd! vim-livedown
+
 
 " lazy load
 function! s:load_nerdtree()
@@ -288,21 +290,10 @@ augroup indent_config
 augroup END
 
 
-" --- file detect
-augroup file_detect
+" --- filetype detect
+augroup filetype_detect
   autocmd!
-
   autocmd BufNewFile,BufRead *.json5 setfiletype javascript
-
-  autocmd BufNewFile,BufRead *.ts  set filetype=typescript
-  autocmd BufNewFile,BufRead *.tsx setfiletype typescript
-
-  au BufRead,BufNewFile *.nginx set ft=nginx
-  au BufRead,BufNewFile nginx*.conf set ft=nginx
-  au BufRead,BufNewFile *nginx.conf set ft=nginx
-  au BufRead,BufNewFile */etc/nginx/* set ft=nginx
-  au BufRead,BufNewFile */usr/local/nginx/conf/* set ft=nginx
-  au BufRead,BufNewFile */nginx/*.conf set ft=nginx
 augroup END
 
 
