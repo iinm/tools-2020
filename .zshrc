@@ -49,7 +49,7 @@ PROMPT=$'%(?..%F{red}=> %?\n%f)%F{cyan}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n%B_
 setopt INTERACTIVE_COMMENTS
 
 export TERM=xterm-256color
-export EDITOR=nvim
+export EDITOR=vim
 
 
 # --- alias
