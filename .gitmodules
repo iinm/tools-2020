@@ -127,3 +127,6 @@
 [submodule ".vim/pack/_/opt/vim-freemarker"]
 	path = .vim/pack/_/opt/vim-freemarker
 	url = https://github.com/andreshazard/vim-freemarker
+[submodule ".vim/pack/_/opt/vim-jsx-pretty"]
+	path = .vim/pack/_/opt/vim-jsx-pretty
+	url = https://github.com/MaxMEllon/vim-jsx-pretty

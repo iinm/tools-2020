@@ -38,6 +38,7 @@ packadd! vim-snippets
 packadd vim-go
 packadd typescript-vim
 packadd vim-javascript
+packadd vim-jsx-pretty
 packadd vim-toml
 packadd nginx.vim
 packadd logstash.vim
