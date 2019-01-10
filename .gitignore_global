@@ -4,3 +4,6 @@
 
 *.iml
 *.idea
+
+# direnv
+.envrc
