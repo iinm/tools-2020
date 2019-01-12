@@ -68,6 +68,7 @@ packadd! vim-surround
 packadd! vim-sleuth
 packadd! vim-livedown
 packadd colorizer
+packadd vCoolor.vim
 
 
 " lazy load

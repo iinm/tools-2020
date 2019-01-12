@@ -133,3 +133,6 @@
 [submodule ".vim/pack/_/opt/colorizer"]
 	path = .vim/pack/_/opt/colorizer
 	url = https://github.com/vim-scripts/colorizer
+[submodule ".vim/pack/_/opt/vCoolor.vim"]
+	path = .vim/pack/_/opt/vCoolor.vim
+	url = https://github.com/KabbAmine/vCoolor.vim
