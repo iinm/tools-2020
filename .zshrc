@@ -130,8 +130,12 @@ function with-notify() {
   else
     title="Fail 😨"
   fi
-  # Macの通知
-  osascript -e "display notification \"${message//\"/\\\"}\" with title \"${title//\"/\\\"}\""
+  # darwin
+  which osascript &> /dev/null \
+    && osascript -e "display notification \"${message//\"/\\\"}\" with title \"${title//\"/\\\"}\""
+  # linux
+  which notify-send &> /dev/null \
+    && notify-send "${title}" "${message}"
   return $RET
 }
 
