@@ -4,7 +4,7 @@ this_dir=$(cd $(dirname "$0") && pwd)
 
 files=(
     .zshrc .zshenv
-    .tmux.conf .tmux_linux.conf .tmux_darwin.conf
+    .tmux.conf .tmux-linux.conf .tmux-darwin.conf
     .vimrc .vim
     tools
 )
@@ -22,5 +22,5 @@ esac
 
 mkdir -pv $HOME/.config
 for fname in "${config_files[@]}"; do
-    ln $ln_opt -sv $this_dir/.config/$fname $HOME/.config/
+    ln -sv $this_dir/.config/$fname $HOME/.config/
 done
