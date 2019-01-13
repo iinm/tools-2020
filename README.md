@@ -2,48 +2,47 @@
 
 Configuration files (a.k.a. dotfiles)
 
-## Install requirements
-
-```
-which brew && brew install zsh tmux vim git tig ripgrep fd coreutils gnu-sed
-```
-
 ## Install
+
+```sh
+which brew && brew install zsh tmux vim git tig ripgrep fd coreutils gnu-sed
+which pacman && sudo pacman -Sy zsh tmux gvim git tig ripgrep fd
+```
 
 ```sh
 git clone --recursive https://github.com/iinm/etc.git ~/.etc
 cd ~/.etc
 bash link.sh
-# or
-bash link.sh -f  # remove existing files
 ```
 
 ## Setup
 
 ```sh
+# fzf
 test -f ~/.fzf.zsh || ~/tools/opt/fzf/install --all
 
+# python
 pyenv install -l
 pyenv install $py_version
 pyenv global $py_version
 
+# go
 gvm listall
 gvm install $go_version -B
 gvm use $go_version --default
 
+# node
 enable-nvm
 nvm ls-remote
 nvm install $node_version
 echo 'export PATH=~/tools/opt/nvm/versions/node/$node_version/bin:$PATH' >> ~/.zshenv.local
 
+# rust
 ~/tools/opt/rustup.rs/rustup-init.sh -y --no-modify-path
-```
 
-```
+# etc.
+echo "\n[include]\npath = ~/.etc/.gitconfig" >> ~/.gitconfig
 go get github.com/direnv/direnv
-
-cargo install ripgrep
-cargo install fd-find
 ```
 
 ## Tips
