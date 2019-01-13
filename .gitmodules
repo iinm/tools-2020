@@ -7,9 +7,6 @@
 [submodule "tools/opt/nvm"]
 	path = tools/opt/nvm
 	url = https://github.com/creationix/nvm.git
-[submodule ".config/nvim/plugged/vim-plug"]
-	path = .config/nvim/plugged/vim-plug
-	url = https://github.com/junegunn/vim-plug
 [submodule "tools/opt/fasd"]
 	path = tools/opt/fasd
 	url = https://github.com/clvv/fasd
