@@ -68,10 +68,9 @@ alias gco="git checkout"
 alias gst="git status"
 alias gl="git pull"
 alias gcd='cd $(git rev-parse --show-toplevel)'
+alias gsm='git submodule'
 
 alias dco="docker-compose"
-
-alias t="~/tools/opt/todo.txt-cli/todo.sh -d ~/notes/todo.cfg"
 
 if (uname | grep -qE "Linux"); then
   alias pbcopy="xsel -i -p && xsel -o -p | xsel -i -b"
@@ -80,12 +79,8 @@ if (uname | grep -qE "Linux"); then
 fi
 
 # for darwin
-if (which gsed &> /dev/null); then
-  alias sed="gsed"
-fi
-if (which gdate &> /dev/null); then
-  alias date="gdate"
-fi
+which gsed &> /dev/null && alias sed="gsed"
+which gdate &> /dev/null && alias date="gdate"
 
 
 # --- key bind

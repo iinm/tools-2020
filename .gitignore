@@ -1,4 +1,3 @@
-*~
-*.swp
-.DS_Store
+tools/opt/local/*
+!.gitkeep
 .vim/.netrwhist
