@@ -31,9 +31,6 @@
 [submodule ".vim/pack/_/opt/fzf.vim"]
 	path = .vim/pack/_/opt/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
-[submodule ".vim/pack/_/opt/vim-buftabline"]
-	path = .vim/pack/_/opt/vim-buftabline
-	url = https://github.com/ap/vim-buftabline
 [submodule ".vim/pack/_/opt/nerdtree"]
 	path = .vim/pack/_/opt/nerdtree
 	url = https://github.com/scrooloose/nerdtree
