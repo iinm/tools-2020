@@ -8,7 +8,7 @@ Development tools and configurations (a.k.a. dotfiles)
 # darwin
 brew install zsh tmux vim git tig ripgrep fd coreutils gnu-sed
 # arch linux
-sudo pacman -Sy zsh tmux gvim git tig ripgrep fd
+sudo pacman -Sy zsh tmux gvim git tig ripgrep fd xsel
 ```
 
 ```sh
