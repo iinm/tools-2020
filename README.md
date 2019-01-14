@@ -1,17 +1,19 @@
-# etc
+# tools
 
-Configuration files (a.k.a. dotfiles)
+Development tools and configurations (a.k.a. dotfiles)
 
 ## Install
 
 ```sh
-which brew && brew install zsh tmux vim git tig ripgrep fd coreutils gnu-sed
-which pacman && sudo pacman -Sy zsh tmux gvim git tig ripgrep fd
+# darwin
+brew install zsh tmux vim git tig ripgrep fd coreutils gnu-sed
+# arch linux
+sudo pacman -Sy zsh tmux gvim git tig ripgrep fd
 ```
 
 ```sh
-git clone --recursive https://github.com/iinm/etc.git ~/.etc
-cd ~/.etc
+git clone --recursive https://github.com/iinm/tools.git ~/tools
+cd ~/tools
 bash link.sh
 ```
 
@@ -41,7 +43,7 @@ echo 'export PATH=~/tools/opt/nvm/versions/node/$node_version/bin:$PATH' >> ~/.z
 ~/tools/opt/rustup.rs/rustup-init.sh -y --no-modify-path
 
 # etc.
-echo "\n[include]\npath = ~/.etc/.gitconfig" >> ~/.gitconfig
+echo "\n[include]\npath = ~/tools/.gitconfig" >> ~/.gitconfig
 go get github.com/direnv/direnv
 ```
 

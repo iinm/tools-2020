@@ -1,4 +1,4 @@
-fpath=($HOME/tools/opt/my-zsh-completions $HOME/tools/opt/zsh-completions/src $fpath)
+fpath=($TOOLS/opt/local/zsh-functions $TOOLS/opt/zsh-completions/src $fpath)
 
 
 # --- history
@@ -79,8 +79,12 @@ if (uname | grep -qE "Linux"); then
 fi
 
 # for darwin
-which gsed &> /dev/null && alias sed="gsed"
-which gdate &> /dev/null && alias date="gdate"
+if which gsed &> /dev/null; then
+  alias sed="gsed"
+fi
+if which gdate &> /dev/null; then
+  alias date="gdate"
+fi
 
 
 # --- key bind
@@ -97,6 +101,20 @@ if [ -f ~/.fzf.zsh ]; then
   export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
   export FZF_CTRL_T_OPTS=$FZF_DEFAULT_OPTS
 fi
+
+
+# --- plugins
+source $TOOLS/opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $TOOLS/opt/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# direnv; go get github.com/direnv/direnv
+if which direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
+# fasd
+export PATH=$TOOLS/opt/fasd:$PATH
+eval "$(fasd --init auto)"
 
 
 # --- functions
@@ -126,11 +144,13 @@ function with-notify() {
     title="Fail 😨"
   fi
   # darwin
-  which osascript &> /dev/null \
-    && osascript -e "display notification \"${message//\"/\\\"}\" with title \"${title//\"/\\\"}\""
+  if which osascript &> /dev/null; then
+    osascript -e "display notification \"${message//\"/\\\"}\" with title \"${title//\"/\\\"}\""
+  fi
   # linux
-  which notify-send &> /dev/null \
-    && notify-send "${title}" "${message}"
+  if which notify-send &> /dev/null; then
+    notify-send "${title}" "${message}"
+  fi
   return $RET
 }
 
@@ -153,16 +173,17 @@ function fgodoc() {
 }
 
 
-# --- plugins
-source ~/tools/opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/tools/opt/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-
 # --- machine specific config
-test -f $HOME/.zshrc.local && source $HOME/.zshrc.local
+if test -f ~/.zshrc.local; then
+  source ~/.zshrc.local
+fi
+
+
+# --- clean out duplicate entries
+typeset -U path PATH
 
 
 # --- profile
-if (which zprof > /dev/null 2>&1) ;then
+if which zprof &> /dev/null; then
   zprof
 fi

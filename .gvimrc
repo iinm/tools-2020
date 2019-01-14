@@ -2,14 +2,9 @@ set guicursor=a:blinkon0  "stop blink
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
-"colorscheme desert
-colorscheme zenburn
-"set background=light
-"colorscheme solarized
 if has('unix')
-  set guifont=Ubuntu\ Mono\ 12
+  set guifont=Ubuntu\ Mono\ 11
 endif
 if has('macunix')
   set guifont=Ubuntu\ Mono:h14
-  set transparency=7
 endif

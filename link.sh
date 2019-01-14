@@ -6,11 +6,10 @@ files=(
     .zshrc .zshenv
     .tmux.conf .tmux-linux.conf .tmux-darwin.conf
     .vimrc .vim
-    tools
 )
 
 for fname in "${files[@]}"; do
-    ln -sv $this_dir/$fname $HOME/
+    ln -sv $this_dir/$fname ~/
 done
 
 # $XDG_CONFIG_HOME
@@ -20,7 +19,7 @@ case "$(uname)" in
     * ) config_files=() ;;
 esac
 
-mkdir -pv $HOME/.config
+mkdir -pv ~/.config
 for fname in "${config_files[@]}"; do
-    ln -sv $this_dir/.config/$fname $HOME/.config/
+    ln -sv $this_dir/.config/$fname ~/.config/
 done

@@ -1,29 +1,29 @@
-[submodule "tools/opt/pyenv"]
-	path = tools/opt/pyenv
+[submodule "opt/pyenv"]
+	path = opt/pyenv
 	url = https://github.com/yyuu/pyenv
-[submodule "tools/opt/gvm"]
-	path = tools/opt/gvm
+[submodule "opt/gvm"]
+	path = opt/gvm
 	url = https://github.com/moovweb/gvm
-[submodule "tools/opt/nvm"]
-	path = tools/opt/nvm
+[submodule "opt/nvm"]
+	path = opt/nvm
 	url = https://github.com/creationix/nvm.git
-[submodule "tools/opt/fasd"]
-	path = tools/opt/fasd
+[submodule "opt/fasd"]
+	path = opt/fasd
 	url = https://github.com/clvv/fasd
-[submodule "tools/opt/rustup.rs"]
-	path = tools/opt/rustup.rs
+[submodule "opt/rustup.rs"]
+	path = opt/rustup.rs
 	url = https://github.com/rust-lang-nursery/rustup.rs
-[submodule "tools/opt/fzf"]
-	path = tools/opt/fzf
+[submodule "opt/fzf"]
+	path = opt/fzf
 	url = https://github.com/junegunn/fzf
-[submodule "tools/opt/zsh-completions"]
-	path = tools/opt/zsh-completions
+[submodule "opt/zsh-completions"]
+	path = opt/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
-[submodule "tools/opt/zsh-syntax-highlighting"]
-	path = tools/opt/zsh-syntax-highlighting
+[submodule "opt/zsh-syntax-highlighting"]
+	path = opt/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "tools/opt/zsh-autosuggestions"]
-	path = tools/opt/zsh-autosuggestions
+[submodule "opt/zsh-autosuggestions"]
+	path = opt/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
 [submodule ".vim/pack/_/opt/onedark.vim"]
 	path = .vim/pack/_/opt/onedark.vim
