@@ -1,5 +1,8 @@
 #zmodload zsh/zprof
 
+if which greadlink &> /dev/null; then
+  alias readlink=greadlink
+fi
 this_file=$(readlink -f ${(%):-%x})
 
 export TOOLS=$(cd $(dirname $this_file) && pwd)
