@@ -24,9 +24,12 @@ setopt INC_APPEND_HISTORY
 zstyle ':completion:*' completer _complete
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 zstyle ':completion:*:default' menu select=2
-eval "$(dircolors 2> /dev/null || gdircolors 2> /dev/null)"
+if which gdircolors &> /dev/null; then
+  alias dircolors=gdircolors
+fi
+eval "$(dircolors)"
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-autoload -Uz compinit && compinit
+autoload -Uz compinit  && compinit -C
 
 
 # --- looks
@@ -104,6 +107,9 @@ fi
 
 
 # --- plugins
+if test ! -f $TOOLS/opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh.zwc; then
+  for f in $(find $TOOLS/opt/zsh-syntax-highlighting -name "*.zsh"); do zcompile $f; done
+fi
 source $TOOLS/opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $TOOLS/opt/zsh-autosuggestions/zsh-autosuggestions.zsh
 
