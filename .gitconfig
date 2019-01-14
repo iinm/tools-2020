@@ -10,7 +10,7 @@
 
 [core]
 	trustctime = false
-	excludesfile = ~/.etc/.gitignore-global
+	excludesfile = ~/tools/.gitignore-global
 
 [merge]
 	tool = vimdiff
