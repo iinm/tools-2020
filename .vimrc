@@ -171,7 +171,7 @@ let g:ale_fixers = {
 \ 'json': ['prettier'],
 \ 'go': ['goimports']
 \ }
-let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5 --no-semi --arrow-parens always'
+"let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5 --no-semi --arrow-parens always'
 "let g:ale_fix_on_save = 1
 
 let g:user_emmet_settings = {
