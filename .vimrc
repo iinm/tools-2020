@@ -44,6 +44,7 @@ packadd nginx.vim
 packadd logstash.vim
 packadd Vim-Jinja2-Syntax
 packadd vim-freemarker
+packadd vim-systemd-syntax
 
 " completion & lsp
 packadd! asyncomplete.vim

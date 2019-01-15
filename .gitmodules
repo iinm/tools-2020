@@ -127,3 +127,6 @@
 [submodule ".vim/pack/_/opt/vCoolor.vim"]
 	path = .vim/pack/_/opt/vCoolor.vim
 	url = https://github.com/KabbAmine/vCoolor.vim
+[submodule ".vim/pack/_/opt/vim-systemd-syntax"]
+	path = .vim/pack/_/opt/vim-systemd-syntax
+	url = https://github.com/Matt-Deacalion/vim-systemd-syntax
