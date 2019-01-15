@@ -5,7 +5,7 @@ set undofile
 set clipboard=unnamed,unnamedplus,autoselect
 set wildmode=longest,full
 set wildignore+=*/.git/*,*/tmp/*,*.swp
-set number relativenumber
+set number "relativenumber
 "set statusline+=%F
 set termguicolors
 " search
@@ -222,6 +222,23 @@ command! -bang -nargs=0 RgCursorWordExact
   \   <bang>0)
 
 
+" --- functions
+" http://vim.wikia.com/wiki/Jumping_to_previously_visited_locations
+function! GotoJump()
+  jumps
+  let j = input("Select your jump: ")
+  if j != ''
+    let pattern = '\v\c^\+'
+    if j =~ pattern
+      let j = substitute(j, pattern, '', 'g')
+      execute "normal " . j . "\<c-i>"
+    else
+      execute "normal " . j . "\<c-o>"
+    endif
+  endif
+endfunction
+
+
 " --- keymap
 let maplocalleader = ","
 let mapleader = ","
@@ -234,11 +251,18 @@ nnoremap <space><space> :<C-u>Commands<CR>
 
 nnoremap [file] <Nop>
 nmap <Space>f [file]
-nnoremap <silent> [file]t :<C-u>NERDTree<CR>
-nnoremap <silent> [file]T :<C-u>NERDTreeFind<CR>
-nnoremap <silent> [file]f :<C-u>Files<CR>
-nnoremap <silent> [file]h :<C-u>History<CR>
-nnoremap <silent> [file]g :<C-u>GitFiles<CR>
+nnoremap [file]t :<C-u>NERDTree<CR>
+nnoremap [file]T :<C-u>NERDTreeFind<CR>
+nnoremap [file]f :<C-u>Files<CR>
+nnoremap [file]h :<C-u>History<CR>
+nnoremap [file]g :<C-u>GitFiles<CR>
+
+nnoremap [navi] <Nop>
+nmap <Space>n [navi]
+nnoremap [navi]b <C-o>
+nnoremap [navi]f <C-i>
+nnoremap [navi]j :<C-u>call GotoJump()<CR>
+nnoremap [navi]l :<C-u>BLines<CR>
 
 nnoremap [grep] <Nop>
 nmap <Space>g [grep]
@@ -248,39 +272,38 @@ nnoremap [grep]w :<C-u>RgCursorWordExact<CR>
 
 nnoremap [buffer] <Nop>
 nmap <Space>b [buffer]
-nnoremap <silent> [buffer]b :<C-u>Buffers<CR>
+nnoremap [buffer]b :<C-u>Buffers<CR>
 nnoremap [buffer]d :<C-c> :bp\|bd #<CR>
 "nnoremap [buffer]d :<C-u>bdelete<CR>
 
 nnoremap [tab] <Nop>
 nmap <Space>t [tab]
 nnoremap [tab]e :<C-u>tabedit 
-nnoremap <silent> [tab]n :<C-u>tabnew<CR>
-nnoremap <silent> [tab]l :<C-u>tabnext<CR>
-nnoremap <silent> [tab]h :<C-u>tabprevious<CR>
-nnoremap <silent> [tab]t gt
+nnoremap [tab]n :<C-u>tabnew<CR>
+nnoremap [tab]l :<C-u>tabnext<CR>
+nnoremap [tab]h :<C-u>tabprevious<CR>
+nnoremap [tab]t gt
 
 nnoremap [window] <Nop>
 nmap <Space>w [window]
-nnoremap <silent> [window]s :<C-u>split<CR>
-nnoremap <silent> [window]v :<C-u>vsplit<CR>
-nnoremap <silent> [window]w <C-w><C-w>
-nnoremap <silent> [window]o <C-w><C-o>
-nnoremap <silent> [window]h <C-w>h
-nnoremap <silent> [window]j <C-w>j
-nnoremap <silent> [window]k <C-w>k
-nnoremap <silent> [window]l <C-w>l
-"nnoremap <silent> [window]_ <C-w>_
-"nnoremap <silent> [window]| <C-w>|
-nnoremap <silent> [window]= <C-w>=
-nnoremap <silent> [window]> <C-w>>
-nnoremap <silent> [window]< <C-w><
-nnoremap <silent> [window]+ <C-w>+
-nnoremap <silent> [window]- <C-w>-
+nnoremap [window]s :<C-u>split<CR>
+nnoremap [window]v :<C-u>vsplit<CR>
+nnoremap [window]w <C-w><C-w>
+nnoremap [window]o <C-w><C-o>
+nnoremap [window]h <C-w>h
+nnoremap [window]j <C-w>j
+nnoremap [window]k <C-w>k
+nnoremap [window]l <C-w>l
+"nnoremap [window]_ <C-w>_
+"nnoremap [window]| <C-w>|
+nnoremap [window]= <C-w>=
+nnoremap [window]> <C-w>>
+nnoremap [window]< <C-w><
+nnoremap [window]+ <C-w>+
+nnoremap [window]- <C-w>-
 
 nnoremap [code] <Nop>
 nmap <Space>c [code]
-"nnoremap [code]g :<C-u>LspDefinition<CR>
 nnoremap [code]a :<C-u>LspCodeAction<CR>
 nnoremap [code]j :<C-u>LspDefinition<CR>
 nnoremap [code]d :<C-u>LspHover<CR>
