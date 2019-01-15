@@ -101,6 +101,8 @@ let g:airline_theme = 'onedark'
 let g:lsp_async_completion = 1
 let g:lsp_diagnostics_enabled = 0 " use ALE
 augroup lsp_server_registration
+  autocmd!
+  " go
   if executable('go-langserver')
     autocmd User lsp_setup call lsp#register_server({
           \ 'name': 'go-langserver',
@@ -108,7 +110,15 @@ augroup lsp_server_registration
           \ 'whitelist': ['go'],
           \ })
   endif
-  if executable('typescript-language-server')
+  " javascript
+  if executable('flow') && !empty($VIM_LSP_USE_FLOW)
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'flow',
+          \ 'cmd': {server_info->['flow', 'lsp']},
+          \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
+          \ 'whitelist': ['javascript', 'javascript.jsx'],
+          \ })
+  elseif executable('typescript-language-server')
     autocmd User lsp_setup call lsp#register_server({
           \ 'name': 'javascript support using typescript-language-server',
           \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
@@ -116,6 +126,7 @@ augroup lsp_server_registration
           \ 'whitelist': ['javascript', 'javascript.jsx']
           \ })
   endif
+  " typescript
   if executable('typescript-language-server')
     au User lsp_setup call lsp#register_server({
           \ 'name': 'typescript-language-server',
@@ -124,6 +135,7 @@ augroup lsp_server_registration
           \ 'whitelist': ['typescript', 'typescript.tsx'],
           \ })
   endif
+  " css
   if executable('css-languageserver')
     autocmd User lsp_setup call lsp#register_server({
           \ 'name': 'css-languageserver',
@@ -131,6 +143,7 @@ augroup lsp_server_registration
           \ 'whitelist': ['css', 'less', 'sass'],
           \ })
   endif
+  " python
   if executable('pyls')
     autocmd User lsp_setup call lsp#register_server({
           \ 'name': 'pyls',
@@ -153,8 +166,8 @@ let g:ale_linters = {
 \ 'javascript': ['eslint', 'flow'],
 \}
 let g:ale_fixers = {
-\ 'javascript': ['prettier'],
-\ 'typescript': ['tslint'],
+\ 'javascript': ['prettier', 'eslint'],
+\ 'typescript': ['prettier', 'tslint'],
 \ 'json': ['prettier'],
 \ 'go': ['goimports']
 \ }
