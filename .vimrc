@@ -98,6 +98,7 @@ let g:airline_theme = 'onedark'
 " --- lsp
 " https://github.com/prabirshrestha/vim-lsp/wiki
 let g:lsp_async_completion = 1
+let g:lsp_diagnostics_enabled = 0 " use ALE
 augroup lsp_server_registration
   if executable('go-langserver')
     autocmd User lsp_setup call lsp#register_server({
@@ -152,6 +153,7 @@ let g:ale_linters = {
 \}
 let g:ale_fixers = {
 \ 'javascript': ['prettier'],
+\ 'typescript': ['tslint'],
 \ 'json': ['prettier'],
 \ 'go': ['goimports']
 \ }
@@ -285,6 +287,8 @@ nnoremap [code]t :<C-u>LspTypeDefinition<CR>
 nnoremap [code]r :<C-u>LspReference<CR>
 nnoremap [code]n :<C-u>LspRename<CR>
 nnoremap [code]s :<C-u>Snippets<CR>
+nnoremap [code]f :<C-u>ALEFix<CR>
+nnoremap [code]e :<C-u>ALENext<CR>
 
 augroup keymap_go
   autocmd!
