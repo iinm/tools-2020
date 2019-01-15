@@ -70,6 +70,7 @@ packadd! vim-sleuth
 packadd! vim-livedown
 packadd! colorizer
 packadd! vCoolor.vim
+packadd! BufOnly.vim
 
 
 " lazy load
@@ -287,6 +288,7 @@ nnoremap [buffer] <Nop>
 nmap <Space>b [buffer]
 nnoremap [buffer]b :<C-u>Buffers<CR>
 nnoremap [buffer]d :<C-c> :bp\|bd #<CR>
+nnoremap [buffer]o :<C-u>BufOnly<CR>
 "nnoremap [buffer]d :<C-u>bdelete<CR>
 
 nnoremap [tab] <Nop>

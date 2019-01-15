@@ -130,3 +130,6 @@
 [submodule ".vim/pack/_/opt/vim-systemd-syntax"]
 	path = .vim/pack/_/opt/vim-systemd-syntax
 	url = https://github.com/Matt-Deacalion/vim-systemd-syntax
+[submodule ".vim/pack/_/opt/BufOnly.vim"]
+	path = .vim/pack/_/opt/BufOnly.vim
+	url = https://github.com/vim-scripts/BufOnly.vim
