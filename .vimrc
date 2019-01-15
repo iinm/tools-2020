@@ -278,6 +278,7 @@ nnoremap <silent> [window]- <C-w>-
 nnoremap [code] <Nop>
 nmap <Space>c [code]
 "nnoremap [code]g :<C-u>LspDefinition<CR>
+nnoremap [code]a :<C-u>LspCodeAction<CR>
 nnoremap [code]j :<C-u>LspDefinition<CR>
 nnoremap [code]d :<C-u>LspHover<CR>
 nnoremap [code]t :<C-u>LspTypeDefinition<CR>
