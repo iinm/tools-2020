@@ -1,5 +1,10 @@
 #zmodload zsh/zprof
 
+# homebrew
+if test -x /usr/local/bin/brew; then
+  export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+fi
+
 if which greadlink &> /dev/null; then
   alias readlink=greadlink
 fi
@@ -7,11 +12,6 @@ this_file=$(readlink -f ${(%):-%x})
 
 export TOOLS=$(cd $(dirname $this_file) && pwd)
 export LANG=en_US.UTF-8
-
-# homebrew
-if which brew &> /dev/null; then
-  export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-fi
 
 # pyenv
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
