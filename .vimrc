@@ -252,6 +252,12 @@ function! GotoJump()
   endif
 endfunction
 
+" https://vi.stackexchange.com/questions/13331/close-all-windows-except-the-current-one-and-nerdtree/13334#13334
+function! OnlyAndNerdtree()
+  let currentWindowID = win_getid()
+  windo if win_getid() != currentWindowID && &filetype != 'nerdtree' | close | endif
+endfunction
+
 
 " --- keymap
 let maplocalleader = ","
@@ -304,7 +310,8 @@ nmap <Space>w [window]
 nnoremap [window]s :<C-u>split<CR>
 nnoremap [window]v :<C-u>vsplit<CR>
 nnoremap [window]w <C-w><C-w>
-nnoremap [window]o <C-w><C-o>
+nnoremap [window]o :<C-u>call OnlyAndNerdtree()<CR>
+"nnoremap [window]o <C-w><C-o>
 nnoremap [window]h <C-w>h
 nnoremap [window]j <C-w>j
 nnoremap [window]k <C-w>k
