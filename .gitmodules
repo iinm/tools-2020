@@ -133,3 +133,6 @@
 [submodule ".vim/pack/_/opt/BufOnly.vim"]
 	path = .vim/pack/_/opt/BufOnly.vim
 	url = https://github.com/vim-scripts/BufOnly.vim
+[submodule ".vim/pack/_/opt/todo.txt-vim"]
+	path = .vim/pack/_/opt/todo.txt-vim
+	url = https://github.com/freitass/todo.txt-vim

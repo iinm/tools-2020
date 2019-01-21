@@ -45,6 +45,7 @@ packadd logstash.vim
 packadd Vim-Jinja2-Syntax
 packadd vim-freemarker
 packadd vim-systemd-syntax
+packadd todo.txt-vim
 
 " completion & lsp
 packadd! asyncomplete.vim
@@ -311,7 +312,7 @@ nnoremap [window]s :<C-u>split<CR>
 nnoremap [window]v :<C-u>vsplit<CR>
 nnoremap [window]w <C-w><C-w>
 nnoremap [window]o :<C-u>call OnlyAndNerdtree()<CR>
-"nnoremap [window]o <C-w><C-o>
+nnoremap [window]O <C-w><C-o>
 nnoremap [window]h <C-w>h
 nnoremap [window]j <C-w>j
 nnoremap [window]k <C-w>k
