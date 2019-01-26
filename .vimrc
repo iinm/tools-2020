@@ -46,6 +46,8 @@ packadd Vim-Jinja2-Syntax
 packadd vim-freemarker
 packadd vim-systemd-syntax
 packadd todo.txt-vim
+packadd vim-misc
+packadd vim-notes
 
 " completion & lsp
 packadd! asyncomplete.vim
@@ -184,6 +186,8 @@ let g:user_emmet_settings = {
 
 let g:markdown_fenced_languages = ['go', 'python', 'sh', 'javascript', 'java', 'json', 'yaml']
 
+let g:notes_directories = [expand('~/notes')]
+
 augroup asyncomplete_source_registration
   autocmd!
   autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
@@ -278,12 +282,19 @@ nnoremap [file]f :<C-u>Files<CR>
 nnoremap [file]h :<C-u>History<CR>
 nnoremap [file]g :<C-u>GitFiles<CR>
 
-nnoremap [navi] <Nop>
-nmap <Space>n [navi]
-nnoremap [navi]b <C-o>
-nnoremap [navi]f <C-i>
-nnoremap [navi]j :<C-u>call GotoJump()<CR>
-nnoremap [navi]l :<C-u>BLines<CR>
+nnoremap [note] <Nop>
+nmap <Space>n [note]
+nnoremap [note]n :<C-u>Note 
+nnoremap [note]r :<C-u>RecentNote<CR>
+nnoremap [note]s :<C-u>SearchNotes 
+nnoremap [note]d :<C-u>DeleteNote 
+
+nnoremap [jump] <Nop>
+nmap <Space>j [jump]
+nnoremap [jump]j :<C-u>call GotoJump()<CR>
+nnoremap [jump]b <C-o>
+nnoremap [jump]f <C-i>
+nnoremap [jump]l :<C-u>BLines<CR>
 
 nnoremap [grep] <Nop>
 nmap <Space>g [grep]
