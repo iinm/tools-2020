@@ -90,6 +90,8 @@ if which gdate &> /dev/null; then
   alias date="gdate"
 fi
 
+alias rg="rg --hidden"
+
 
 # --- key bind
 bindkey -e
@@ -139,6 +141,18 @@ function fcd() {
   local dir
   #dir=$(find ${1:-.} -type d 2> /dev/null | fzf) && cd "$dir"
   dir=$(fd --type d --hidden --follow --exclude .git 2> /dev/null | fzf) && cd "$dir"
+}
+
+# fzf rg; requires highlight
+function frg() {
+  LINES=$(( $(tput lines) * 4 / 10 ))
+  previewer="env LINES=$LINES $TOOLS/.vim/pack/_/opt/fzf.vim/bin/preview.sh"
+  rg --line-number $@ \
+    | fzf --preview "$previewer {}" --preview-window down:${LINES}:hidden:wrap --bind '?:toggle-preview'
+}
+
+function frg-vim() {
+  vim $(frg $@ | sed -En 's/^([^:]+):([0-9]+):.+/\1 +\2/p')
 }
 
 function with-notify() {
