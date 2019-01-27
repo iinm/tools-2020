@@ -45,6 +45,7 @@ echo 'export PATH=~/tools/opt/nvm/versions/node/$node_version/bin:$PATH' >> ~/.z
 # etc.
 echo "\n[include]\npath = ~/tools/.gitconfig" >> ~/.gitconfig
 go get github.com/direnv/direnv
+go get -u github.com/radovskyb/watcher/...
 ```
 
 ## Tips
