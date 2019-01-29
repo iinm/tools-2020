@@ -53,6 +53,7 @@ setopt INTERACTIVE_COMMENTS
 
 export TERM=xterm-256color
 export EDITOR=vim
+export VIM_NOTES_TEMPLATE="$TOOLS/vim-notes-template"
 
 
 # --- alias
