@@ -145,3 +145,6 @@
 [submodule ".vim/pack/_/opt/nerdtree-git-plugin"]
 	path = .vim/pack/_/opt/nerdtree-git-plugin
 	url = https://github.com/Xuyuanp/nerdtree-git-plugin
+[submodule "opt/eclipse.jdt.ls"]
+	path = opt/eclipse.jdt.ls
+	url = https://github.com/eclipse/eclipse.jdt.ls

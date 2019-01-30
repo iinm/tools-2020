@@ -13,6 +13,8 @@ this_file=$(readlink -f ${(%):-%x})
 export TOOLS=$(cd $(dirname $this_file) && pwd)
 export LANG=en_US.UTF-8
 
+export PATH=$TOOLS/bin:$PATH
+
 # pyenv
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
 export PYENV_ROOT=$TOOLS/opt/pyenv

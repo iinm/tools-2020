@@ -156,6 +156,14 @@ augroup lsp_server_registration
           \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}}
           \ })
   endif
+  if executable('jdtls')
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'jdtls',
+          \ 'cmd': {server_info->['jdtls']},
+          \ 'whitelist': ['java'],
+          \ })
+  endif
+
 augroup END
 
 " debug
