@@ -144,6 +144,17 @@ function fcd() {
   dir=$(fd --type d --hidden --follow --exclude .git 2> /dev/null | fzf) && cd "$dir"
 }
 
+# fzf git checkout
+function fgco() {
+  git checkout $(git branch --all | fzf)
+}
+
+# fzf git diff
+function fgd() {
+  fname=$(git diff $@ --name-only | sort | fzf --preview "git diff --color $@ {}")
+  git diff --color $@ $fname
+}
+
 # fzf rg; requires highlight
 function frg() {
   LINES=$(( $(tput lines) * 4 / 10 ))
@@ -153,7 +164,9 @@ function frg() {
 }
 
 function frg-vim() {
-  vim $(frg $@ | sed -En 's/^([^:]+):([0-9]+):.+/\1 +\2/p')
+  line=$(frg $@)
+  test -z "$line" && return 1
+  vim $(echo $line | sed -En 's/^([^:]+):([0-9]+):.+/\1 +\2/p')
 }
 
 function with-notify() {
