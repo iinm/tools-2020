@@ -146,7 +146,7 @@ function fcd() {
 
 # fzf git checkout
 function fgco() {
-  git checkout $(git branch --all | fzf)
+  git checkout $(git branch --all --sort=-committerdate | fzf)
 }
 
 # fzf git diff
