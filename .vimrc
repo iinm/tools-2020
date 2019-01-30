@@ -184,7 +184,7 @@ let g:user_emmet_settings = {
 \  },
 \}
 
-let g:markdown_fenced_languages = ['go', 'python', 'sh', 'javascript', 'java', 'json', 'yaml']
+let g:markdown_fenced_languages = ['sh']
 
 let g:notes_directories = [expand('~/notes')]
 
