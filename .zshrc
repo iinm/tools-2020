@@ -148,9 +148,8 @@ function fgco() {
 }
 
 # fzf git diff
-function fgd() {
-  fname=$(git diff $@ --name-only | sort | fzf --preview "git diff --color $@ {}")
-  git diff --color $@ $fname
+function fgdiff() {
+  git diff $@ --name-only | sort | fzf --preview "git diff --color $@ {}" --bind "enter:execute:git diff --color $@ {} | less -R"
 }
 
 # fzf rg; requires highlight
@@ -203,6 +202,63 @@ function fgodoc-update() {
 
 function fgodoc() {
   go doc $(fzf < $FGODOC_ENTRIES_FILE)
+}
+
+# slack
+function slack-post-message() {
+  : ${SLACK_API_TOKEN:?}
+  channel=${2:?}
+  text=${3:?}
+  text_escaped=${text//\"/\\\"} # replace " -> \"
+  curl -X POST 'https://slack.com/api/chat.postMessage' \
+    --data "{\"channel\": \"${channel}\", \"text\": \"${text_escaped}\"}" \
+    -H "Authorization: Bearer $SLACK_API_TOKEN" \
+    -H 'Content-type: application/json'
+}
+
+# gitlab
+function gitlab-create-merge-request() {
+  : ${GITLAB_BASE_URL:?}
+  : ${GITLAB_PROJECT_ID:?}
+  : ${GITLAB_PRIVATE_TOKEN:?}
+  source_branch=${1:?}
+  target_branch=${2:?}
+  title=${3:-"Merge branch '${source_branch}' into '${target_branch}'"}
+  curl -X POST \
+    $GITLAB_BASE_URL/api/v3/projects/$GITLAB_PROJECT_ID/merge_requests \
+    --header "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
+    -F "source_branch=$source_branch" \
+    -F "target_branch=$target_branch" \
+    -F "title=$title"
+}
+
+function gitlab-get-merge-requests() {
+  : ${GITLAB_BASE_URL:?}
+  : ${GITLAB_PROJECT_ID:?}
+  : ${GITLAB_PRIVATE_TOKEN:?}
+  params=${1:-"state=opened&per_page=10000"}
+  curl --silent -X GET \
+    "$GITLAB_BASE_URL/api/v3/projects/$GITLAB_PROJECT_ID/merge_requests?$params" \
+    -H "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN"
+}
+
+function gitlab-ls-mr() {
+  gitlab-get-merge-requests \
+    | jq --raw-output '.[] | [.title, .author.username, .source_branch, .target_branch, .web_url] | @tsv' \
+    | awk \
+        -F '\t' \
+        -v bold=$(tput bold) -v blue=$(tput setaf 4) -v green=$(tput setaf 2) -v black=$(tput setaf 0) -v reset=$(tput sgr0) \
+        '{ print "・" $1  " " bold " by " reset blue $2 reset "  " black "#(" $3 " -> " $4 ")  " $5 reset }' \
+    | fzf \
+        --ansi \
+        --preview "echo {} | grep -Eo '#\(.+'" \
+        --preview-window down:2:wrap \
+        --bind 'enter:execute:source ~/.zshrc; open-url-in-text {}'
+}
+
+function open-url-in-text() {
+  url=$(echo ${1:?} | grep -Eo 'https?://[0-9a-zA-Z?=#+_&:/.%]+')
+  open $url
 }
 
 
