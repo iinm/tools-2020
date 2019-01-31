@@ -24,7 +24,7 @@ setopt INC_APPEND_HISTORY
 zstyle ':completion:*' completer _complete
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 zstyle ':completion:*:default' menu select=2
-if which gdircolors &> /dev/null; then
+if test $OS = 'Darwin'; then
   alias dircolors=gdircolors
 fi
 eval "$(dircolors)"
@@ -60,7 +60,7 @@ export VIM_NOTES_TEMPLATE="$TOOLS/vim-notes-template"
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
-if (uname | grep -qE "Darwin|BSD"); then
+if test $OS = 'Darwin'; then
     alias ls="ls -FG"
 else
     alias ls="ls --color=auto -F"
@@ -77,17 +77,15 @@ alias gsm='git submodule'
 
 alias dco="docker-compose"
 
-if (uname | grep -qE "Linux"); then
+if test $OS = 'Linux'; then
   alias pbcopy="xsel -i -p && xsel -o -p | xsel -i -b"
   alias pbpaste="xsel -o"
   alias open="xdg-open"
 fi
 
 # for darwin
-if which gsed &> /dev/null; then
+if test $OS = 'Darwin'; then
   alias sed="gsed"
-fi
-if which gdate &> /dev/null; then
   alias date="gdate"
 fi
 

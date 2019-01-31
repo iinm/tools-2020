@@ -1,18 +1,19 @@
 #zmodload zsh/zprof
 
+export OS=$(uname)
+
 # homebrew
 if test -x /usr/local/bin/brew; then
   export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 fi
 
-if which greadlink &> /dev/null; then
+if test $OS = 'Darwin'; then
   alias readlink=greadlink
 fi
 this_file=$(readlink -f ${(%):-%x})
 
 export TOOLS=$(cd $(dirname $this_file) && pwd)
 export LANG=en_US.UTF-8
-
 export PATH=$TOOLS/bin:$PATH
 
 # pyenv
