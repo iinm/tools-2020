@@ -201,7 +201,8 @@ function fgodoc-update() {
 }
 
 function fgodoc() {
-  go doc $(fzf < $FGODOC_ENTRIES_FILE)
+  cat $FGODOC_ENTRIES_FILE \
+    | fzf --preview 'go doc  {}' --preview-window hidden --bind '?:toggle-preview' --bind 'enter:execute:go doc {} | less'
 }
 
 # slack
