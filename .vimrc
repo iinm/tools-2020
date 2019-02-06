@@ -90,7 +90,7 @@ endfunction
 augroup pack_loader
   autocmd!
   autocmd CmdUndefined NERDTree* call s:load_nerdtree()
-  autocmd CmdUndefined Gblame,Gstatus,Glog,Gdiff call s:load_fugitive()
+  autocmd CmdUndefined Gblame,Gstatus,Glog,Gdiff,Ggrep call s:load_fugitive()
 augroup END
 
 
