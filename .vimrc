@@ -1,3 +1,6 @@
+set encoding=utf-8    " character encoding used inside Vim
+scriptencoding utf-8  " character encoding used in this script
+
 source $VIMRUNTIME/defaults.vim
 
 set hidden
