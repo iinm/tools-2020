@@ -124,6 +124,10 @@ fi
 export PATH=$TOOLS/opt/fasd:$PATH
 eval "$(fasd --init auto)"
 
+if which kubectl &> /dev/null; then
+  source <(kubectl completion zsh)
+fi
+
 
 # --- functions
 function fz() {
