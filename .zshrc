@@ -209,6 +209,11 @@ function fgodoc() {
     | fzf --preview 'go doc  {}' --preview-window hidden --bind '?:toggle-preview' --bind 'enter:execute:go doc {} | less'
 }
 
+function csv2excelman() {
+  fname=${1:?}
+  nkf --oc=UTF-8-BOM $fname > ${fname%.csv}.excel.csv
+}
+
 # slack
 function slack-post-message() {
   : ${SLACK_API_TOKEN:?}
