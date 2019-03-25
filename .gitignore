@@ -1,5 +1,1 @@
-opt/local/*
-!opt/local/zsh-functions
-opt/local/zsh-functions/*
 .vim/.netrwhist
-!.gitkeep

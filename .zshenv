@@ -14,7 +14,7 @@ this_file=$(readlink -f ${(%):-%x})
 
 export TOOLS=$(cd $(dirname $this_file) && pwd)
 export LANG=en_US.UTF-8
-export PATH=$TOOLS/bin:$PATH
+export PATH=$TOOLS/bin:$TOOLS/local/bin:$PATH
 
 # pyenv
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
