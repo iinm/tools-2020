@@ -30,8 +30,14 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.json5 setfiletype javascript
 augroup END
 
-if executable("rg")
-  set grepprg=rg\ --vimgrep\ -g\ '!*~'\ --glob\ '!.git'
+augroup highlighttodo
+  autocmd!
+  autocmd WinEnter,BufRead,BufNew,Syntax * :silent! call matchadd('Todo', 'TODO')
+  autocmd WinEnter,BufRead,BufNew,Syntax * highlight Todo guibg=Red guifg=White
+augroup END
+
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --glob\ '!*~'\ --glob\ '!.git'
 endif
 
 " vim: expandtab tabstop=2 softtabstop=2 shiftwidth=2
