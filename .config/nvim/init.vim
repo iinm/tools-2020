@@ -4,6 +4,11 @@ set wildmenu
 set wildmode=full
 set wildoptions=pum
 set clipboard+=unnamedplus
+set hlsearch
+set ignorecase
+set smartcase
+set list
+set listchars=tab:>-,trail:·,extends:>,precedes:<
 set termguicolors
 
 colorscheme desert
@@ -15,7 +20,7 @@ augroup indentconfig
   autocmd Filetype go           setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
   autocmd Filetype python       setlocal expandtab   tabstop=4 softtabstop=4 shiftwidth=4
   autocmd Filetype sh,zsh,vim   setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd Filetype xml,html,css setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2 
+  autocmd Filetype xml,html,css setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype javascript   setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype json,yaml    setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
