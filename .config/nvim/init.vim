@@ -5,12 +5,13 @@ set wildmenu
 set wildmode=full
 set wildoptions=pum
 set wildignore=*~,*.swp,.git,*.class,*.o,*.pyc,node_modules
-set clipboard+=unnamedplus
 set hlsearch
 set ignorecase
 set smartcase
 set list
 set listchars=tab:>-,trail:·,extends:>,precedes:<
+set clipboard+=unnamedplus
+set mouse=a
 set termguicolors
 
 colorscheme desert
