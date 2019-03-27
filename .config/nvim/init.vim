@@ -1,8 +1,10 @@
 set hidden
+set nobackup
 set undofile
 set wildmenu
 set wildmode=full
 set wildoptions=pum
+set wildignore=*~,*.swp,.git,*.class,*.o,*.pyc,node_modules
 set clipboard+=unnamedplus
 set hlsearch
 set ignorecase
