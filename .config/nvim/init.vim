@@ -35,7 +35,7 @@ augroup END
 
 augroup highlighttodo
   autocmd!
-  autocmd WinEnter,BufRead,BufNew,Syntax * :silent! call matchadd('Todo', 'TODO')
+  autocmd WinEnter,BufRead,BufNew,Syntax * :silent! call matchadd('Todo', 'TODO:')
   autocmd WinEnter,BufRead,BufNew,Syntax * highlight Todo guibg=Red guifg=White
 augroup END
 
