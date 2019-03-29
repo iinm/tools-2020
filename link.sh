@@ -5,7 +5,6 @@ this_dir=$(cd $(dirname "$0") && pwd)
 files=(
     .zshrc .zshenv
     .tmux.conf .tmux-linux.conf .tmux-darwin.conf
-    .vimrc .vim
 )
 
 for fname in "${files[@]}"; do
