@@ -33,10 +33,14 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.json5 setfiletype javascript
 augroup END
 
-augroup highlighttodo
+augroup highlighttodostatus
   autocmd!
-  autocmd WinEnter,BufRead,BufNew,Syntax * :silent! call matchadd('Todo', 'TODO:')
-  autocmd WinEnter,BufRead,BufNew,Syntax * highlight Todo guibg=Red guifg=White
+  autocmd WinEnter,BufRead,BufNew,Syntax * :silent! call matchadd('MyTodo', 'TODO:')
+  autocmd WinEnter,BufRead,BufNew,Syntax * :silent! call matchadd('MyWip',  'WIP:')
+  autocmd WinEnter,BufRead,BufNew,Syntax * :silent! call matchadd('MyDone', 'DONE:')
+  autocmd WinEnter,BufRead,BufNew,Syntax * highlight MyTodo guibg=Red    guifg=White
+  autocmd WinEnter,BufRead,BufNew,Syntax * highlight MyWip  guibg=Yellow guifg=White
+  autocmd WinEnter,BufRead,BufNew,Syntax * highlight MyDone guibg=Green  guifg=White
 augroup END
 
 if executable('rg')
