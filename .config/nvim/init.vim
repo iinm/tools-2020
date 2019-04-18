@@ -26,6 +26,8 @@ augroup indentconfig
   autocmd Filetype xml,html,css setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype javascript   setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype json,yaml    setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd Filetype sql          setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd Filetype markdown     setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 augroup filetypedetect
