@@ -52,8 +52,7 @@ PROMPT=$'%(?..%F{red}=> %?\n%f)%F{cyan}${PWD/#$HOME/~}%f ${vcs_info_msg_0_}\n%B_
 setopt INTERACTIVE_COMMENTS
 
 export TERM=xterm-256color
-export EDITOR=vim
-export VIM_NOTES_TEMPLATE="$TOOLS/vim-notes-template"
+export EDITOR=nvim
 
 
 # --- alias
@@ -90,6 +89,7 @@ if test $OS = 'Darwin'; then
 fi
 
 alias rg="rg --hidden"
+alias view="nvim -R"
 
 
 # --- key bind
