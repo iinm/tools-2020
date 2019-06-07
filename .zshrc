@@ -1,4 +1,4 @@
-fpath=($TOOLS/opt/local/zsh-functions $TOOLS/opt/zsh-completions/src $fpath)
+fpath=($TOOLS/local/opt/zsh-functions $TOOLS/opt/zsh-completions/src $fpath)
 
 
 # --- history
