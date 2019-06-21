@@ -28,3 +28,6 @@
 [submodule ".vim/pack/_/opt/nerdtree-git-plugin"]
 	path = .vim/pack/_/opt/nerdtree-git-plugin
 	url = https://github.com/Xuyuanp/nerdtree-git-plugin
+[submodule "opt/jabba"]
+	path = opt/jabba
+	url = https://github.com/shyiko/jabba

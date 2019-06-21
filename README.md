@@ -23,6 +23,12 @@ bash link.sh
 # fzf
 test -f ~/.fzf.zsh || ~/tools/opt/fzf/install --all
 
+# java
+bash ~/tools/opt/jabba/install.sh
+source ~/.jabba/jabba.sh
+jabba ls-remote
+jabba install $jdk_version
+
 # python
 pyenv install -l
 pyenv install $py_version

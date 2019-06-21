@@ -35,6 +35,11 @@ function enable-nvm() {
 # rust
 export PATH=$HOME/.cargo/bin:$PATH
 
+# jabba
+if test -f ~/.jabba/jabba.sh; then
+  source ~/.jabba/jabba.sh
+fi
+
 # host specific config
 if test -f ~/.zshenv.local; then
   source ~/.zshenv.local
