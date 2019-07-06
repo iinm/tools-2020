@@ -31,3 +31,9 @@
 [submodule "opt/jabba"]
 	path = opt/jabba
 	url = https://github.com/shyiko/jabba
+[submodule ".config/nvim/pack/_/opt/async.vim"]
+	path = .config/nvim/pack/_/opt/async.vim
+	url = https://github.com/prabirshrestha/async.vim
+[submodule ".config/nvim/pack/_/opt/vim-lsp"]
+	path = .config/nvim/pack/_/opt/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp

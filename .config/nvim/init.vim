@@ -8,17 +8,46 @@ set wildignore=*~,*.swp,.git,*.class,*.o,*.pyc,node_modules
 set hlsearch
 set ignorecase
 set smartcase
-set list
-set listchars=tab:>-,trail:·,extends:>,precedes:<
+"set list
+"set listchars=tab:>-,trail:·,extends:>,precedes:<
 set clipboard+=unnamedplus
 set mouse=a
 set termguicolors
+set completeopt+=menuone,noinsert,noselect
+
+packadd! async.vim
+packadd! vim-lsp
+
+if executable('gopls')
+  augroup lsp_go
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'gopls',
+          \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+          \ 'whitelist': ['go'],
+          \ })
+    autocmd Filetype go setlocal omnifunc=lsp#complete
+    autocmd BufWritePre *.go LspDocumentFormatSync
+  augroup END
+endif
+
+function! OpenCompletion()
+  if !empty(&omnifunc) && !pumvisible() && ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z') || v:char == '.')
+    call feedkeys("\<C-x>\<C-o>", "n")
+  endif
+endfunction
+
+augroup trigger_omnifunc
+  autocmd!
+  autocmd InsertCharPre * call OpenCompletion()
+augroup END
 
 colorscheme desert
 let g:netrw_liststyle=3  " tree style
 let g:markdown_fenced_languages = ['sh']
+let g:lsp_virtual_text_enabled = 0
 
-augroup indentconfig
+augroup config_indent
   autocmd!
   autocmd Filetype go           setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
   autocmd Filetype python       setlocal expandtab   tabstop=4 softtabstop=4 shiftwidth=4
@@ -30,12 +59,12 @@ augroup indentconfig
   autocmd Filetype markdown     setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
-augroup filetypedetect
+augroup detect_filetyle
   autocmd!
   autocmd BufNewFile,BufRead *.json5 setfiletype javascript
 augroup END
 
-augroup highlighttodostate
+augroup highlight_todostate
   autocmd!
   autocmd WinEnter,BufRead,BufNew,Syntax * :silent! call matchadd('MyTodo', 'TODO:')
   autocmd WinEnter,BufRead,BufNew,Syntax * :silent! call matchadd('MyWip',  'WIP:')
@@ -45,7 +74,7 @@ augroup highlighttodostate
   autocmd WinEnter,BufRead,BufNew,Syntax * highlight MyDone guibg=LightGreen  guifg=Black
 augroup END
 
-augroup highlightkeywords
+augroup highlight_keywords
   autocmd!
   autocmd WinEnter,BufRead,BufNew,Syntax * :silent! call matchadd('MyDue',  'DUE:')
   autocmd WinEnter,BufRead,BufNew,Syntax * :silent! call matchadd('MyNote', 'NOTE:')
@@ -90,6 +119,7 @@ nnoremap <Leader>t :<C-u>call RotateTodoState()<CR>
 vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
 nnoremap gr :grep! <cword> <CR>
 nnoremap gR :grep! '\b<cword>\b' <CR>
+inoremap <C-Space> <C-x><C-o>
 
 " vim: expandtab tabstop=2 softtabstop=2 shiftwidth=2
 
