@@ -15,6 +15,7 @@ set mouse=a
 set termguicolors
 set completeopt+=menuone,noinsert,noselect
 
+packadd! base16-vim
 packadd! async.vim
 packadd! vim-lsp
 
@@ -42,7 +43,7 @@ augroup trigger_omnifunc
   autocmd InsertCharPre * call OpenCompletion()
 augroup END
 
-colorscheme desert
+colorscheme base16-mocha
 let g:netrw_liststyle=3  " tree style
 let g:markdown_fenced_languages = ['sh']
 let g:lsp_virtual_text_enabled = 0
