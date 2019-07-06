@@ -18,6 +18,8 @@ set completeopt+=menuone,noinsert,noselect
 packadd! base16-vim
 packadd! async.vim
 packadd! vim-lsp
+packadd! ultisnips
+packadd! vim-snippets
 
 if executable('gopls')
   augroup lsp_go
@@ -47,6 +49,9 @@ colorscheme base16-mocha
 let g:netrw_liststyle=3  " tree style
 let g:markdown_fenced_languages = ['sh']
 let g:lsp_virtual_text_enabled = 0
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 augroup config_indent
   autocmd!
