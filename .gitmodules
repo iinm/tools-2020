@@ -61,3 +61,6 @@
 [submodule ".config/nvim/pack/_/opt/vim-multiple-cursors"]
 	path = .config/nvim/pack/_/opt/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors
+[submodule ".config/nvim/pack/_/opt/tabular"]
+	path = .config/nvim/pack/_/opt/tabular
+	url = https://github.com/godlygeek/tabular

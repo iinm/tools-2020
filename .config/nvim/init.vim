@@ -26,6 +26,7 @@ packadd! emmet-vim
 packadd! nerdcommenter
 packadd! delimitmate
 packadd! vim-multiple-cursors
+packadd! tabular
 
 if executable('gopls')
   augroup lsp_go
@@ -65,7 +66,7 @@ augroup trigger_omnifunc
   autocmd InsertCharPre * if count(['go', 'python'], &filetype) | call OpenCompletion() | endif
 augroup END
 
-colorscheme base16-mocha
+colorscheme base16-zenburn
 let g:netrw_liststyle=3  " tree style
 let g:markdown_fenced_languages = ['sh']
 let g:lsp_virtual_text_enabled = 0
