@@ -13,7 +13,7 @@ set smartcase
 set clipboard+=unnamedplus
 set mouse=a
 set termguicolors
-set completeopt+=menuone,noinsert,noselect
+set completeopt=menuone,preview,noinsert,noselect
 
 packadd! base16-vim
 packadd! async.vim
@@ -34,6 +34,18 @@ if executable('gopls')
   augroup END
 endif
 
+if executable('pyls')
+  augroup lsp_python
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'pyls',
+          \ 'cmd': {server_info->['pyls']},
+          \ 'whitelist': ['python'],
+          \ })
+    autocmd Filetype python setlocal omnifunc=lsp#complete
+  augroup END
+endif
+
 function! OpenCompletion()
   if !empty(&omnifunc)
         \ && !pumvisible()
@@ -44,7 +56,7 @@ endfunction
 
 augroup trigger_omnifunc
   autocmd!
-  autocmd InsertCharPre * if count(['go'], &filetype) | call OpenCompletion() | endif
+  autocmd InsertCharPre * if count(['go', 'python'], &filetype) | call OpenCompletion() | endif
 augroup END
 
 colorscheme base16-mocha
