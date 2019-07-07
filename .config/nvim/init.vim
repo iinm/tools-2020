@@ -8,12 +8,14 @@ set wildignore=*~,*.swp,.git,*.class,*.o,*.pyc,node_modules
 set hlsearch
 set ignorecase
 set smartcase
-"set list
-"set listchars=tab:>-,trail:·,extends:>,precedes:<
+set list
+set listchars=tab:\⇥\ ,trail:·,extends:>,precedes:<,nbsp:+
 set clipboard+=unnamedplus
 set mouse=a
 set termguicolors
 set completeopt=menuone,preview,noinsert,noselect
+set exrc
+set secure
 
 
 " --- plugin
@@ -34,6 +36,7 @@ packadd! vim-snippets
 
 " language
 packadd! vim-go
+packadd! dbext.vim
 
 " utilities
 packadd! emmet-vim
