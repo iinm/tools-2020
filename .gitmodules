@@ -58,3 +58,6 @@
 [submodule ".config/nvim/pack/_/opt/delimitmate"]
 	path = .config/nvim/pack/_/opt/delimitmate
 	url = https://github.com/raimondi/delimitmate
+[submodule ".config/nvim/pack/_/opt/vim-multiple-cursors"]
+	path = .config/nvim/pack/_/opt/vim-multiple-cursors
+	url = https://github.com/terryma/vim-multiple-cursors

@@ -25,6 +25,7 @@ packadd! vim-snippets
 packadd! emmet-vim
 packadd! nerdcommenter
 packadd! delimitmate
+packadd! vim-multiple-cursors
 
 if executable('gopls')
   augroup lsp_go
