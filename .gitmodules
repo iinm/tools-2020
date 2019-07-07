@@ -64,6 +64,3 @@
 [submodule ".config/nvim/pack/_/opt/tabular"]
 	path = .config/nvim/pack/_/opt/tabular
 	url = https://github.com/godlygeek/tabular
-[submodule ".config/nvim/pack/_/opt/vim-go"]
-	path = .config/nvim/pack/_/opt/vim-go
-	url = https://github.com/fatih/vim-go
