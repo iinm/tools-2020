@@ -67,3 +67,6 @@
 [submodule ".config/nvim/pack/_/opt/BufOnly.vim"]
 	path = .config/nvim/pack/_/opt/BufOnly.vim
 	url = https://github.com/vim-scripts/BufOnly.vim
+[submodule ".config/nvim/pack/_/opt/vim-go"]
+	path = .config/nvim/pack/_/opt/vim-go
+	url = https://github.com/fatih/vim-go

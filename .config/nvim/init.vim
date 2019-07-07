@@ -32,6 +32,9 @@ packadd! vim-lsp
 packadd! ultisnips
 packadd! vim-snippets
 
+" language
+packadd! vim-go
+
 " utilities
 packadd! emmet-vim
 packadd! nerdcommenter
@@ -47,21 +50,15 @@ let g:netrw_liststyle=3  " tree style
 let g:markdown_fenced_languages = ['sh']
 
 
-" --- language client
-let g:lsp_virtual_text_enabled = 0
+" --- vim-go
+let g:go_def_mode = 'godef'
+let g:go_fmt_command = "goimports"
 
-if executable('gopls')
-  augroup lsp_go
-    autocmd!
-    au User lsp_setup call lsp#register_server({
-          \ 'name': 'gopls',
-          \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-          \ 'whitelist': ['go'],
-          \ })
-    autocmd Filetype go setlocal omnifunc=lsp#complete
-    autocmd BufWritePre *.go LspDocumentFormatSync
-  augroup END
-endif
+
+" --- language client
+"let g:lsp_log_verbose = 1
+"let g:lsp_log_file = expand('~/vim-lsp.log')
+let g:lsp_virtual_text_enabled = 0
 
 if executable('pyls')
   augroup lsp_python
@@ -74,6 +71,23 @@ if executable('pyls')
     autocmd Filetype python setlocal omnifunc=lsp#complete
   augroup END
 endif
+
+
+" --- trigger omnifunc
+let s:omnifunc_on_typing_language = ['go', 'python']
+
+function! OpenCompletion()
+  if !empty(&omnifunc)
+        \ && !pumvisible()
+        \ && ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z') || v:char == '.')
+    call feedkeys("\<C-x>\<C-o>", "n")
+  endif
+endfunction
+
+augroup trigger_omnifunc
+  autocmd!
+  autocmd InsertCharPre * if count(s:omnifunc_on_typing_language, &filetype) | call OpenCompletion() | endif
+augroup END
 
 
 " --- indent
@@ -150,13 +164,14 @@ endfunction
 
 
 " --- keymap
-let mapleader = ","
+"let mapleader = ","
+let mapleader = "\<Space>"
 
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:NERDCreateDefaultMappings = 0
 
-"nnoremap <Leader>j :<C-u>call GotoJump()<CR>
 nnoremap <Leader>t :<C-u>call RotateTodoState()<CR>
 " https://vim.fandom.com/wiki/Search_for_visually_selected_text
 vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
@@ -196,6 +211,17 @@ nnoremap [code]t :<C-u>LspTypeDefinition<CR>
 nnoremap [code]r :<C-u>LspReference<CR>
 nnoremap [code]n :<C-u>LspRename<CR>
 nnoremap [code]s :<C-u>Snippets<CR>
+
+nnoremap <Leader>cc :<C-u>call NERDComment('n', 'toggle')<CR>
+vnoremap <Leader>cc :<C-u>call NERDComment('x', 'sexy')<CR>
+
+augroup keymap_go
+  autocmd!
+  autocmd FileType go nnoremap [code]i :<C-u>GoImport 
+  autocmd FileType go nnoremap [code]j :<C-u>GoDef<CR>
+  autocmd FileType go nnoremap [code]d :<C-u>GoDoc<CR>
+  autocmd FileType go nnoremap [code]t :<C-u>GoTestFunc<CR>
+augroup END
 
 " vim: expandtab tabstop=2 softtabstop=2 shiftwidth=2
 
