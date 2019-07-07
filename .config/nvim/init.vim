@@ -35,14 +35,16 @@ if executable('gopls')
 endif
 
 function! OpenCompletion()
-  if !empty(&omnifunc) && !pumvisible() && ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z') || v:char == '.')
+  if !empty(&omnifunc)
+        \ && !pumvisible()
+        \ && ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z') || v:char == '.')
     call feedkeys("\<C-x>\<C-o>", "n")
   endif
 endfunction
 
 augroup trigger_omnifunc
   autocmd!
-  autocmd InsertCharPre * call OpenCompletion()
+  autocmd InsertCharPre * if count(['go'], &filetype) | call OpenCompletion() | endif
 augroup END
 
 colorscheme base16-mocha
