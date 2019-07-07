@@ -15,6 +15,8 @@ set mouse=a
 set termguicolors
 set completeopt=menuone,preview,noinsert,noselect
 
+packadd! fzf
+packadd! fzf.vim
 packadd! base16-vim
 packadd! async.vim
 packadd! vim-lsp

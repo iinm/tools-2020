@@ -46,3 +46,6 @@
 [submodule ".config/nvim/pack/_/opt/ultisnips"]
 	path = .config/nvim/pack/_/opt/ultisnips
 	url = https://github.com/SirVer/ultisnips
+[submodule ".config/nvim/pack/_/opt/fzf.vim"]
+	path = .config/nvim/pack/_/opt/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
