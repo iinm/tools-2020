@@ -64,3 +64,6 @@
 [submodule ".config/nvim/pack/_/opt/tabular"]
 	path = .config/nvim/pack/_/opt/tabular
 	url = https://github.com/godlygeek/tabular
+[submodule ".config/nvim/pack/_/opt/BufOnly.vim"]
+	path = .config/nvim/pack/_/opt/BufOnly.vim
+	url = https://github.com/vim-scripts/BufOnly.vim
