@@ -22,6 +22,7 @@ packadd! async.vim
 packadd! vim-lsp
 packadd! ultisnips
 packadd! vim-snippets
+packadd! emmet-vim
 
 if executable('gopls')
   augroup lsp_go

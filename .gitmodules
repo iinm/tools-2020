@@ -49,3 +49,6 @@
 [submodule ".config/nvim/pack/_/opt/fzf.vim"]
 	path = .config/nvim/pack/_/opt/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
+[submodule ".config/nvim/pack/_/opt/emmet-vim"]
+	path = .config/nvim/pack/_/opt/emmet-vim
+	url = https://github.com/mattn/emmet-vim
