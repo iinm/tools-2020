@@ -55,3 +55,6 @@
 [submodule ".config/nvim/pack/_/opt/nerdcommenter"]
 	path = .config/nvim/pack/_/opt/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter
+[submodule ".config/nvim/pack/_/opt/delimitmate"]
+	path = .config/nvim/pack/_/opt/delimitmate
+	url = https://github.com/raimondi/delimitmate

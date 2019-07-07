@@ -24,6 +24,7 @@ packadd! ultisnips
 packadd! vim-snippets
 packadd! emmet-vim
 packadd! nerdcommenter
+packadd! delimitmate
 
 if executable('gopls')
   augroup lsp_go
