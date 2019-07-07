@@ -15,6 +15,8 @@ set mouse=a
 set termguicolors
 set completeopt=menuone,preview,noinsert,noselect
 
+
+" --- plugin
 " fuzzy finder
 packadd! fzf
 packadd! fzf.vim
@@ -30,29 +32,36 @@ packadd! vim-lsp
 packadd! ultisnips
 packadd! vim-snippets
 
-" language
-packadd! vim-go
-
 " utilities
 packadd! emmet-vim
 packadd! nerdcommenter
 packadd! delimitmate
 packadd! vim-multiple-cursors
 packadd! tabular
+packadd! BufOnly.vim
 
 
-"if executable('gopls')
-"  augroup lsp_go
-"    autocmd!
-"    autocmd User lsp_setup call lsp#register_server({
-"          \ 'name': 'gopls',
-"          \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-"          \ 'whitelist': ['go'],
-"          \ })
-"    autocmd Filetype go setlocal omnifunc=lsp#complete
-"    autocmd BufWritePre *.go LspDocumentFormatSync
-"  augroup END
-"endif
+" --- looks
+colorscheme base16-zenburn
+let g:netrw_liststyle=3  " tree style
+let g:markdown_fenced_languages = ['sh']
+
+
+" --- language client
+let g:lsp_virtual_text_enabled = 0
+
+if executable('gopls')
+  augroup lsp_go
+    autocmd!
+    au User lsp_setup call lsp#register_server({
+          \ 'name': 'gopls',
+          \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+          \ 'whitelist': ['go'],
+          \ })
+    autocmd Filetype go setlocal omnifunc=lsp#complete
+    autocmd BufWritePre *.go LspDocumentFormatSync
+  augroup END
+endif
 
 if executable('pyls')
   augroup lsp_python
@@ -66,27 +75,8 @@ if executable('pyls')
   augroup END
 endif
 
-function! OpenCompletion()
-  if !empty(&omnifunc)
-        \ && !pumvisible()
-        \ && ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z') || v:char == '.')
-    call feedkeys("\<C-x>\<C-o>", "n")
-  endif
-endfunction
 
-augroup trigger_omnifunc
-  autocmd!
-  autocmd InsertCharPre * if count(['go', 'python'], &filetype) | call OpenCompletion() | endif
-augroup END
-
-colorscheme base16-zenburn
-let g:netrw_liststyle=3  " tree style
-let g:markdown_fenced_languages = ['sh']
-let g:lsp_virtual_text_enabled = 0
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
+" --- indent
 augroup config_indent
   autocmd!
   autocmd Filetype go           setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
@@ -104,6 +94,8 @@ augroup detect_filetyle
   autocmd BufNewFile,BufRead *.json5 setfiletype javascript
 augroup END
 
+
+" --- highlight todo
 augroup highlight_todostate
   autocmd!
   autocmd WinEnter,BufRead,BufNew,Syntax * :silent! call matchadd('MyTodo', 'TODO:')
@@ -122,10 +114,25 @@ augroup highlight_keywords
   autocmd WinEnter,BufRead,BufNew,Syntax * highlight MyNote guibg=LightBlue guifg=Black
 augroup END
 
+function! RotateTodoState()
+  let current = expand('<cword>')
+  if current =~ 'TODO'
+    s/TODO:/WIP:/
+  elseif current =~ 'WIP'
+    s/WIP:/DONE:/
+  elseif current =~ 'DONE'
+    s/DONE:/TODO:/
+  endif
+endfunction
+
+
+" --- grep
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --glob\ '!*~'\ --glob\ '!.git'
 endif
 
+
+" --- jump
 " http://vim.wikia.com/wiki/Jumping_to_previously_visited_locations
 function! GotoJump()
   jumps
@@ -141,25 +148,54 @@ function! GotoJump()
   endif
 endfunction
 
-function! RotateTodoState()
-  let current = expand('<cword>')
-  if current =~ 'TODO'
-    s/TODO:/WIP:/
-  elseif current =~ 'WIP'
-    s/WIP:/DONE:/
-  elseif current =~ 'DONE'
-    s/DONE:/TODO:/
-  endif
-endfunction
 
-let mapleader = "\<Space>"
-nnoremap <Leader>j :<C-u>call GotoJump()<CR>
+" --- keymap
+let mapleader = ","
+
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
+"nnoremap <Leader>j :<C-u>call GotoJump()<CR>
 nnoremap <Leader>t :<C-u>call RotateTodoState()<CR>
 " https://vim.fandom.com/wiki/Search_for_visually_selected_text
 vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
-nnoremap gr :grep! <cword> <CR>
-nnoremap gR :grep! '\b<cword>\b' <CR>
 inoremap <C-Space> <C-x><C-o>
+
+nnoremap <Leader><Leader> :<C-u>Commands<CR>
+
+nnoremap [file] <Nop>
+nmap <Leader>f [file]
+nnoremap [file]e :<C-u>Explore<CR>
+nnoremap [file]f :<C-u>Files<CR>
+nnoremap [file]h :<C-u>History<CR>
+nnoremap [file]g :<C-u>GitFiles<CR>
+
+nnoremap [jump] <Nop>
+nmap <Leader>j [jump]
+nnoremap [jump]j :<C-u>call GotoJump()<CR>
+nnoremap [jump]l :<C-u>BLines<CR>
+
+nnoremap [grep] <Nop>
+nmap <Leader>g [grep]
+nnoremap [grep]g :<C-u>grep! 
+nnoremap [grep]c :grep! <cword><CR>
+nnoremap [grep]w :grep! '\b<cword>\b'<CR>
+
+nnoremap [buffer] <Nop>
+nmap <Leader>b [buffer]
+nnoremap [buffer]b :<C-u>Buffers<CR>
+nnoremap [buffer]o :<C-u>BufOnly<CR>
+
+nnoremap [code] <Nop>
+nmap <Leader>c [code]
+nnoremap [code]a :<C-u>LspCodeAction<CR>
+nnoremap [code]j :<C-u>LspDefinition<CR>
+nnoremap [code]d :<C-u>LspHover<CR>
+nnoremap [code]t :<C-u>LspTypeDefinition<CR>
+nnoremap [code]r :<C-u>LspReference<CR>
+nnoremap [code]n :<C-u>LspRename<CR>
+nnoremap [code]s :<C-u>Snippets<CR>
 
 " vim: expandtab tabstop=2 softtabstop=2 shiftwidth=2
 
