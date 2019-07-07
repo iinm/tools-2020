@@ -23,6 +23,7 @@ packadd! vim-lsp
 packadd! ultisnips
 packadd! vim-snippets
 packadd! emmet-vim
+packadd! nerdcommenter
 
 if executable('gopls')
   augroup lsp_go

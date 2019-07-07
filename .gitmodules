@@ -52,3 +52,6 @@
 [submodule ".config/nvim/pack/_/opt/emmet-vim"]
 	path = .config/nvim/pack/_/opt/emmet-vim
 	url = https://github.com/mattn/emmet-vim
+[submodule ".config/nvim/pack/_/opt/nerdcommenter"]
+	path = .config/nvim/pack/_/opt/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter
