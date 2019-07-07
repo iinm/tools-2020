@@ -15,31 +15,44 @@ set mouse=a
 set termguicolors
 set completeopt=menuone,preview,noinsert,noselect
 
+" fuzzy finder
 packadd! fzf
 packadd! fzf.vim
+
+" color scheme
 packadd! base16-vim
+
+" language client
 packadd! async.vim
 packadd! vim-lsp
+
+" snippets
 packadd! ultisnips
 packadd! vim-snippets
+
+" language
+packadd! vim-go
+
+" utilities
 packadd! emmet-vim
 packadd! nerdcommenter
 packadd! delimitmate
 packadd! vim-multiple-cursors
 packadd! tabular
 
-if executable('gopls')
-  augroup lsp_go
-    autocmd!
-    autocmd User lsp_setup call lsp#register_server({
-          \ 'name': 'gopls',
-          \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-          \ 'whitelist': ['go'],
-          \ })
-    autocmd Filetype go setlocal omnifunc=lsp#complete
-    autocmd BufWritePre *.go LspDocumentFormatSync
-  augroup END
-endif
+
+"if executable('gopls')
+"  augroup lsp_go
+"    autocmd!
+"    autocmd User lsp_setup call lsp#register_server({
+"          \ 'name': 'gopls',
+"          \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+"          \ 'whitelist': ['go'],
+"          \ })
+"    autocmd Filetype go setlocal omnifunc=lsp#complete
+"    autocmd BufWritePre *.go LspDocumentFormatSync
+"  augroup END
+"endif
 
 if executable('pyls')
   augroup lsp_python
