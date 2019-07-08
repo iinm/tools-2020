@@ -38,7 +38,7 @@ packadd! vim-snippets
 packadd! vim-go
 packadd! dbext.vim
 
-" utilities
+" utility
 packadd! emmet-vim
 packadd! nerdcommenter
 packadd! delimitmate
@@ -49,7 +49,7 @@ packadd! BufOnly.vim
 
 " --- looks
 colorscheme base16-zenburn
-let g:netrw_liststyle=3  " tree style
+let g:netrw_liststyle = 3  " tree style
 let g:markdown_fenced_languages = ['sh']
 
 
@@ -167,17 +167,17 @@ endfunction
 
 
 " --- keymap
-"let mapleader = ","
-let mapleader = "\<Space>"
+let mapleader = ","
 
-let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsExpandTrigger = "<c-k>"
+let g:UltiSnipsJumpForwardTrigger = "<c-f>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-b>"
 let g:NERDCreateDefaultMappings = 0
 
 nnoremap <Leader>t :<C-u>call RotateTodoState()<CR>
 " https://vim.fandom.com/wiki/Search_for_visually_selected_text
 vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
+" omnifunc
 inoremap <C-Space> <C-x><C-o>
 
 nnoremap <Leader><Leader> :<C-u>Commands<CR>
@@ -228,12 +228,14 @@ augroup END
 
 " vim: expandtab tabstop=2 softtabstop=2 shiftwidth=2
 
-" Cheat Sheet
-" :e **/main.go
-" :enew -> :r! find . -t f
-" :jumps -> [N] Ctrl-O (older location) or Ctrl-I (newer location)
-" :browse oldfiles
-" :browse filter /pattern/ oldfiles
-" gf (goto file), gx (xdg-open)
-" :grep! hoge -> :cw
-" :grep! hoge %
+" --- Cheat Sheet
+" open file            :e **/main.go
+" open new buffer      :enew -> :r! find . -t f
+" jump                 :jumps -> [N] Ctrl-O (older location) or Ctrl-I (newer location)
+" recent files         :browse oldfiles
+" recent files         :browse filter /pattern/ oldfiles
+" open path            gf (goto file), gx (xdg-open)
+" grep current dir     :grep! hoge -> :cw
+" grep current buffer  :grep! hoge %
+" expand emmet         <C-y>
+" expand snippets      <C-k> -> <C-f> or <C-b>
