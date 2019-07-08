@@ -45,12 +45,15 @@ packadd! delimitmate
 packadd! vim-multiple-cursors
 packadd! tabular
 packadd! BufOnly.vim
+packadd! goyo.vim
 
 
 " --- looks
 colorscheme base16-zenburn
 let g:netrw_liststyle = 3  " tree style
 let g:markdown_fenced_languages = ['sh']
+let g:goyo_width = 120
+let g:goyo_height = '100%'
 
 
 " --- vim-go

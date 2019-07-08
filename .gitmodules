@@ -73,3 +73,6 @@
 [submodule ".config/nvim/pack/_/opt/dbext.vim"]
 	path = .config/nvim/pack/_/opt/dbext.vim
 	url = https://github.com/vim-scripts/dbext.vim
+[submodule ".config/nvim/pack/_/opt/goyo.vim"]
+	path = .config/nvim/pack/_/opt/goyo.vim
+	url = https://github.com/junegunn/goyo.vim
