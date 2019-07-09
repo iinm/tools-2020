@@ -46,6 +46,7 @@ packadd! vim-multiple-cursors
 packadd! tabular
 packadd! BufOnly.vim
 packadd! goyo.vim
+packadd! gtags.vim
 
 
 " --- looks
@@ -79,7 +80,15 @@ if executable('pyls')
 endif
 
 
+" --- omnifunc
+"augroup set_omnifunc
+"  autocmd!
+"  autocmd Filetype java setlocal omnifunc=syntaxcomplete#Complete
+"augroup END
+"
+
 " --- trigger omnifunc
+"let s:omnifunc_on_typing_language = []
 let s:omnifunc_on_typing_language = ['go', 'python']
 
 function! OpenCompletion()
@@ -94,6 +103,10 @@ augroup trigger_omnifunc
   autocmd!
   autocmd InsertCharPre * if count(s:omnifunc_on_typing_language, &filetype) | call OpenCompletion() | endif
 augroup END
+
+
+" --- fzf
+let g:fzf_tags_command = 'ctags -R'
 
 
 " --- indent

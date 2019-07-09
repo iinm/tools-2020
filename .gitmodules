@@ -76,3 +76,6 @@
 [submodule ".config/nvim/pack/_/opt/goyo.vim"]
 	path = .config/nvim/pack/_/opt/goyo.vim
 	url = https://github.com/junegunn/goyo.vim
+[submodule ".config/nvim/pack/_/opt/gtags.vim"]
+	path = .config/nvim/pack/_/opt/gtags.vim
+	url = https://github.com/vim-scripts/gtags.vim
