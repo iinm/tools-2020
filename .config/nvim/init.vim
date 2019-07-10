@@ -131,6 +131,7 @@ command! -bang -nargs=* Rg
 
 
 " --- gtags
+" TODO: use fzf; e.g. global -tr Hoge | fzf
 command! GtagsRefCursor execute 'normal :Gtags -r ' . expand('<cword>') . '<CR>'
 
 
