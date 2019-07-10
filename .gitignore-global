@@ -8,3 +8,9 @@
 
 # direnv
 .envrc
+
+# tags
+tags
+GPATH
+GRTAGS
+GTAGS

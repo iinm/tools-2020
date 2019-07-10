@@ -130,9 +130,11 @@ command! -bang -nargs=* Rg
 "  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 
-" --- gtags
-" TODO: use fzf; e.g. global -tr Hoge | fzf
+" --- ctags, gtags
+command! CtagsUpdate call system('ctags -R')
+command! GtagsUpdate call system('gtags')
 command! GtagsRefCursor execute 'normal :Gtags -r ' . expand('<cword>') . '<CR>'
+" TODO: use fzf; e.g. global -tr Hoge | fzf
 
 
 " quickfix
