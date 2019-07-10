@@ -73,9 +73,12 @@ let g:go_fmt_command = "goimports"
 
 
 " --- language client
-"let g:lsp_log_verbose = 1
-"let g:lsp_log_file = expand('~/vim-lsp.log')
-let g:lsp_virtual_text_enabled = 0
+if !empty($vim_lsp_debug)
+  let g:lsp_log_verbose = 1
+  let g:lsp_log_file = expand('~/vim-lsp.log')
+endif
+
+"let g:lsp_virtual_text_enabled = 0
 
 if executable('pyls')
   augroup lsp_python
@@ -86,6 +89,19 @@ if executable('pyls')
           \ 'whitelist': ['python'],
           \ })
     autocmd Filetype python setlocal omnifunc=lsp#complete
+  augroup END
+endif
+
+if executable('java') && !empty($jdt_project_root)
+  augroup lsp_java
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'jdt.ls',
+          \ 'cmd': {server_info->['jdt.ls']},
+          \ 'root_uri': {server_info->'file://' . $jdt_project_root},
+          \ 'whitelist': ['java'],
+          \ })
+    autocmd Filetype java setlocal omnifunc=lsp#complete
   augroup END
 endif
 
