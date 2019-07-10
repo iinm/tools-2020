@@ -82,3 +82,6 @@
 [submodule ".config/nvim/pack/_/opt/vim-fugitive"]
 	path = .config/nvim/pack/_/opt/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
+[submodule ".config/nvim/pack/_/opt/vim-preview"]
+	path = .config/nvim/pack/_/opt/vim-preview
+	url = https://github.com/skywind3000/vim-preview

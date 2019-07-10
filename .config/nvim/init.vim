@@ -47,6 +47,7 @@ packadd! tabular
 packadd! BufOnly.vim
 packadd! goyo.vim
 packadd! gtags.vim
+packadd! vim-preview
 
 function! s:load_fugitive()
   packadd vim-fugitive
@@ -148,7 +149,7 @@ command! -bang -nargs=* Rg
 
 " --- ctags, gtags
 command! CtagsUpdate call system('ctags -R')
-command! GtagsUpdate call system('gtags')
+command! GtagsUpdate call system('gtags -iv')
 command! GtagsRefCursor execute 'normal :Gtags -r ' . expand('<cword>') . '<CR>'
 " TODO: use fzf; e.g. global -tr Hoge | fzf
 
@@ -162,6 +163,7 @@ endfunction
 augroup config_quickfix
   autocmd!
   autocmd FileType qf call AdjustWindowHeight(3, 15)
+  autocmd FileType qf setlocal nowrap
   autocmd QuickFixCmdPost *grep* cwindow
 augroup END
 
@@ -247,11 +249,14 @@ let g:UltiSnipsJumpForwardTrigger = "<c-f>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-b>"
 let g:NERDCreateDefaultMappings = 0
 
-nnoremap <Leader>t :<C-u>call RotateTodoState()<CR>
+"nnoremap <Leader>t :<C-u>call RotateTodoState()<CR>
 " https://vim.fandom.com/wiki/Search_for_visually_selected_text
 vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
 " omnifunc
 inoremap <C-Space> <C-x><C-o>
+" preview quickfix
+autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<CR>
+autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<CR>
 
 nnoremap <Leader><Leader> :<C-u>Commands<CR>
 
@@ -266,6 +271,13 @@ nnoremap [jump] <Nop>
 nmap <Leader>j [jump]
 nnoremap [jump]j :<C-u>call GotoJump()<CR>
 nnoremap [jump]l :<C-u>BLines<CR>
+
+nnoremap [tags] <Nop>
+nmap <Leader>t [tags]
+nnoremap [tags]t :<C-u>Gtags 
+nnoremap [tags]d :<C-u>GtagsCursor<CR>
+nnoremap [tags]r :<C-u>GtagsRefCursor<CR>
+nnoremap [tags]f :<C-u>Gtags -f %<CR>
 
 nnoremap [grep] <Nop>
 nmap <Leader>g [grep]
