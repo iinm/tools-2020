@@ -48,6 +48,16 @@ packadd! BufOnly.vim
 packadd! goyo.vim
 packadd! gtags.vim
 
+function! s:load_fugitive()
+  packadd vim-fugitive
+  call fugitive#detect(expand('%:p'))
+endfunction
+
+augroup pack_loader
+  autocmd!
+  autocmd CmdUndefined Gblame,Gstatus,Glog,Gdiff,Ggrep call s:load_fugitive()
+augroup END
+
 
 " --- looks
 colorscheme base16-zenburn

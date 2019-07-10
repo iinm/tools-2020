@@ -79,3 +79,6 @@
 [submodule ".config/nvim/pack/_/opt/gtags.vim"]
 	path = .config/nvim/pack/_/opt/gtags.vim
 	url = https://github.com/vim-scripts/gtags.vim
+[submodule ".config/nvim/pack/_/opt/vim-fugitive"]
+	path = .config/nvim/pack/_/opt/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
