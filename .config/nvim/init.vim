@@ -135,6 +135,19 @@ command! -bang -nargs=* Rg
 command! GtagsRefCursor execute 'normal :Gtags -r ' . expand('<cword>') . '<CR>'
 
 
+" quickfix
+" https://vim.fandom.com/wiki/Automatically_fitting_a_quickfix_window_height
+function! AdjustWindowHeight(minheight, maxheight)
+  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
+
+augroup config_quickfix
+  autocmd!
+  autocmd FileType qf call AdjustWindowHeight(3, 15)
+  autocmd QuickFixCmdPost *grep* cwindow
+augroup END
+
+
 " --- indent
 augroup config_indent
   autocmd!
