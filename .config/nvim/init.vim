@@ -130,6 +130,10 @@ command! -bang -nargs=* Rg
 "  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 
+" --- gtags
+command! GtagsRefCursor execute 'normal :Gtags -r ' . expand('<cword>') . '<CR>'
+
+
 " --- indent
 augroup config_indent
   autocmd!
