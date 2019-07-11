@@ -62,7 +62,7 @@ augroup END
 
 " --- looks
 colorscheme base16-zenburn
-let g:netrw_liststyle = 3  " tree style
+"let g:netrw_liststyle = 3  " tree style
 let g:markdown_fenced_languages = ['sh']
 let g:goyo_width = 120
 let g:goyo_height = '100%'
@@ -114,7 +114,6 @@ endif
 "augroup END
 "
 
-" --- trigger omnifunc
 "let s:omnifunc_on_typing_language = []
 let s:omnifunc_on_typing_language = ['go', 'python']
 
@@ -147,14 +146,13 @@ command! -bang -nargs=* Rg
 "  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 
-" --- ctags, gtags
+" --- tags
 command! CtagsUpdate call system('ctags -R')
 command! GtagsUpdate call system('gtags -iv')
 command! GtagsRefCursor execute 'normal :Gtags -r ' . expand('<cword>') . '<CR>'
-" TODO: use fzf; e.g. global -tr Hoge | fzf
 
 
-" quickfix
+" --- quickfix
 " https://vim.fandom.com/wiki/Automatically_fitting_a_quickfix_window_height
 function! AdjustWindowHeight(minheight, maxheight)
   exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
