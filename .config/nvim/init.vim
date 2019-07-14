@@ -152,6 +152,15 @@ command! GtagsUpdate call system('gtags -iv')
 command! GtagsRefCursor execute 'normal :Gtags -r ' . expand('<cword>') . '<CR>'
 
 
+" --- delimitmate
+augroup config_delimitmate
+  autocmd!
+  autocmd Filetype markdown let b:delimitMate_expand_cr = 2
+  autocmd Filetype markdown let b:delimitMate_expand_inside_quotes = 1
+  autocmd Filetype markdown let b:delimitMate_expand_space = 0
+  autocmd Filetype markdown let b:delimitMate_nesting_quotes = ['`']
+augroup END
+
 " --- quickfix
 " https://vim.fandom.com/wiki/Automatically_fitting_a_quickfix_window_height
 function! AdjustWindowHeight(minheight, maxheight)
