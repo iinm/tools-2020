@@ -79,7 +79,7 @@ if !empty($vim_lsp_debug)
   let g:lsp_log_file = expand('~/vim-lsp.log')
 endif
 
-"let g:lsp_virtual_text_enabled = 0
+let g:lsp_virtual_text_enabled = 0
 
 if executable('pyls')
   augroup lsp_python
