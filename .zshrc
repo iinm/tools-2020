@@ -91,6 +91,8 @@ fi
 alias rg="rg --hidden"
 alias view="nvim -R"
 
+alias random-str="openssl rand -base64 32"
+
 
 # --- key bind
 bindkey -e
