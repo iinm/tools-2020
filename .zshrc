@@ -90,7 +90,6 @@ fi
 
 alias rg="rg --hidden"
 alias view="nvim -R"
-
 alias random-str="openssl rand -base64 32"
 
 
@@ -192,25 +191,6 @@ function with-notify() {
   return $RET
 }
 
-# fzf godoc; requires gnu sed
-FGODOC_ENTRIES_FILE=~/.fgodoc-entries
-function fgodoc-update() {
-  for package in $(cd ~ && go list ... 2> /dev/null); do
-    echo $package
-    for elem in $(godoc $package | sed -En 's/^(type|func) (\w+).+/\2/p'); do
-      echo $package.$elem
-    done
-    for elem in $(godoc $package | sed -En 's/^func \(\w* \*?(\w+)\) (\w+)\(.+/\1.\2/p'); do
-      echo $package.$elem
-    done
-  done | sort > $FGODOC_ENTRIES_FILE
-}
-
-function fgodoc() {
-  cat $FGODOC_ENTRIES_FILE \
-    | fzf --preview 'go doc  {}' --preview-window hidden --bind '?:toggle-preview' --bind 'enter:execute:go doc {} | less'
-}
-
 function csv2excelman() {
   fname=${1:?}
   nkf --oc=UTF-8-BOM $fname > ${fname%.csv}.excel.csv
@@ -274,7 +254,7 @@ function open-url-in-text() {
 }
 
 
-# --- machine specific config
+# --- host specific config
 if test -f ~/.zshrc.local; then
   source ~/.zshrc.local
 fi
