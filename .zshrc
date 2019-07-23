@@ -191,6 +191,11 @@ function with-notify() {
   return $RET
 }
 
+function update-tags() {
+  ctags -R
+  gtags -iv
+}
+
 function csv2excelman() {
   fname=${1:?}
   nkf --oc=UTF-8-BOM $fname > ${fname%.csv}.excel.csv
