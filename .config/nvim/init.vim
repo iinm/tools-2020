@@ -61,7 +61,7 @@ augroup END
 
 
 " --- looks
-colorscheme base16-zenburn
+colorscheme base16-eighties
 let g:netrw_liststyle = 3  " tree style
 let g:markdown_fenced_languages = ['sh']
 let g:goyo_width = 120
