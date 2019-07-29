@@ -88,3 +88,12 @@
 [submodule ".config/nvim/pack/_/opt/todo.txt-vim"]
 	path = .config/nvim/pack/_/opt/todo.txt-vim
 	url = https://github.com/freitass/todo.txt-vim
+[submodule ".config/nvim/pack/_/opt/plantuml-previewer.vim"]
+	path = .config/nvim/pack/_/opt/plantuml-previewer.vim
+	url = https://github.com/weirongxu/plantuml-previewer.vim
+[submodule ".config/nvim/pack/_/opt/open-browser.vim"]
+	path = .config/nvim/pack/_/opt/open-browser.vim
+	url = https://github.com/tyru/open-browser.vim
+[submodule ".config/nvim/pack/_/opt/plantuml-syntax"]
+	path = .config/nvim/pack/_/opt/plantuml-syntax
+	url = https://github.com/aklt/plantuml-syntax

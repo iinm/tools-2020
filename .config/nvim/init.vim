@@ -38,6 +38,11 @@ packadd! vim-snippets
 packadd! vim-go
 packadd! dbext.vim
 
+" plantuml
+packadd plantuml-syntax
+packadd! open-browser.vim
+packadd! plantuml-previewer.vim
+
 " utility
 packadd! emmet-vim
 packadd! nerdcommenter
