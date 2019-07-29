@@ -71,7 +71,7 @@ let g:goyo_height = '100%'
 
 " --- vim-go
 "let g:go_def_mode = 'godef'
-"let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "goimports"
 
 
 " --- language client
@@ -181,12 +181,14 @@ augroup config_indent
   autocmd!
   autocmd Filetype go           setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
   autocmd Filetype python       setlocal expandtab   tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd Filetype java,groovy  setlocal expandtab   tabstop=4 softtabstop=4 shiftwidth=4
   autocmd Filetype sh,zsh,vim   setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype xml,html,css setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype javascript   setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype json,yaml    setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype sql          setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype markdown     setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd Filetype plantuml     setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 augroup detect_filetyle
