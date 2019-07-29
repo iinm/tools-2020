@@ -48,6 +48,7 @@ packadd! BufOnly.vim
 packadd! goyo.vim
 packadd! gtags.vim
 packadd! vim-preview
+packadd! todo.txt-vim
 
 function! s:load_fugitive()
   packadd vim-fugitive

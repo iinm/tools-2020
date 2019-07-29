@@ -85,3 +85,6 @@
 [submodule ".config/nvim/pack/_/opt/vim-preview"]
 	path = .config/nvim/pack/_/opt/vim-preview
 	url = https://github.com/skywind3000/vim-preview
+[submodule ".config/nvim/pack/_/opt/todo.txt-vim"]
+	path = .config/nvim/pack/_/opt/todo.txt-vim
+	url = https://github.com/freitass/todo.txt-vim
