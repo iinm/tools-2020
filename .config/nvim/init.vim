@@ -38,6 +38,7 @@ packadd! vim-snippets
 packadd! vim-go
 packadd! dbext.vim
 packadd! vim-jsx-pretty
+packadd! vim-styled-jsx
 
 " plantuml
 packadd plantuml-syntax
@@ -110,6 +111,17 @@ if executable('java') && !empty($jdt_project_root)
           \ 'whitelist': ['java'],
           \ })
     autocmd Filetype java setlocal omnifunc=lsp#complete
+  augroup END
+endif
+
+if executable('typescript-language-server')
+  augroup lsp_javascript
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'javascript support using typescript-language-server',
+          \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+          \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+          \ 'whitelist': ['javascript', 'javascript.jsx'],
+          \ })
   augroup END
 endif
 

@@ -100,3 +100,6 @@
 [submodule ".config/nvim/pack/_/opt/vim-jsx-pretty"]
 	path = .config/nvim/pack/_/opt/vim-jsx-pretty
 	url = https://github.com/MaxMEllon/vim-jsx-pretty
+[submodule ".config/nvim/pack/_/opt/vim-styled-jsx"]
+	path = .config/nvim/pack/_/opt/vim-styled-jsx
+	url = https://github.com/alampros/vim-styled-jsx
