@@ -37,6 +37,7 @@ packadd! vim-snippets
 " language
 packadd! vim-go
 packadd! dbext.vim
+packadd! vim-jsx-pretty
 
 " plantuml
 packadd plantuml-syntax

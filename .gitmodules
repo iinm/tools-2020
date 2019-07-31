@@ -97,3 +97,6 @@
 [submodule ".config/nvim/pack/_/opt/plantuml-syntax"]
 	path = .config/nvim/pack/_/opt/plantuml-syntax
 	url = https://github.com/aklt/plantuml-syntax
+[submodule ".config/nvim/pack/_/opt/vim-jsx-pretty"]
+	path = .config/nvim/pack/_/opt/vim-jsx-pretty
+	url = https://github.com/MaxMEllon/vim-jsx-pretty
