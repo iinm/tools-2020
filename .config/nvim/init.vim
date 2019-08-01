@@ -56,6 +56,7 @@ packadd! goyo.vim
 packadd! gtags.vim
 packadd! vim-preview
 packadd! todo.txt-vim
+packadd! markdown-preview.nvim  " cd app & yarn install
 
 function! s:load_fugitive()
   packadd vim-fugitive

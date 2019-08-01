@@ -103,3 +103,6 @@
 [submodule ".config/nvim/pack/_/opt/vim-styled-jsx"]
 	path = .config/nvim/pack/_/opt/vim-styled-jsx
 	url = https://github.com/alampros/vim-styled-jsx
+[submodule ".config/nvim/pack/_/opt/markdown-preview.nvim"]
+	path = .config/nvim/pack/_/opt/markdown-preview.nvim
+	url = https://github.com/iamcco/markdown-preview.nvim
