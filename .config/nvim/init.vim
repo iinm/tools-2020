@@ -238,11 +238,11 @@ augroup END
 
 function! RotateTodoState()
   let current = expand('<cword>')
-  if current =~ 'TODO'
+  if current =~# 'TODO'
     s/TODO:/WIP:/
-  elseif current =~ 'WIP'
+  elseif current =~# 'WIP'
     s/WIP:/DONE:/
-  elseif current =~ 'DONE'
+  elseif current =~# 'DONE'
     s/DONE:/TODO:/
   endif
 endfunction
