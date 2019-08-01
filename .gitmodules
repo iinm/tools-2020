@@ -106,3 +106,6 @@
 [submodule ".config/nvim/pack/_/opt/markdown-preview.nvim"]
 	path = .config/nvim/pack/_/opt/markdown-preview.nvim
 	url = https://github.com/iamcco/markdown-preview.nvim
+[submodule ".config/nvim/pack/_/opt/vim-surround"]
+	path = .config/nvim/pack/_/opt/vim-surround
+	url = https://github.com/tpope/vim-surround
