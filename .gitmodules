@@ -109,3 +109,9 @@
 [submodule ".config/nvim/pack/_/opt/vim-surround"]
 	path = .config/nvim/pack/_/opt/vim-surround
 	url = https://github.com/tpope/vim-surround
+[submodule ".config/nvim/pack/_/opt/vim-styled-components"]
+	path = .config/nvim/pack/_/opt/vim-styled-components
+	url = https://github.com/styled-components/vim-styled-components
+[submodule ".config/nvim/pack/_/opt/vim-jsx-typescript"]
+	path = .config/nvim/pack/_/opt/vim-jsx-typescript
+	url = https://github.com/peitalin/vim-jsx-typescript

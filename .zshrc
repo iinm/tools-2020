@@ -90,6 +90,7 @@ fi
 
 alias rg="rg --hidden"
 alias view="nvim -R"
+alias :e="nvim"
 alias random-str="openssl rand -base64 32"
 
 

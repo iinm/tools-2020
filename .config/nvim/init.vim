@@ -37,8 +37,11 @@ packadd! vim-snippets
 " language
 packadd! vim-go
 packadd! dbext.vim
-packadd! vim-jsx-pretty
-packadd! vim-styled-jsx
+"packadd! vim-jsx-pretty
+"packadd! vim-styled-jsx
+"packadd! typescript-vim
+packadd! vim-jsx-typescript
+packadd! vim-styled-components
 
 " plantuml
 packadd plantuml-syntax
@@ -127,6 +130,16 @@ if executable('typescript-language-server')
   augroup END
 endif
 
+if executable('typescript-language-server')
+  augroup lsp_typescript
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'typescript-language-server',
+          \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+          \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+          \ 'whitelist': ['typescript', 'typescript.tsx'],
+          \ })
+  augroup END
+endif
 
 " --- omnifunc
 "augroup set_omnifunc
@@ -205,6 +218,7 @@ augroup config_indent
   autocmd Filetype sh,zsh,vim   setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype xml,html,css setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype javascript   setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd Filetype typescript,typescript.tsx setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype json,yaml    setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype sql          setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype markdown     setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
@@ -214,6 +228,7 @@ augroup END
 augroup detect_filetyle
   autocmd!
   autocmd BufNewFile,BufRead *.json5 setfiletype javascript
+  autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
 augroup END
 
 
