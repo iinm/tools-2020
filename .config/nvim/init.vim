@@ -42,6 +42,7 @@ packadd! dbext.vim
 "packadd! typescript-vim
 packadd! vim-jsx-typescript
 packadd! vim-styled-components
+packadd! vim-freemarker
 
 " plantuml
 packadd plantuml-syntax

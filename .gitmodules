@@ -115,3 +115,6 @@
 [submodule ".config/nvim/pack/_/opt/vim-jsx-typescript"]
 	path = .config/nvim/pack/_/opt/vim-jsx-typescript
 	url = https://github.com/peitalin/vim-jsx-typescript
+[submodule ".config/nvim/pack/_/opt/vim-freemarker"]
+	path = .config/nvim/pack/_/opt/vim-freemarker
+	url = https://github.com/andreshazard/vim-freemarker.git
