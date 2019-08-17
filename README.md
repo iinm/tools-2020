@@ -6,9 +6,11 @@ Development tools and configurations (a.k.a. dotfiles)
 
 ```sh
 # darwin
-brew install zsh tmux vim git tig ripgrep fd coreutils gnu-sed highlight
+brew install zsh tmux git tig ripgrep fd coreutils gnu-sed highlight
 # arch linux
-sudo pacman -Sy zsh tmux gvim git tig ripgrep fd xsel highlight
+sudo pacman -Sy zsh tmux git tig ripgrep fd xsel highlight
+# ubuntu
+sudo apt install zsh tmux git tig ripgrep fd-find xsel
 ```
 
 ```sh
@@ -28,6 +30,7 @@ bash ~/tools/opt/jabba/install.sh
 source ~/.jabba/jabba.sh
 jabba ls-remote
 jabba install $jdk_version
+jabba alias default $jdk_version
 
 # python
 pyenv install -l
