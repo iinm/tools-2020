@@ -118,3 +118,6 @@
 [submodule ".config/nvim/pack/_/opt/vim-freemarker"]
 	path = .config/nvim/pack/_/opt/vim-freemarker
 	url = https://github.com/andreshazard/vim-freemarker.git
+[submodule ".config/nvim/pack/_/opt/apiblueprint.vim"]
+	path = .config/nvim/pack/_/opt/apiblueprint.vim
+	url = https://github.com/kylef/apiblueprint.vim
