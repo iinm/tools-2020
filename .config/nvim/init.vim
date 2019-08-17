@@ -95,6 +95,7 @@ endif
 
 let g:lsp_virtual_text_enabled = 0
 
+" pip install python-language-server
 if executable('pyls')
   augroup lsp_python
     autocmd!
@@ -120,6 +121,7 @@ if executable('java') && !empty($jdt_project_root)
   augroup END
 endif
 
+" npm install -g typescript typescript-language-server
 if executable('typescript-language-server')
   augroup lsp_javascript
     autocmd User lsp_setup call lsp#register_server({
