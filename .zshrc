@@ -78,7 +78,7 @@ alias dco="docker-compose"
 
 if test $OS = 'Linux'; then
   alias pbcopy="xsel -i -p && xsel -o -p | xsel -i -b"
-  alias pbpaste="xsel -o"
+  alias pbpaste="xsel -o -b"
   alias open="xdg-open"
 fi
 
