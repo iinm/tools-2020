@@ -227,6 +227,7 @@ augroup config_indent
   autocmd Filetype sql          setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype markdown     setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
   autocmd Filetype plantuml     setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd Filetype tf           setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 augroup detect_filetyle
