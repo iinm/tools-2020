@@ -7,7 +7,7 @@ if test -x /usr/local/bin/brew; then
   export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 fi
 
-if test $OS = 'Darwin'; then
+if test "$OS" = 'Darwin'; then
   alias readlink=greadlink
 fi
 this_file=$(readlink -f ${(%):-%x})
@@ -28,9 +28,7 @@ source $GVM_ROOT/scripts/gvm-default
 
 # nvm
 export NVM_DIR=$TOOLS/opt/nvm
-function enable-nvm() {
-  source $NVM_DIR/nvm.sh
-}
+load_nvm() { source $NVM_DIR/nvm.sh }
 
 # rust
 export PATH=$HOME/.cargo/bin:$PATH

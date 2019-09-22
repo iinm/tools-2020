@@ -1,3 +1,8 @@
+# --- These variables should be set with ~/.zshenv
+: ${OS?}
+: ${TOOLS?}
+
+
 fpath=($TOOLS/local/opt/zsh-functions $TOOLS/opt/zsh-completions/src $fpath)
 
 
@@ -7,12 +12,10 @@ HISTFILE=~/.zsh_history
 SAVEHIST=50000
 setopt APPEND_HISTORY
 setopt EXTENDED_HISTORY
-setopt EXTENDED_HISTORY
 setopt HIST_BEEP
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
@@ -24,11 +27,11 @@ setopt INC_APPEND_HISTORY
 zstyle ':completion:*' completer _complete
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 zstyle ':completion:*:default' menu select=2
-if test $OS = 'Darwin'; then
+if test "$OS" = 'Darwin'; then
   alias dircolors=gdircolors
 fi
 eval "$(dircolors)"
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 autoload -Uz compinit && compinit -C
 
 
@@ -56,48 +59,48 @@ export EDITOR=nvim
 
 
 # --- alias
-alias rm="rm -i"
-alias cp="cp -i"
-alias mv="mv -i"
-if test $OS = 'Darwin'; then
-    alias ls="ls -FG"
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+if test "$OS" = 'Darwin'; then
+  alias ls='ls -FG'
 else
-    alias ls="ls --color=auto -F"
+  alias ls='ls --color=auto -F'
 fi
-alias la="ls -alh"
-alias ll="ls -lh"
+alias la='ls -alh'
+alias ll='ls -lh'
 
-alias gco="git checkout"
-alias gst="git status"
-alias gl="git pull"
+alias gco='git checkout'
+alias gst='git status'
+alias gl='git pull'
 alias gcd='cd $(git rev-parse --show-toplevel)'
 alias gcb='git rev-parse --abbrev-ref HEAD'
 alias gsm='git submodule'
 
-alias dco="docker-compose"
+alias dco='docker-compose'
 
-if test $OS = 'Linux'; then
-  alias pbcopy="xsel -i -p && xsel -o -p | xsel -i -b"
-  alias pbpaste="xsel -o -b"
-  alias open="xdg-open"
+if test "$OS" = 'Linux'; then
+  alias pbcopy='xsel -i -p && xsel -o -p | xsel -i -b'
+  alias pbpaste='xsel -o -b'
+  alias open='xdg-open'
 fi
 
 # for darwin
-if test $OS = 'Darwin'; then
-  alias sed="gsed"
-  alias date="gdate"
+if test "$OS" = 'Darwin'; then
+  alias sed='gsed'
+  alias date='gdate'
 fi
 
-alias rg="rg --hidden"
-alias view="nvim -R"
-alias :e="nvim"
-alias random-str="openssl rand -base64 32"
+alias rg='rg --hidden'
+alias view='nvim -R'
+alias :e='nvim'
+alias random-str='openssl rand -base64 32'
 
 
 # --- key bind
 bindkey -e
 
-if [ -f ~/.fzf.zsh ]; then
+if test -f ~/.fzf.zsh; then
   source ~/.fzf.zsh
   zle     -N   fzf-file-widget
   bindkey '^Y' fzf-file-widget
@@ -132,53 +135,43 @@ fi
 
 
 # --- functions
-function fz() {
+fz() {
   dir=$(fasd_cd -dlR | fzf) && cd "$dir"
 }
 
-# open file
-function fo() {
-  f=$(fzf) && open "$f"
-}
-
 # cd
-function fcd() {
+fcd() {
   local dir
   #dir=$(find ${1:-.} -type d 2> /dev/null | fzf) && cd "$dir"
   dir=$(fd --type d --hidden --follow --exclude .git 2> /dev/null | fzf) && cd "$dir"
 }
 
 # fzf git checkout
-function fgco() {
+fgco() {
   git checkout $(git branch --all --sort=-committerdate | fzf)
 }
 
 # fzf git diff
-function fgdiff() {
-  git diff $@ --name-only | sort | fzf --preview "git diff --color $@ {}" --bind "enter:execute:git diff --color $@ {} | less -R"
+fgdiff() {
+  git diff "$@" --name-only | sort | fzf --preview "git diff --color $@ {}" --bind "enter:execute:git diff --color $@ {} | less -R"
 }
 
 # fzf rg; requires highlight
-function frg() {
+frg() {
   LINES=$(( $(tput lines) * 4 / 10 ))
   previewer="env LINES=$LINES $TOOLS/.vim/pack/_/opt/fzf.vim/bin/preview.sh"
   rg --line-number $@ \
     | fzf --preview "$previewer {}" --preview-window down:${LINES}:hidden:wrap --bind '?:toggle-preview'
 }
 
-function frg-vim() {
-  line=$(frg $@)
-  test -z "$line" && return 1
-  vim $(echo $line | sed -En 's/^([^:]+):([0-9]+):.+/\1 +\2/p')
-}
-
-function with-notify() {
+# desktop notification
+with_notification() {
   message="$@"
-  $@
-  RET=$?
-  if [ $RET -eq 0 ]; then
+  if "$@"; then
+    exit_code="$?"
     title="Success 😁"
   else
+    exit_code="$?"
     title="Fail 😨"
   fi
   # darwin
@@ -189,74 +182,17 @@ function with-notify() {
   if which notify-send &> /dev/null; then
     notify-send "${title}" "${message}"
   fi
-  return $RET
+  return "$exit_code"
 }
 
-function update-tags() {
+update_tags() {
   ctags -R
   gtags -iv
 }
 
-function csv2excelman() {
-  fname=${1:?}
-  nkf --oc=UTF-8-BOM $fname > ${fname%.csv}.excel.csv
-}
-
-# slack
-function slack-post-message() {
-  : ${SLACK_API_TOKEN:?}
-  channel=${2:?}
-  text=${3:?}
-  text_escaped=${text//\"/\\\"} # replace " -> \"
-  curl -X POST 'https://slack.com/api/chat.postMessage' \
-    --data "{\"channel\": \"${channel}\", \"text\": \"${text_escaped}\"}" \
-    -H "Authorization: Bearer $SLACK_API_TOKEN" \
-    -H 'Content-type: application/json'
-}
-
-# gitlab
-function gitlab-create-merge-request() {
-  : ${GITLAB_BASE_URL:?}
-  : ${GITLAB_PROJECT_ID:?}
-  : ${GITLAB_PRIVATE_TOKEN:?}
-  source_branch=${1:?}
-  target_branch=${2:?}
-  title=${3:-"Merge branch '${source_branch}' into '${target_branch}'"}
-  curl -X POST \
-    $GITLAB_BASE_URL/api/v3/projects/$GITLAB_PROJECT_ID/merge_requests \
-    --header "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
-    -F "source_branch=$source_branch" \
-    -F "target_branch=$target_branch" \
-    -F "title=$title"
-}
-
-function gitlab-get-merge-requests() {
-  : ${GITLAB_BASE_URL:?}
-  : ${GITLAB_PROJECT_ID:?}
-  : ${GITLAB_PRIVATE_TOKEN:?}
-  params=${1:-"state=opened&per_page=10000"}
-  curl --silent -X GET \
-    "$GITLAB_BASE_URL/api/v3/projects/$GITLAB_PROJECT_ID/merge_requests?$params" \
-    -H "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN"
-}
-
-function gitlab-ls-mr() {
-  gitlab-get-merge-requests \
-    | jq --raw-output '.[] | [.title, .author.username, .source_branch, .target_branch, .web_url] | @tsv' \
-    | awk \
-        -F '\t' \
-        -v bold=$(tput bold) -v blue=$(tput setaf 4) -v green=$(tput setaf 2) -v black=$(tput setaf 0) -v reset=$(tput sgr0) \
-        '{ print "・" $1  " " bold " by " reset blue $2 reset "  " black "#(" $3 " -> " $4 ")  " $5 reset }' \
-    | fzf \
-        --ansi \
-        --preview "echo {} | grep -Eo '#\(.+'" \
-        --preview-window down:2:wrap \
-        --bind 'enter:execute:source ~/.zshrc; open-url-in-text {}'
-}
-
-function open-url-in-text() {
-  url=$(echo ${1:?} | grep -Eo 'https?://[0-9a-zA-Z?=#+_&:/.%]+')
-  open $url
+csv2excel() {
+  fname="${1:?}"
+  nkf --oc=UTF-8-BOM "$fname" > "${fname%.csv}.excel.csv"
 }
 
 

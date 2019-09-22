@@ -43,10 +43,10 @@ gvm install $go_version -B
 gvm use $go_version --default
 
 # node
-enable-nvm
+load_nvm
 nvm ls-remote
 nvm install $node_version
-echo 'export PATH=~/tools/opt/nvm/versions/node/$node_version/bin:$PATH' >> ~/.zshenv.local
+echo 'export PATH=$TOOLS/opt/nvm/versions/node/$node_version/bin:$PATH' >> ~/.zshenv.local
 
 # rust
 ~/tools/opt/rustup.rs/rustup-init.sh -y --no-modify-path
