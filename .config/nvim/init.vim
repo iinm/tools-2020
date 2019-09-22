@@ -14,8 +14,8 @@ set clipboard+=unnamedplus
 set mouse=a
 set termguicolors
 set completeopt=menuone,preview,noinsert,noselect
-set exrc
-set secure
+"set exrc
+"set secure
 
 
 " --- plugin
@@ -37,11 +37,6 @@ packadd! vim-snippets
 " language
 packadd! vim-go
 packadd! dbext.vim
-"packadd! vim-jsx-pretty
-"packadd! vim-styled-jsx
-"packadd! typescript-vim
-packadd! vim-jsx-typescript
-packadd! vim-styled-components
 packadd! vim-freemarker
 packadd! apiblueprint.vim
 
@@ -54,7 +49,6 @@ packadd! plantuml-previewer.vim
 packadd! emmet-vim
 packadd! nerdcommenter
 packadd! delimitmate
-packadd! vim-multiple-cursors
 packadd! tabular
 packadd! BufOnly.vim
 packadd! goyo.vim
@@ -89,7 +83,7 @@ let g:go_fmt_command = "goimports"
 
 
 " --- language client
-if !empty($vim_lsp_debug)
+if !empty($VIM_LSP_DEBUG)
   let g:lsp_log_verbose = 1
   let g:lsp_log_file = expand('~/vim-lsp.log')
 endif
@@ -109,13 +103,13 @@ if executable('pyls')
   augroup END
 endif
 
-if executable('java') && !empty($jdt_project_root)
+if executable('java') && !empty($JDT_PROJECT_ROOT)
   augroup lsp_java
     autocmd!
     autocmd User lsp_setup call lsp#register_server({
           \ 'name': 'jdt.ls',
           \ 'cmd': {server_info->['jdt.ls']},
-          \ 'root_uri': {server_info->'file://' . $jdt_project_root},
+          \ 'root_uri': {server_info->'file://' . $JDT_PROJECT_ROOT},
           \ 'whitelist': ['java'],
           \ })
     autocmd Filetype java setlocal omnifunc=lsp#complete
@@ -216,18 +210,19 @@ augroup END
 " --- indent
 augroup config_indent
   autocmd!
-  autocmd Filetype go           setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
-  autocmd Filetype python       setlocal expandtab   tabstop=4 softtabstop=4 shiftwidth=4
-  autocmd Filetype java,groovy  setlocal expandtab   tabstop=4 softtabstop=4 shiftwidth=4
-  autocmd Filetype sh,zsh,vim   setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd Filetype xml,html,css setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd Filetype javascript   setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd Filetype typescript,typescript.tsx setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd Filetype json,yaml    setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd Filetype sql          setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd Filetype markdown     setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd Filetype plantuml     setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd Filetype tf           setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd Filetype go             setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd Filetype python         setlocal expandtab   tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd Filetype java,groovy    setlocal expandtab   tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd Filetype sh,zsh,vim     setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd Filetype xml,html,css   setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd Filetype javascript     setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd Filetype typescript     setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd Filetype typescript.tsx setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd Filetype json,yaml      setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd Filetype sql            setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd Filetype markdown       setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd Filetype plantuml       setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd Filetype tf             setlocal expandtab   tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 augroup detect_filetyle

@@ -185,6 +185,14 @@ with_notification() {
   return "$exit_code"
 }
 
+nvim_list_unneeded_packs() {
+  for pack in $(find ~/.config/nvim/pack/_/opt/ -mindepth 1 -maxdepth 1 -type d); do
+    if ! grep -qE "packadd.+$(basename $pack)" ~/.config/nvim/init.vim; then
+      echo "$pack"
+    fi
+  done
+}
+
 update_tags() {
   ctags -R
   gtags -iv

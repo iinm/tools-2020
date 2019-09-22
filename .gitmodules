@@ -58,9 +58,6 @@
 [submodule ".config/nvim/pack/_/opt/delimitmate"]
 	path = .config/nvim/pack/_/opt/delimitmate
 	url = https://github.com/raimondi/delimitmate
-[submodule ".config/nvim/pack/_/opt/vim-multiple-cursors"]
-	path = .config/nvim/pack/_/opt/vim-multiple-cursors
-	url = https://github.com/terryma/vim-multiple-cursors
 [submodule ".config/nvim/pack/_/opt/tabular"]
 	path = .config/nvim/pack/_/opt/tabular
 	url = https://github.com/godlygeek/tabular
@@ -97,24 +94,12 @@
 [submodule ".config/nvim/pack/_/opt/plantuml-syntax"]
 	path = .config/nvim/pack/_/opt/plantuml-syntax
 	url = https://github.com/aklt/plantuml-syntax
-[submodule ".config/nvim/pack/_/opt/vim-jsx-pretty"]
-	path = .config/nvim/pack/_/opt/vim-jsx-pretty
-	url = https://github.com/MaxMEllon/vim-jsx-pretty
-[submodule ".config/nvim/pack/_/opt/vim-styled-jsx"]
-	path = .config/nvim/pack/_/opt/vim-styled-jsx
-	url = https://github.com/alampros/vim-styled-jsx
 [submodule ".config/nvim/pack/_/opt/markdown-preview.nvim"]
 	path = .config/nvim/pack/_/opt/markdown-preview.nvim
 	url = https://github.com/iamcco/markdown-preview.nvim
 [submodule ".config/nvim/pack/_/opt/vim-surround"]
 	path = .config/nvim/pack/_/opt/vim-surround
 	url = https://github.com/tpope/vim-surround
-[submodule ".config/nvim/pack/_/opt/vim-styled-components"]
-	path = .config/nvim/pack/_/opt/vim-styled-components
-	url = https://github.com/styled-components/vim-styled-components
-[submodule ".config/nvim/pack/_/opt/vim-jsx-typescript"]
-	path = .config/nvim/pack/_/opt/vim-jsx-typescript
-	url = https://github.com/peitalin/vim-jsx-typescript
 [submodule ".config/nvim/pack/_/opt/vim-freemarker"]
 	path = .config/nvim/pack/_/opt/vim-freemarker
 	url = https://github.com/andreshazard/vim-freemarker.git
