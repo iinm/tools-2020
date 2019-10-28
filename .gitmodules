@@ -106,3 +106,6 @@
 [submodule ".config/nvim/pack/_/opt/apiblueprint.vim"]
 	path = .config/nvim/pack/_/opt/apiblueprint.vim
 	url = https://github.com/kylef/apiblueprint.vim
+[submodule ".config/nvim/pack/_/opt/vim-sleuth"]
+	path = .config/nvim/pack/_/opt/vim-sleuth
+	url = https://github.com/tpope/vim-sleuth
