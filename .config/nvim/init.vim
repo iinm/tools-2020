@@ -252,17 +252,6 @@ augroup highlight_keywords
   autocmd WinEnter,BufRead,BufNew,Syntax * highlight MyNote guibg=LightBlue guifg=Black
 augroup END
 
-function! RotateTodoState()
-  let current = expand('<cword>')
-  if current =~# 'TODO'
-    s/TODO:/WIP:/
-  elseif current =~# 'WIP'
-    s/WIP:/DONE:/
-  elseif current =~# 'DONE'
-    s/DONE:/TODO:/
-  endif
-endfunction
-
 
 " --- grep
 if executable('rg')
@@ -295,11 +284,13 @@ let g:UltiSnipsJumpForwardTrigger = "<c-f>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-b>"
 let g:NERDCreateDefaultMappings = 0
 
-"nnoremap <Leader>t :<C-u>call RotateTodoState()<CR>
+" search selected text
 " https://vim.fandom.com/wiki/Search_for_visually_selected_text
 vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
 " omnifunc
 inoremap <C-Space> <C-x><C-o>
+" clear highlight
+nnoremap <C-l> :<C-u>nohlsearch<CR>:<C-u>redraw!<CR>
 " preview quickfix
 autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<CR>
 autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<CR>
