@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eu
+
 this_dir="$(cd "$(dirname "$0")" && pwd)"
 
 files=(
@@ -8,7 +10,7 @@ files=(
 )
 
 for fname in "${files[@]}"; do
-  ln -sv $this_dir/$fname ~/
+  ln -sv "$this_dir/$fname" ~/
 done
 
 # $XDG_CONFIG_HOME
@@ -20,5 +22,5 @@ esac
 
 mkdir -pv ~/.config
 for fname in "${config_files[@]}"; do
-  ln -sv $this_dir/.config/$fname ~/.config/
+  ln -sv "$this_dir/.config/$fname" ~/.config/
 done

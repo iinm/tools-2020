@@ -6,9 +6,9 @@ Development tools and configurations (a.k.a. dotfiles)
 
 ```sh
 # darwin
-brew install zsh tmux git tig ripgrep fd coreutils gnu-sed highlight
+brew install zsh tmux git tig ripgrep fd coreutils gnu-sed
 # arch linux
-sudo pacman -Sy zsh tmux git tig ripgrep fd xsel highlight
+sudo pacman -Sy zsh tmux git tig ripgrep fd xsel
 # ubuntu
 sudo apt install zsh tmux git tig ripgrep fd-find xsel
 ```
@@ -22,6 +22,9 @@ bash link.sh
 ## Setup
 
 ```sh
+# git config
+echo "\n[include]\npath = ~/tools/.gitconfig" >> ~/.gitconfig
+
 # fzf
 test -f ~/.fzf.zsh || ~/tools/opt/fzf/install --all
 
@@ -50,13 +53,4 @@ echo 'export PATH=$TOOLS/opt/nvm/versions/node/$node_version/bin:$PATH' >> ~/.zs
 
 # rust
 ~/tools/opt/rustup.rs/rustup-init.sh -y --no-modify-path
-
-# etc.
-echo "\n[include]\npath = ~/tools/.gitconfig" >> ~/.gitconfig
-go get github.com/direnv/direnv
-go get -u github.com/radovskyb/watcher/...
 ```
-
-## Tips
-
-- Custom command for gnome-terminal / iterm2 : `zsh -c "(tmux ls && tmux at) || tmux new"`
