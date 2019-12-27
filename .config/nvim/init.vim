@@ -39,6 +39,7 @@ packadd! vim-go
 packadd! dbext.vim
 packadd! vim-freemarker
 packadd! apiblueprint.vim
+packadd! swift.vim
 
 " plantuml
 packadd plantuml-syntax

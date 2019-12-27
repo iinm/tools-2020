@@ -109,3 +109,6 @@
 [submodule ".config/nvim/pack/_/opt/vim-sleuth"]
 	path = .config/nvim/pack/_/opt/vim-sleuth
 	url = https://github.com/tpope/vim-sleuth
+[submodule ".config/nvim/pack/_/opt/swift.vim"]
+	path = .config/nvim/pack/_/opt/swift.vim
+	url = https://github.com/keith/swift.vim
