@@ -17,7 +17,6 @@ export LANG=en_US.UTF-8
 export PATH=$TOOLS/bin:$TOOLS/local/bin:$PATH
 
 # pyenv
-export PYTHON_CONFIGURE_OPTS="--enable-shared"
 export PYENV_ROOT=$TOOLS/opt/pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
