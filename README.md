@@ -38,6 +38,7 @@ jabba alias default $jdk_version
 # python
 pyenv install -l
 pyenv install $py_version
+CPPFLAGS="-I$(brew --prefix zlib)/include" pyenv install -v $py_version  # on Darwin
 pyenv global $py_version
 
 # go
