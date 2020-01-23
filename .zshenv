@@ -33,9 +33,7 @@ load_nvm() { source $NVM_DIR/nvm.sh }
 export PATH=$HOME/.cargo/bin:$PATH
 
 # jabba
-if test -f ~/.jabba/jabba.sh; then
-  source ~/.jabba/jabba.sh
-fi
+load_jabba() { source $HOME/.jabba/jabba.sh }
 
 # host specific config
 if test -f ~/.zshenv.local; then
