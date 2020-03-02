@@ -23,7 +23,7 @@ bash link.sh
 
 ```sh
 # git config
-echo "\n[include]\npath = ~/tools/.gitconfig" >> ~/.gitconfig
+echo -e "\n[include]\npath = ~/tools/.gitconfig" >> ~/.gitconfig
 
 # fzf
 test -f ~/.fzf.zsh || ~/tools/opt/fzf/install --all
