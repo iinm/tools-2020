@@ -15,6 +15,7 @@ this_file=$(readlink -f ${(%):-%x})
 export TOOLS=$(cd $(dirname $this_file) && pwd)
 export LANG=en_US.UTF-8
 export PATH=$TOOLS/bin:$TOOLS/local/bin:$PATH
+export MANPATH="$TOOLS/local/share/man:$MANPATH"
 
 # pyenv
 export PYENV_ROOT=$TOOLS/opt/pyenv
