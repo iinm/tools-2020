@@ -32,7 +32,7 @@ if test "$OS" = 'Darwin'; then
 fi
 eval "$(dircolors)"
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-autoload -Uz compinit && compinit -C
+autoload -Uz compinit && compinit -Cu
 
 
 # --- looks
